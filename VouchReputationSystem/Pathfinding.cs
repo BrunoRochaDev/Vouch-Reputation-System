@@ -7,15 +7,15 @@ namespace VouchReputationSystem
 {
     class Pathfinding
     {      
-		public static List<AccountChain> FindPath(AccountChain _startAcc, AccountChain _endAcc)
+		public static List<AccountNode> FindPath(AccountNode _startAcc, AccountNode _endAcc)
         {
-			List<AccountChain> openSet = new List<AccountChain>();
-			HashSet<AccountChain> closedSet = new HashSet<AccountChain>();
+			List<AccountNode> openSet = new List<AccountNode>();
+			HashSet<AccountNode> closedSet = new HashSet<AccountNode>();
 			openSet.Add(_startAcc);
 
 			while (openSet.Count > 0)
 			{
-				AccountChain node = openSet[0];
+				AccountNode node = openSet[0];
 				for (int i = 1; i < openSet.Count; i++)
 				{
 					if (openSet[i].fCost < node.fCost || openSet[i].fCost == node.fCost)
@@ -33,7 +33,7 @@ namespace VouchReputationSystem
 					return RetracePath(_startAcc, _endAcc);
 				}
 
-				foreach (AccountChain neighbour in node.neighbours.Keys)
+				foreach (AccountNode neighbour in node.neighbours.Keys)
 				{
 					if (closedSet.Contains(neighbour))
 					{
@@ -53,13 +53,13 @@ namespace VouchReputationSystem
 				}
 			}
 
-			return new List<AccountChain>();
+			return new List<AccountNode>();
 		}
 
-		static List<AccountChain> RetracePath(AccountChain _start, AccountChain _end)
+		static List<AccountNode> RetracePath(AccountNode _start, AccountNode _end)
 		{
-			List<AccountChain> path = new List<AccountChain>();
-			AccountChain currentNode = _end;
+			List<AccountNode> path = new List<AccountNode>();
+			AccountNode currentNode = _end;
 
 			while (currentNode != _start)
 			{

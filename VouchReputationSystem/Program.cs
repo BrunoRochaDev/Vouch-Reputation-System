@@ -50,15 +50,9 @@ namespace VouchReputationSystem
 
             //------------------------------------
 
-            Console.WriteLine(adam.PrintImmediateVouches());
-
-            //Console.WriteLine(eve.PrintReputations());
-
-            Console.WriteLine("PATH");
-            foreach (AccountChain _node in Pathfinding.FindPath(adam, john))
-            {
-                Console.WriteLine(_node.name);
-            }
+            //Creates the networks through Adam's perspective
+            Network _network = new Network(adam);
+            _network.PrintAllNodes();
         }
     }
 }

@@ -11,3 +11,16 @@ C:\Users\bruno\Desktop\Programming Projects\C#\VouchReputationSystem\VouchReputa
 C:\Users\bruno\Desktop\Programming Projects\C#\VouchReputationSystem\VouchReputationSystem\obj\Debug\netcoreapp3.1\VouchReputationSystem.dll
 C:\Users\bruno\Desktop\Programming Projects\C#\VouchReputationSystem\VouchReputationSystem\obj\Debug\netcoreapp3.1\VouchReputationSystem.pdb
 C:\Users\bruno\Desktop\Programming Projects\C#\VouchReputationSystem\VouchReputationSystem\obj\Debug\netcoreapp3.1\VouchReputationSystem.genruntimeconfig.cache
+C:\Users\bruno\Desktop\Programming Projects\C#\Vouch-Reputation-System\VouchReputationSystem\obj\Debug\netcoreapp3.1\VouchReputationSystem.csprojAssemblyReference.cache
+C:\Users\bruno\Desktop\Programming Projects\C#\Vouch-Reputation-System\VouchReputationSystem\obj\Debug\netcoreapp3.1\VouchReputationSystem.AssemblyInfoInputs.cache
+C:\Users\bruno\Desktop\Programming Projects\C#\Vouch-Reputation-System\VouchReputationSystem\obj\Debug\netcoreapp3.1\VouchReputationSystem.AssemblyInfo.cs
+C:\Users\bruno\Desktop\Programming Projects\C#\Vouch-Reputation-System\VouchReputationSystem\obj\Debug\netcoreapp3.1\VouchReputationSystem.csproj.CoreCompileInputs.cache
+C:\Users\bruno\Desktop\Programming Projects\C#\Vouch-Reputation-System\VouchReputationSystem\obj\Debug\netcoreapp3.1\VouchReputationSystem.dll
+C:\Users\bruno\Desktop\Programming Projects\C#\Vouch-Reputation-System\VouchReputationSystem\obj\Debug\netcoreapp3.1\VouchReputationSystem.pdb
+C:\Users\bruno\Desktop\Programming Projects\C#\Vouch-Reputation-System\VouchReputationSystem\bin\Debug\netcoreapp3.1\VouchReputationSystem.exe
+C:\Users\bruno\Desktop\Programming Projects\C#\Vouch-Reputation-System\VouchReputationSystem\bin\Debug\netcoreapp3.1\VouchReputationSystem.deps.json
+C:\Users\bruno\Desktop\Programming Projects\C#\Vouch-Reputation-System\VouchReputationSystem\bin\Debug\netcoreapp3.1\VouchReputationSystem.runtimeconfig.json
+C:\Users\bruno\Desktop\Programming Projects\C#\Vouch-Reputation-System\VouchReputationSystem\bin\Debug\netcoreapp3.1\VouchReputationSystem.runtimeconfig.dev.json
+C:\Users\bruno\Desktop\Programming Projects\C#\Vouch-Reputation-System\VouchReputationSystem\bin\Debug\netcoreapp3.1\VouchReputationSystem.dll
+C:\Users\bruno\Desktop\Programming Projects\C#\Vouch-Reputation-System\VouchReputationSystem\bin\Debug\netcoreapp3.1\VouchReputationSystem.pdb
+C:\Users\bruno\Desktop\Programming Projects\C#\Vouch-Reputation-System\VouchReputationSystem\obj\Debug\netcoreapp3.1\VouchReputationSystem.genruntimeconfig.cache

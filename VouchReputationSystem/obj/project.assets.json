@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bruno\\Desktop\\Programming Projects\\C#\\VouchReputationSystem\\VouchReputationSystem\\VouchReputationSystem.csproj",
+      "projectUniqueName": "C:\\Users\\bruno\\Desktop\\Programming Projects\\C#\\Vouch-Reputation-System\\VouchReputationSystem\\VouchReputationSystem.csproj",
       "projectName": "VouchReputationSystem",
-      "projectPath": "C:\\Users\\bruno\\Desktop\\Programming Projects\\C#\\VouchReputationSystem\\VouchReputationSystem\\VouchReputationSystem.csproj",
+      "projectPath": "C:\\Users\\bruno\\Desktop\\Programming Projects\\C#\\Vouch-Reputation-System\\VouchReputationSystem\\VouchReputationSystem.csproj",
       "packagesPath": "C:\\Users\\bruno\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bruno\\Desktop\\Programming Projects\\C#\\VouchReputationSystem\\VouchReputationSystem\\obj\\",
+      "outputPath": "C:\\Users\\bruno\\Desktop\\Programming Projects\\C#\\Vouch-Reputation-System\\VouchReputationSystem\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
