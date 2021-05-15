@@ -8,11 +8,9 @@ namespace VouchReputationSystem
     class AccountChain
     {
         public string name;
-        public int id;
-        static int id_count = 0;
 
         //Dictionary with every node it has a connection with. True is vouch for, False is vouch against.
-        public Dictionary<AccountChain, bool> connections = new Dictionary<AccountChain, bool>();
+        public Dictionary<AccountChain, bool> vouches = new Dictionary<AccountChain, bool>();
         
         //Constructors
         public AccountChain()
@@ -22,7 +20,6 @@ namespace VouchReputationSystem
         public AccountChain(string _name)
         {
             this.name = _name;
-            this.id = ++id_count;
         }
 
         #region vouch
@@ -38,18 +35,18 @@ namespace VouchReputationSystem
             }
 
             //If given node is already vouched for
-            if (this.connections.ContainsKey(_node))
+            if (this.vouches.ContainsKey(_node))
             {
                 //If the current vouch polarity is already whats being vouched, then remove it
-                if (connections[_node].Equals(_polarity))
-                    connections.Remove(_node);
+                if (vouches[_node].Equals(_polarity))
+                    vouches.Remove(_node);
                 //If not, then update it
                 else
-                    this.connections[_node] = _polarity;
+                    this.vouches[_node] = _polarity;
             }
             else
                 //If not, vouch for it.
-                this.connections.Add(_node, _polarity);
+                this.vouches.Add(_node, _polarity);
         }
         //Simplified function only for vouching for
         public void VouchFor(AccountChain _node)
@@ -59,7 +56,6 @@ namespace VouchReputationSystem
         //Simplified function only for vouching against
         public void VouchAgainst(AccountChain _node)
         {
-            Console.WriteLine(this.name + " vouched against " + _node.name);
             this.Vouch(_node, false);
         }
 
@@ -69,18 +65,15 @@ namespace VouchReputationSystem
 
             //Gets the vouch state from this node
             bool thisPolarity;
-            if (this.connections.ContainsKey(_otherNode))
-                thisPolarity = this.connections[_otherNode];
+            if (this.vouches.ContainsKey(_otherNode))
+                thisPolarity = this.vouches[_otherNode];
             else
                 thisPolarity = false;
 
             //Gets the vouch state from the other node
-            Console.WriteLine("Connections " +_otherNode.name);
-            foreach (AccountChain _node in _otherNode.connections.Keys)
-                Console.WriteLine(_node.ToString());
             bool otherPolarity;
-            if (_otherNode.connections.ContainsKey(this))
-                otherPolarity = _otherNode.connections[this];
+            if (_otherNode.vouches.ContainsKey(this))
+                otherPolarity = _otherNode.vouches[this];
             else
                 otherPolarity = false;
 
@@ -91,13 +84,13 @@ namespace VouchReputationSystem
         {
             //Gets the vouch state from this node
             bool thisPolarity = true;
-            if (this.connections.ContainsKey(_otherNode))
-                thisPolarity = this.connections[_otherNode];
+            if (this.vouches.ContainsKey(_otherNode))
+                thisPolarity = this.vouches[_otherNode];
 
             //Gets the vouch state from the other node
             bool otherPolarity = true;
-            if (_otherNode.connections.ContainsKey(this))
-                otherPolarity = _otherNode.connections[this];
+            if (_otherNode.vouches.ContainsKey(this))
+                otherPolarity = _otherNode.vouches[this];
 
             return !(thisPolarity && otherPolarity);
         }
@@ -122,11 +115,11 @@ namespace VouchReputationSystem
                 return false;
             }
 
-            return this.id.Equals(item.id);
+            return this.name.Equals(item.name);
         }
         public override int GetHashCode()
         {
-            return this.id.GetHashCode();
+            return this.name.GetHashCode();
         }
     }
 }

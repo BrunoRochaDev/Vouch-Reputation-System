@@ -6,53 +6,74 @@ using System.Text;
 namespace VouchReputationSystem
 {
     class Pathfinding
-    {      
-		public static List<AccountNode> FindPath(AccountNode _startAcc, AccountNode _endAcc)
-        {
-			List<AccountNode> openSet = new List<AccountNode>();
-			HashSet<AccountNode> closedSet = new HashSet<AccountNode>();
-			openSet.Add(_startAcc);
+    {
+		public static int GetNodeDistance(AccountNode _node, AccountNode _observer)
+		{
+			if (_node == _observer)
+				return 0;
 
+			return Pathfinding.FindPath(_observer, _node).Count;
+		}
+
+		public static List<AccountNode> FindPath(AccountNode _startNode, AccountNode _endNode)
+        {
+			//This is using the A* algorithm
+
+			//The set of nodes to be evaluated
+			List<AccountNode> openSet = new List<AccountNode>();
+			//The set of nodes to already evaluated
+			HashSet<AccountNode> closedSet = new HashSet<AccountNode>();
+
+			//At first, the open set consists only of the start currentNode
+			openSet.Add(_startNode);
+
+			//Loops until there are no more sets to evaluate
 			while (openSet.Count > 0)
 			{
-				AccountNode node = openSet[0];
+				//Find the node in OPEN with the lowest f cost
+				AccountNode currentNode = openSet[0];
 				for (int i = 1; i < openSet.Count; i++)
 				{
-					if (openSet[i].fCost < node.fCost || openSet[i].fCost == node.fCost)
+					if (openSet[i].fCost < currentNode.fCost || openSet[i].fCost == currentNode.fCost)
 					{
-						if (openSet[i].hCost < node.hCost)
-							node = openSet[i];
+						if (openSet[i].hCost < currentNode.hCost)
+							currentNode = openSet[i];
 					}
 				}
 
-				openSet.Remove(node);
-				closedSet.Add(node);
+				//Swap current node from OPEN to CLOSED
+				openSet.Remove(currentNode);
+				closedSet.Add(currentNode);
 
-				if (node == _endAcc)
-				{
-					return RetracePath(_startAcc, _endAcc);
-				}
+				//If the current node is the end node, then we have a path
+				if (currentNode == _endNode)
+					return RetracePath(_startNode, _endNode);
 
-				foreach (AccountNode neighbour in node.neighbours.Keys)
+				//Loop through each neighbour node from the current node looking for valid neighbours to add to the open list.
+				foreach (AccountNode neighbour in currentNode.neighbours.Keys)
 				{
+					//If the neighbour node was already evaluated, then we dont need to considerer it further.
 					if (closedSet.Contains(neighbour))
-					{
 						continue;
-					}
 
-					int newCostToNeighbour = node.gCost + 1;
+					//If the new path to neighhbour is shorter OR neighbor is not in open
+					int newCostToNeighbour = currentNode.gCost + 1;
 					if (newCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
 					{
+						//Set fCost (gCost + hCost)
 						neighbour.gCost = newCostToNeighbour;
 						neighbour.hCost = 1;
-						neighbour.ParentNode = node;
+						//Set the parent node
+						neighbour.ParentNode = currentNode;
 
+						//If the open set not already contaisn neighbour, then add it.
 						if (!openSet.Contains(neighbour))
 							openSet.Add(neighbour);
 					}
 				}
 			}
 
+			//If it made it this far, then all the nodes were eveluated but still couldnt reach the target node. Meaning that there is no possible path.
 			return new List<AccountNode>();
 		}
 

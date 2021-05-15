@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using VouchReputationSystem.ReputationFunctions;
 
 namespace VouchReputationSystem
 {
@@ -8,6 +9,11 @@ namespace VouchReputationSystem
     {
         //---------------
         public static int networkReach = 1;
+
+        static float _defaultNodeRep = 0.5f;
+        public static float defaultNodeRep { get { return _defaultNodeRep; } set { _defaultNodeRep = Util.LimitRange(_defaultNodeRep, 1f, 0f); } }
+
+        public static int reputationReach = 4;
         //---------------
 
         public AccountNode observerNode;
@@ -17,8 +23,13 @@ namespace VouchReputationSystem
         public Network(AccountChain _observerAcc)
         {
             this.observerNode = new AccountNode(_observerAcc);
-            observerNode.PrintImmediateVouches();
+
             GetAllNodes();
+
+            SetUpReputation();
+
+            observerNode.PrintImmediateVouches();
+
         }
 
         void GetAllNodes()
@@ -41,8 +52,12 @@ namespace VouchReputationSystem
                 Dictionary<int, List<AccountNode>> neighboursDict = new Dictionary<int, List<AccountNode>>(networkReach);
                 //Adds the first layer
                 neighboursDict.Add(-1, neighbourNodes);
-                for (int i = 0; i < networkReach; i++)
+                for (int i = 0; i < networkReach+1; i++)
                 {
+                    //If is empty, then we reached a dead end.
+                    if (neighboursDict[i - 1].Count == 0)
+                        break;
+
                     List<AccountNode> nextNeighbours = new List<AccountNode>();
                     foreach (AccountNode _node in neighboursDict[i-1])
                     {
@@ -55,7 +70,7 @@ namespace VouchReputationSystem
                     }
 
                     //Add the next layer if still within reach
-                    if (i + 1 < networkReach)
+                    if (i < networkReach)
                         neighboursDict.Add(i, nextNeighbours);
                 }
             
@@ -69,6 +84,19 @@ namespace VouchReputationSystem
             }          
         }
     
+        void SetUpReputation()
+        {
+            //First of all, setup all the nodes distances
+            foreach (AccountNode _node in allNodes)
+                //_node.distanceFromObserver = Pathfinding.GetNodeDistance(_node, observerNode);
+                Console.WriteLine("Distance: " + Pathfinding.GetNodeDistance(_node, observerNode));
+
+            //Creates the reputation function
+            ReputationFunction reputationFunction = new LinearFalloff(observerNode, allNodes);
+
+            allNodes = reputationFunction.GetReputationList(allNodes);
+        }
+
         public void PrintAllNodes()
         {
             Console.WriteLine("NETWORK NODES\nTotal: " + allNodes.Count);

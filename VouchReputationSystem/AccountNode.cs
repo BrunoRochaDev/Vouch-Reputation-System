@@ -10,12 +10,20 @@ namespace VouchReputationSystem
         public AccountNode(AccountChain _acc)
         {
             this.name = _acc.name;
-            this.connections = _acc.connections;
+            this.vouches = _acc.vouches;
+        }
+        public AccountNode(AccountChain _acc, float _weight)
+        {
+            this.name = _acc.name;
+            this.vouches = _acc.vouches;
+            this.weight = _weight;
         }
 
         //Weight of node determined locally
         private float _weight = 1;
-        public float weight { get { return _weight; } set { _weight = LimitRange(_weight, 1.5f, 0.5f); } }
+        public float weight { get { return _weight; } set { _weight = Util.LimitRange(_weight, 1.5f, 0.5f); } }
+
+        public int distanceFromObserver = 0;
 
         public float reputation = 1;
 
@@ -32,47 +40,10 @@ namespace VouchReputationSystem
         //Quick get function to add G cost and H Cost, and since we'll never need to edit FCost, we dont need a set function.
         public int fCost { get { return gCost + hCost; } }
 
-        #region reputation
-
-        private Dictionary<AccountChain, float> GetReputationOfAll()
-        {
-            Dictionary<AccountChain, float> result = new Dictionary<AccountChain, float>();
-
-            //Get reputation of each edge node.
-            foreach (AccountChain _node in connections.Keys)
-            {
-                result.Add(_node, GetReputationOfNode(_node));
-            }
-
-            return result;
-        }
-
-        private float GetReputationOfNode(AccountChain _node)
-        {
-            //Loop through each node to determine all the neighbors
-
-            return 1;
-        }
-
-        private float LinearReputation(Dictionary<AccountChain, int> _nodes)
-        {
-            return 1;
-        }
-
-        public int GetAccDistance(AccountNode _other)
-        {
-            if (_other == this)
-                return 0;
-
-            return Pathfinding.FindPath(this, _other).Count;
-        }
-
-        #endregion
-
         public Dictionary<AccountNode, bool> GetNeighbours()
         {
             Dictionary<AccountNode, bool> _result = new Dictionary<AccountNode, bool>();
-            foreach (AccountChain _node in this.connections.Keys)
+            foreach (AccountChain _node in this.vouches.Keys)
             {
                 bool vouchFor = DoesVouchFor(_node);
                 bool vouchAgainst = DoesVouchAgainst(_node);
@@ -95,11 +66,11 @@ namespace VouchReputationSystem
         }
 
         #region print
-        //Prints all the connections in string format.
+        //Prints all the vouches in string format.
         public void PrintImmediateVouches()
         {
-            //If there are not connections...
-            if (this.connections.Count == 0)
+            //If there are not vouches...
+            if (this.vouches.Count == 0)
                 Console.WriteLine(this.name + " has no vouches.");
 
             //If there are not relations...
@@ -128,17 +99,9 @@ namespace VouchReputationSystem
         //Print object
         public override string ToString()
         {
-            return "name: " + this.name + ", rep: " + this.reputation;
+            return "name: " + this.name + ", rep: " + this.reputation + ", distance: " + this.distanceFromObserver;
         }
         #endregion
-
-        //Function that ensures that values are always between 0 and 1.
-        static float LimitRange(float value, float inclusiveMinimum, float inclusiveMaximum)
-        {
-            if (value < inclusiveMinimum) { return inclusiveMinimum; }
-            if (value > inclusiveMaximum) { return inclusiveMaximum; }
-            return value;
-        }
 
         //Equivalence
         public override bool Equals(object obj)
@@ -150,11 +113,11 @@ namespace VouchReputationSystem
                 return false;
             }
 
-            return this.id.Equals(item.id);
+            return this.name.Equals(item.name);
         }
         public override int GetHashCode()
         {
-            return this.id.GetHashCode();
+            return this.name.GetHashCode();
         }
     }
 }
