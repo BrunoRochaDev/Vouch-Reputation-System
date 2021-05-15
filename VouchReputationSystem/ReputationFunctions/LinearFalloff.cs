@@ -14,7 +14,7 @@ namespace VouchReputationSystem.ReputationFunctions
 
         public override float Function(AccountNode _node)
         {
-            List<AccountNode> relevantNeighbours = observerNode.neighbours.Keys.Intersect(_node.neighbours.Keys).ToList();
+            //List<AccountNode> relevantNeighbours = observerNode.neighbours.Keys.Intersect(_node.neighbours.Keys).ToList();
             return 1;
         }
     }

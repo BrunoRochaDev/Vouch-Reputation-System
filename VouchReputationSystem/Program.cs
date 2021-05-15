@@ -52,8 +52,16 @@ namespace VouchReputationSystem
 
             //Creates the networks through Adam's perspective
             Network _network = new Network(adam);
-            _network.GetNodeWithAccount(simon).PrintImmediateVouches();
             _network.PrintAllNodes();
+            _network.GetNodeWithAccount(adam).PrintImmediateVouches();
+            _network.GetNodeWithAccount(noah).PrintImmediateVouches();
+            _network.GetNodeWithAccount(jacob).PrintImmediateVouches();
+            _network.GetNodeWithAccount(simon).PrintImmediateVouches();
+            _network.GetNodeWithAccount(eli).PrintImmediateVouches();
+            _network.GetNodeWithAccount(peter).PrintImmediateVouches();
+            _network.GetNodeWithAccount(joseph).PrintImmediateVouches();
+            _network.GetNodeWithAccount(john).PrintImmediateVouches();
+
         }
     }
 }

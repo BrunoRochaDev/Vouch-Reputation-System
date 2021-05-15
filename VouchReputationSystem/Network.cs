@@ -8,7 +8,7 @@ namespace VouchReputationSystem
     class Network
     {
         //---------------
-        public static int networkReach = 1;
+        public static int networkReach = 2;
 
         static float _defaultNodeRep = 0.5f;
         public static float defaultNodeRep { get { return _defaultNodeRep; } set { _defaultNodeRep = Util.LimitRange(_defaultNodeRep, 1f, 0f); } }
@@ -35,6 +35,7 @@ namespace VouchReputationSystem
             SetUpReputation();
         }
 
+        //This method creates the network AND sets up the neighbour relations.
         void GetAllNodes()
         {
             //Adds the observer node to the list
@@ -42,64 +43,77 @@ namespace VouchReputationSystem
 
             //Get neighbour nodes
             List<AccountNode> neighbourNodes = new List<AccountNode>();
-            foreach (AccountNode _acc in observerNode.neighbours.Keys)
+            foreach (AccountChain _acc in observerNode.vouches.Keys)
             {
-                AccountNode _node = new AccountNode(_acc);
-                allNodes.Add(_node);
+                if (!observerNode.isVouchValid(_acc))
+                    continue;
+
+                AccountNode _node = GetNodeWithAccount(_acc);
+                if (_node == null)
+                {
+                    _node = new AccountNode(_acc);
+                    allNodes.Add(_node);
+                }
+
                 neighbourNodes.Add(_node);
+
+                //Add the neighbours
+                bool polarity = observerNode.vouches[_acc];
+                observerNode.neighbours.Add(_node, polarity);
+                //Now add to the other node if its a vouch against
+                if (!polarity)
+                {
+                    if (_node.neighbours.ContainsKey(observerNode))
+                        _node.neighbours[observerNode] = false;
+                    else
+                        _node.neighbours.Add(observerNode, false);
+                }
             }
 
             //Now add the neighbour's neighbours up until the reach. Only do this if reach > 0
-            if(networkReach > 0)
+            if (networkReach > 0)
             {
-                Dictionary<int, List<AccountNode>> neighboursDict = new Dictionary<int, List<AccountNode>>(networkReach);
-                //Adds the first layer
-                neighboursDict.Add(-1, neighbourNodes);
-                for (int i = 0; i < networkReach+1; i++)
-                {
-                    //If is empty, then we reached a dead end.
-                    if (neighboursDict[i - 1].Count == 0)
-                        break;
+                //The set of nodes to be evaluated, already with the neighbourNodes
+                List<AccountNode> openSet = new List<AccountNode>(neighbourNodes);
 
-                    List<AccountNode> nextNeighbours = new List<AccountNode>();
-                    foreach (AccountNode _node in neighboursDict[i-1])
+                for (int i = 0; i < networkReach; i++)
+                {
+                    //Validate all the current nodes in openSet
+                    foreach (AccountNode currentNode in openSet.ToArray())
                     {
-                        foreach (AccountChain _neighbour in _node.neighbours.Keys)
+                        //Swap current node from OPEN to CLOSED
+                        openSet.Remove(currentNode);
+
+                        //Now look through the current node's neighbours
+                        foreach(AccountChain _acc in currentNode.vouches.Keys)
                         {
-                            AccountNode _neighbourNode = new AccountNode(_neighbour);
-                            if (!nextNeighbours.Contains(_neighbourNode))
-                                nextNeighbours.Add(_neighbourNode);
+                            //If the vouch relation is not valid, then skip it.
+                            if (!currentNode.isVouchValid(_acc))
+                                continue;
+
+                            //Get a reference for the account node. If it doesn't exist, create it.
+                            AccountNode _node = GetNodeWithAccount(_acc);
+                            if (_node == null)
+                            {
+                                _node = new AccountNode(_acc);
+                                allNodes.Add(_node);
+                            }
+
+                            //Add the neighbour to the open set to be avaluated next.
+                            openSet.Add(_node);
+
+                            //Setup the neighbours, first to the current node.
+                            bool polarity = currentNode.vouches[_acc];
+                            if (!currentNode.neighbours.ContainsKey(_node))
+                                currentNode.neighbours.Add(_node, polarity);
+                            //Now add to the other node if its a vouch against
+                            //This isnt quite right. Fix this later
+                            if (_node.neighbours.ContainsKey(currentNode))
+                                _node.neighbours[currentNode] = polarity;
+                            else
+                                _node.neighbours.Add(currentNode, polarity);
                         }
                     }
-
-                    //Add the next layer if still within reach
-                    if (i < networkReach)
-                        neighboursDict.Add(i, nextNeighbours);
-                }
-            
-                //Now, remove duplicates
-                foreach(List<AccountNode> _nodes in neighboursDict.Values)
-                {
-                    foreach (AccountNode _node in _nodes)
-                        if (!allNodes.Contains(_node))
-                            allNodes.Add(_node);
-                }
-            }          
-        }
-
-        void SetupEdges()
-        {
-            foreach(AccountNode _node in allNodes)
-            {
-                foreach (AccountNode _neighbour in _node.neighbours.Keys)
-                {
-                    if (_node.neighbours[_neighbour])
-                        continue;
-
-                    if (_neighbour.neighbours.ContainsKey(_node))
-                        _neighbour.neighbours[_node] = false;
-                    else
-                        _neighbour.neighbours.Add(_node,false);
                 }
             }
         }
@@ -108,9 +122,7 @@ namespace VouchReputationSystem
         {
             //First of all, setup all the nodes distances
             foreach (AccountNode _node in allNodes)
-                //_node.distanceFromObserver = Pathfinding.GetNodeDistance(_node, observerNode);
-                if(_node.name == "Simon")
-                Console.WriteLine("Distance: " + Pathfinding.GetNodeDistance(_node, observerNode));
+                _node.distanceFromObserver = Pathfinding.GetNodeDistance(_node, observerNode);
 
             //Creates the reputation function
             ReputationFunction reputationFunction = new LinearFalloff(observerNode, allNodes);
