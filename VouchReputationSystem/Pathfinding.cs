@@ -12,11 +12,13 @@ namespace VouchReputationSystem
 			if (_node == _observer)
 				return 0;
 
-			return Pathfinding.FindPath(_observer, _node).Count;
+			return Pathfinding.FindPath(_node, _observer).Count;
 		}
 
 		public static List<AccountNode> FindPath(AccountNode _startNode, AccountNode _endNode)
         {
+			Console.WriteLine("Hello world");
+
 			//This is using the A* algorithm
 
 			//The set of nodes to be evaluated
@@ -46,17 +48,20 @@ namespace VouchReputationSystem
 				closedSet.Add(currentNode);
 
 				//If the current node is the end node, then we have a path
-				if (currentNode == _endNode)
-					return RetracePath(_startNode, _endNode);
+				if (currentNode.Equals(_endNode))
+					return RetracePath(_startNode, currentNode);
 
-				//Loop through each neighbour node from the current node looking for valid neighbours to add to the open list.
+				//Loop through each neighbour node from the current node looking for valid neighbours to add to the OPEN list.
+				Console.WriteLine("1. "+currentNode.name + " size: " + currentNode.neighbours.Keys.Count);
 				foreach (AccountNode neighbour in currentNode.neighbours.Keys)
 				{
+					Console.WriteLine("neuibor");
+
 					//If the neighbour node was already evaluated, then we dont need to considerer it further.
 					if (closedSet.Contains(neighbour))
 						continue;
 
-					//If the new path to neighhbour is shorter OR neighbor is not in open
+					//If the new path to neighhbour is shorter OR neighbor is not in OPEN
 					int newCostToNeighbour = currentNode.gCost + 1;
 					if (newCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
 					{
@@ -64,14 +69,16 @@ namespace VouchReputationSystem
 						neighbour.gCost = newCostToNeighbour;
 						neighbour.hCost = 1;
 						//Set the parent node
+						Console.WriteLine(neighbour.name + " add as parent " + currentNode.name);
 						neighbour.ParentNode = currentNode;
 
-						//If the open set not already contaisn neighbour, then add it.
+						//If the OPEN set not already contaisn neighbour, then add it.
 						if (!openSet.Contains(neighbour))
 							openSet.Add(neighbour);
 					}
 				}
 			}
+			Console.WriteLine(":(");
 
 			//If it made it this far, then all the nodes were eveluated but still couldnt reach the target node. Meaning that there is no possible path.
 			return new List<AccountNode>();
@@ -85,6 +92,7 @@ namespace VouchReputationSystem
 			while (currentNode != _start)
 			{
 				path.Add(currentNode);
+				Console.WriteLine("current: " + currentNode.name + " | parent: " + currentNode.ParentNode);
 				currentNode = currentNode.ParentNode;
 			}
 			path.Reverse();

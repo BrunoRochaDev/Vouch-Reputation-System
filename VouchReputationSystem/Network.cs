@@ -19,6 +19,12 @@ namespace VouchReputationSystem
         public AccountNode observerNode;
         public List<AccountNode> allNodes = new List<AccountNode>();
 
+        //Method to get the node from account info
+        public AccountNode GetNodeWithAccount(AccountChain _acc)
+        {
+            return allNodes.Find(o=>o.name == _acc.name);
+        }
+
         //Constructor
         public Network(AccountChain _observerAcc)
         {
@@ -27,9 +33,6 @@ namespace VouchReputationSystem
             GetAllNodes();
 
             SetUpReputation();
-
-            observerNode.PrintImmediateVouches();
-
         }
 
         void GetAllNodes()
@@ -83,12 +86,30 @@ namespace VouchReputationSystem
                 }
             }          
         }
-    
+
+        void SetupEdges()
+        {
+            foreach(AccountNode _node in allNodes)
+            {
+                foreach (AccountNode _neighbour in _node.neighbours.Keys)
+                {
+                    if (_node.neighbours[_neighbour])
+                        continue;
+
+                    if (_neighbour.neighbours.ContainsKey(_node))
+                        _neighbour.neighbours[_node] = false;
+                    else
+                        _neighbour.neighbours.Add(_node,false);
+                }
+            }
+        }
+
         void SetUpReputation()
         {
             //First of all, setup all the nodes distances
             foreach (AccountNode _node in allNodes)
                 //_node.distanceFromObserver = Pathfinding.GetNodeDistance(_node, observerNode);
+                if(_node.name == "Simon")
                 Console.WriteLine("Distance: " + Pathfinding.GetNodeDistance(_node, observerNode));
 
             //Creates the reputation function

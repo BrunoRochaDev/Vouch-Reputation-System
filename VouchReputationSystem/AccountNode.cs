@@ -69,10 +69,6 @@ namespace VouchReputationSystem
         //Prints all the vouches in string format.
         public void PrintImmediateVouches()
         {
-            //If there are not vouches...
-            if (this.vouches.Count == 0)
-                Console.WriteLine(this.name + " has no vouches.");
-
             //If there are not relations...
             if (neighbours.Keys.Count == 0)
             {
