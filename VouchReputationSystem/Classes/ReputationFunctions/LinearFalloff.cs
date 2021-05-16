@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace VouchReputationSystem.ReputationFunctions
+namespace VouchReputationSystem.Classes.ReputationFunctions
 {
     class LinearFalloff : ReputationFunction
     {

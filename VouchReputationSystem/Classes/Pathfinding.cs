@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace VouchReputationSystem
+namespace VouchReputationSystem.Classes
 {
-    class Pathfinding
-    {
+	class Pathfinding
+	{
 		public static int GetNodeDistance(AccountNode _node, AccountNode _observer)
 		{
 			if (_node == _observer)
@@ -16,7 +17,7 @@ namespace VouchReputationSystem
 		}
 
 		public static List<AccountNode> FindPath(AccountNode _startNode, AccountNode _endNode)
-        {
+		{
 			//This is using the A* algorithm
 
 			//The set of nodes to be evaluated

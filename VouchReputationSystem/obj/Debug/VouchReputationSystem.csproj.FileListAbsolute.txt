@@ -1,0 +1,9 @@
+C:\Users\bruno\Desktop\Programming Projects\C#\VouchReputationSystem\VouchReputationSystem\bin\Debug\VouchReputationSystem.exe.config
+C:\Users\bruno\Desktop\Programming Projects\C#\VouchReputationSystem\VouchReputationSystem\bin\Debug\VouchReputationSystem.exe
+C:\Users\bruno\Desktop\Programming Projects\C#\VouchReputationSystem\VouchReputationSystem\bin\Debug\VouchReputationSystem.pdb
+C:\Users\bruno\Desktop\Programming Projects\C#\VouchReputationSystem\VouchReputationSystem\obj\Debug\VouchReputationSystem.csprojAssemblyReference.cache
+C:\Users\bruno\Desktop\Programming Projects\C#\VouchReputationSystem\VouchReputationSystem\obj\Debug\VouchReputationSystem.Properties.Resources.resources
+C:\Users\bruno\Desktop\Programming Projects\C#\VouchReputationSystem\VouchReputationSystem\obj\Debug\VouchReputationSystem.csproj.GenerateResource.cache
+C:\Users\bruno\Desktop\Programming Projects\C#\VouchReputationSystem\VouchReputationSystem\obj\Debug\VouchReputationSystem.csproj.CoreCompileInputs.cache
+C:\Users\bruno\Desktop\Programming Projects\C#\VouchReputationSystem\VouchReputationSystem\obj\Debug\VouchReputationSystem.exe
+C:\Users\bruno\Desktop\Programming Projects\C#\VouchReputationSystem\VouchReputationSystem\obj\Debug\VouchReputationSystem.pdb

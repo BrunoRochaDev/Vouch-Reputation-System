@@ -1,11 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using VouchReputationSystem.Classes;
 
 namespace VouchReputationSystem
 {
-    class Program
+    static class Program
     {
-        static void Main(string[] args)
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Diagram());
+
+            DoTheThing();
+        }
+        static void DoTheThing()
         {
             AccountChain adam = new AccountChain("Adam");
 
@@ -61,7 +77,6 @@ namespace VouchReputationSystem
             _network.GetNodeWithAccount(peter).PrintImmediateVouches();
             _network.GetNodeWithAccount(joseph).PrintImmediateVouches();
             _network.GetNodeWithAccount(john).PrintImmediateVouches();
-
         }
     }
 }

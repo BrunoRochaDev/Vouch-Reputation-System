@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using VouchReputationSystem.ReputationFunctions;
+using System.Threading.Tasks;
+using VouchReputationSystem.Classes.ReputationFunctions;
 
-namespace VouchReputationSystem
+namespace VouchReputationSystem.Classes
 {
     class Network
     {
@@ -22,7 +24,7 @@ namespace VouchReputationSystem
         //Method to get the node from account info
         public AccountNode GetNodeWithAccount(AccountChain _acc)
         {
-            return allNodes.Find(o=>o.name == _acc.name);
+            return allNodes.Find(o => o.name == _acc.name);
         }
 
         //Constructor
@@ -85,7 +87,7 @@ namespace VouchReputationSystem
                         openSet.Remove(currentNode);
 
                         //Now look through the current node's neighbours
-                        foreach(AccountChain _acc in currentNode.vouches.Keys)
+                        foreach (AccountChain _acc in currentNode.vouches.Keys)
                         {
                             //If the vouch relation is not valid, then skip it.
                             if (!currentNode.isVouchValid(_acc))
@@ -135,7 +137,7 @@ namespace VouchReputationSystem
             Console.WriteLine("NETWORK NODES\nTotal: " + allNodes.Count);
 
             int count = 1;
-            foreach(AccountNode _node in allNodes)
+            foreach (AccountNode _node in allNodes)
             {
                 Console.WriteLine(count + ". " + _node.ToString());
                 count++;

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace VouchReputationSystem.ReputationFunctions
+namespace VouchReputationSystem.Classes.ReputationFunctions
 {
     abstract class ReputationFunction
     {
@@ -17,7 +19,7 @@ namespace VouchReputationSystem.ReputationFunctions
 
         public List<AccountNode> GetReputationList(List<AccountNode> _nodeList)
         {
-            foreach(AccountNode _node in _nodeList)
+            foreach (AccountNode _node in _nodeList)
                 _node.reputation = Function(_node);
 
             return _nodeList;

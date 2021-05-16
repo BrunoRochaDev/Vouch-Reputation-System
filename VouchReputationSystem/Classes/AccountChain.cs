@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace VouchReputationSystem
+namespace VouchReputationSystem.Classes
 {
     class AccountChain
     {
@@ -11,7 +12,7 @@ namespace VouchReputationSystem
 
         //Dictionary with every node it has a connection with. True is vouch for, False is vouch against.
         public Dictionary<AccountChain, bool> vouches = new Dictionary<AccountChain, bool>();
-        
+
         //Constructors
         public AccountChain()
         {
