@@ -14,8 +14,14 @@ namespace VouchReputationSystem.ReputationFunctions
 
         public override float Function(AccountNode _node)
         {
-            //List<AccountNode> relevantNeighbours = observerNode.neighbours.Keys.Intersect(_node.neighbours.Keys).ToList();
-            return 1;
+            //Sets the self reputation value to the network's default.
+            float selfRep = Network.defaultNodeRep;
+            //If the observer node vouches for this node, then set it to 0 or 1 accordingly.
+            if (observerNode.vouches.ContainsKey(_node))
+                selfRep = observerNode.vouches[_node] ? 1 : 0;
+
+
+            return selfRep;
         }
     }
 }
