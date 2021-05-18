@@ -14,23 +14,25 @@ namespace VouchReputationSystem
 {
     public partial class DiagramForm : Form
     {
+        Network network;
         Diagram _diagram;
         Random _random;
 
         public DiagramForm(Network _network)
         {
+            network = _network;
             InitializeComponent();
-            _diagram = new Diagram(_network.allNodes);
+            _diagram = new Diagram(network.allNodes, _network.observerNode);
             _random = new Random();
-            SetupUI(_network);
+            SetupUI();
         }
 
-        private void SetupUI(Network _network)
+        private void SetupUI()
         {
-            NetworkReachSlider.Value = _network.networkReach;
+            NetworkReachSlider.Value = network.networkReach;
             NetworkReachSliderChange(NetworkReachSlider, null);
 
-            ReputationReachSlider.Value = _network.reputationReach;
+            ReputationReachSlider.Value = network.reputationReach;
             ReputationReachSliderChange(ReputationReachSlider, null);
         }
 
@@ -55,12 +57,14 @@ namespace VouchReputationSystem
         {
             TrackBar _TrackBar = sender as TrackBar;
             NetworkReachLabel.Text = "Network Reach: " + _TrackBar.Value;
+            network.networkReach = _TrackBar.Value;
         }
 
         private void ReputationReachSliderChange(object sender, EventArgs e)
         {
             TrackBar _TrackBar = sender as TrackBar;
             ReputationReachLabel.Text = "Reputation Reach: " + _TrackBar.Value;
+            network.reputationReach = _TrackBar.Value;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -52,8 +53,7 @@ namespace VouchReputationSystem
             adam.VouchFor(eli);
             eli.VouchFor(adam);
 
-            peter.VouchFor(eli);
-            eli.VouchFor(peter);
+            eli.VouchAgainst(peter);
 
             joseph.VouchFor(eli);
             eli.VouchFor(joseph);

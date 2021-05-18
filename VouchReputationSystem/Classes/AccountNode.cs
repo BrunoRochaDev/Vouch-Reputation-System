@@ -36,7 +36,7 @@ Color.FromArgb(255, 255, 0, 0),   // Opaque red
 Color.FromArgb(255, 0, 0, 255));  // Opaque blue
         */
             mFont = new SolidBrush(Color.FromArgb(237, 242, 243));
-            mStroke = new Pen(Color.FromArgb(82, 137, 181));
+            mStroke = new Pen(Color.FromArgb(237, 242, 243)) {  Width = 3 };
             mFill = new SolidBrush(Color.FromArgb(82, 137, 181));
         }
         public Dictionary<AccountNode, bool> neighbours = new Dictionary<AccountNode, bool>();
@@ -164,15 +164,16 @@ Color.FromArgb(255, 0, 0, 255));  // Opaque blue
         //-----------
         public virtual void DrawConnector(Graphics graphics, Point from, Point to, AccountNode other, bool polarity)
         {
-            Pen color = new Pen(polarity ? Color.FromArgb(42, 157, 143) : Color.FromArgb(231, 111, 81));
+            Pen color = new Pen(polarity ? Color.FromArgb(42, 157, 143) : Color.FromArgb(231, 111, 81)) {Width = 2 };
             graphics.DrawLine(color, from, to);
         }
 
-        public void DrawNode(Graphics graphics, Rectangle bounds)
+        public void DrawNode(Graphics graphics, Rectangle bounds, bool isObserver)
         {
             //Draw node
             graphics.FillEllipse(mFill, bounds);
-            graphics.DrawEllipse(mStroke, bounds);
+            if (isObserver)
+                graphics.DrawEllipse(mStroke, bounds);
 
             StringFormat _StringFormat = new System.Drawing.StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
             graphics.DrawString(this.name, new System.Drawing.Font("Arial", 12), mFont, bounds, _StringFormat);

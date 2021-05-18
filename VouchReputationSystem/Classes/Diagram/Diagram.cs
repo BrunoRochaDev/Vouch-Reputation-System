@@ -17,11 +17,12 @@ namespace VouchReputationSystem.Classes.Diagram
         private const int DEFAULT_MAX_ITERATIONS = 500;
 
         private List<AccountNode> nodes;
-
+        private AccountNode observer;
         
-        public Diagram(List<AccountNode> _nodes)
+        public Diagram(List<AccountNode> _nodes, AccountNode _observer)
         {
             nodes = _nodes;
+            observer = _observer;
             Arrange();
         }
 
@@ -220,7 +221,7 @@ namespace VouchReputationSystem.Classes.Diagram
 
                 Size nodeSize = node.Size;
                 Rectangle nodeBounds = new Rectangle(center.X + destination.X - (nodeSize.Width / 2), center.Y + destination.Y - (nodeSize.Height / 2), nodeSize.Width, nodeSize.Height);
-                node.DrawNode(graphics, nodeBounds);
+                node.DrawNode(graphics, nodeBounds, observer.Equals(node));
             }
         }
 
