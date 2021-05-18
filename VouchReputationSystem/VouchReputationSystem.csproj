@@ -48,19 +48,24 @@
   <ItemGroup>
     <Compile Include="Classes\AccountChain.cs" />
     <Compile Include="Classes\AccountNode.cs" />
+    <Compile Include="Classes\Diagram\Diagram.cs" />
     <Compile Include="Classes\Network.cs" />
     <Compile Include="Classes\Pathfinding.cs" />
     <Compile Include="Classes\ReputationFunctions\LinearFalloff.cs" />
     <Compile Include="Classes\ReputationFunctions\ReputationFunction.cs" />
     <Compile Include="Classes\Util.cs" />
-    <Compile Include="Diagram.cs">
+    <Compile Include="Classes\Vector.cs" />
+    <Compile Include="DiagramForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Diagram.Designer.cs">
-      <DependentUpon>Diagram.cs</DependentUpon>
+    <Compile Include="DiagramForm.Designer.cs">
+      <DependentUpon>DiagramForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DiagramForm.resx">
+      <DependentUpon>DiagramForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

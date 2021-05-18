@@ -7,15 +7,15 @@ using VouchReputationSystem.Classes.ReputationFunctions;
 
 namespace VouchReputationSystem.Classes
 {
-    class Network
+    public class Network
     {
         //---------------
-        public static int networkReach = 2;
+        public int networkReach = 2;
 
-        static float _defaultNodeRep = 0.5f;
-        public static float defaultNodeRep { get { return _defaultNodeRep; } set { _defaultNodeRep = Util.LimitRange(_defaultNodeRep, 1f, 0f); } }
+        float _defaultNodeRep = 0.5f;
+        public float defaultNodeRep { get { return _defaultNodeRep; } set { _defaultNodeRep = Util.LimitRange(_defaultNodeRep, 1f, 0f); } }
 
-        public static int reputationReach = 4;
+        public int reputationReach = 4;
         //---------------
 
         public AccountNode observerNode;
@@ -127,7 +127,7 @@ namespace VouchReputationSystem.Classes
                 _node.distanceFromObserver = Pathfinding.GetNodeDistance(_node, observerNode);
 
             //Creates the reputation function
-            ReputationFunction reputationFunction = new LinearFalloff(observerNode, allNodes);
+            ReputationFunction reputationFunction = new LinearFalloff(this);
 
             allNodes = reputationFunction.GetReputationList(allNodes);
         }

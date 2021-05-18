@@ -8,13 +8,15 @@ namespace VouchReputationSystem.Classes.ReputationFunctions
 {
     abstract class ReputationFunction
     {
+        public Network network;
         public AccountNode observerNode;
         public List<AccountNode> allNodes = new List<AccountNode>();
 
-        public ReputationFunction(AccountNode _observerNode, List<AccountNode> _allNodes)
+        public ReputationFunction(Network _network)
         {
-            this.observerNode = _observerNode;
-            this.allNodes = _allNodes;
+            this.network = _network;
+            this.observerNode = _network.observerNode;
+            this.allNodes = _network.allNodes;
         }
 
         public List<AccountNode> GetReputationList(List<AccountNode> _nodeList)

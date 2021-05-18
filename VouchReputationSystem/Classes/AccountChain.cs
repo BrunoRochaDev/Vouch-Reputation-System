@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VouchReputationSystem.Classes
 {
-    class AccountChain
+    public class AccountChain
     {
         public string name;
 

@@ -1,26 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace VouchReputationSystem.Classes
 {
-    class AccountNode : AccountChain
+    public class AccountNode : AccountChain
     {
         //Creates the node from the account
         public AccountNode(AccountChain _acc)
         {
             this.name = _acc.name;
             this.vouches = _acc.vouches;
+
+            SetupGraphics();
         }
         public AccountNode(AccountChain _acc, float _weight)
         {
             this.name = _acc.name;
             this.vouches = _acc.vouches;
             this.weight = _weight;
+
+            SetupGraphics();
         }
 
+        void SetupGraphics()
+        {
+            /*mFill = new LinearGradientBrush(
+new Point(0, 10),
+new Point(200, 10),
+Color.FromArgb(255, 255, 0, 0),   // Opaque red
+Color.FromArgb(255, 0, 0, 255));  // Opaque blue
+        */
+            mFont = new SolidBrush(Color.FromArgb(237, 242, 243));
+            mStroke = new Pen(Color.FromArgb(82, 137, 181));
+            mFill = new SolidBrush(Color.FromArgb(82, 137, 181));
+        }
         public Dictionary<AccountNode, bool> neighbours = new Dictionary<AccountNode, bool>();
 
         //Weight of node determined locally
@@ -40,6 +58,35 @@ namespace VouchReputationSystem.Classes
         public int hCost;
         //Quick get function to add G cost and H Cost, and since we'll never need to edit FCost, we dont need a set function.
         public int fCost { get { return gCost + hCost; } }
+
+        #region drawing
+        // Gets or sets the position of the node.
+        Point _location;			// node position, relative to the origin
+        public Point Location
+        {
+            get { return _location; }
+            set { _location = value; }
+        }
+
+        // Gets or sets the X coordinate of the node, relative to the origin.
+        public int X
+        {
+            get { return _location.X; }
+            set { _location.X = value; }
+        }
+        // Gets or sets the Y coordinate of the node, relative to the origin.
+        public int Y
+        {
+            get { return _location.Y; }
+            set { _location.Y = value; }
+        }
+
+        private SolidBrush mFill;
+        private Pen mStroke;
+        private SolidBrush mFont;
+        //-----------------
+
+        #endregion
 
         //This method returns the validity of a voach. This is for networking reasons.
         public bool isVouchValid(AccountChain _acc)
@@ -112,6 +159,31 @@ namespace VouchReputationSystem.Classes
         public override int GetHashCode()
         {
             return this.name.GetHashCode();
+        }
+
+        //-----------
+        public virtual void DrawConnector(Graphics graphics, Point from, Point to, AccountNode other, bool polarity)
+        {
+            Pen color = new Pen(polarity ? Color.FromArgb(42, 157, 143) : Color.FromArgb(231, 111, 81));
+            graphics.DrawLine(color, from, to);
+        }
+
+        public void DrawNode(Graphics graphics, Rectangle bounds)
+        {
+            //Draw node
+            graphics.FillEllipse(mFill, bounds);
+            graphics.DrawEllipse(mStroke, bounds);
+
+            StringFormat _StringFormat = new System.Drawing.StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+            graphics.DrawString(this.name, new System.Drawing.Font("Arial", 12), mFont, bounds, _StringFormat);
+        }
+
+        public Size Size
+        {
+            get
+            {
+                return new Size(64, 64);
+            }
         }
     }
 }

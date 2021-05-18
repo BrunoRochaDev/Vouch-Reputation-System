@@ -9,19 +9,16 @@ namespace VouchReputationSystem
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+        // The main entry point for the application.
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Diagram());
-
-            DoTheThing();
+            DiagramForm Diagram = new DiagramForm(CreateNetwork());
+            Application.Run(Diagram);
         }
-        static void DoTheThing()
+        static Network CreateNetwork()
         {
             AccountChain adam = new AccountChain("Adam");
 
@@ -66,17 +63,28 @@ namespace VouchReputationSystem
 
             //------------------------------------
 
+            AccountChain abel = new AccountChain("Abel");
+            AccountChain eve = new AccountChain("Eve");
+            AccountChain cain = new AccountChain("Cain");
+
+            abel.VouchFor(adam);
+            eve.VouchFor(adam);
+            cain.VouchFor(adam);
+
+            adam.VouchFor(abel);
+            adam.VouchFor(eve);
+            adam.VouchFor(cain);
+
+            abel.VouchFor(cain);
+            cain.VouchFor(abel);
+
+            eve.VouchAgainst(cain);
+            abel.VouchAgainst(eve);
+
             //Creates the networks through Adam's perspective
             Network _network = new Network(adam);
             _network.PrintAllNodes();
-            _network.GetNodeWithAccount(adam).PrintImmediateVouches();
-            _network.GetNodeWithAccount(noah).PrintImmediateVouches();
-            _network.GetNodeWithAccount(jacob).PrintImmediateVouches();
-            _network.GetNodeWithAccount(simon).PrintImmediateVouches();
-            _network.GetNodeWithAccount(eli).PrintImmediateVouches();
-            _network.GetNodeWithAccount(peter).PrintImmediateVouches();
-            _network.GetNodeWithAccount(joseph).PrintImmediateVouches();
-            _network.GetNodeWithAccount(john).PrintImmediateVouches();
+            return _network;
         }
     }
 }
