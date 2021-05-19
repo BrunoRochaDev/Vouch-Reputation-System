@@ -40,6 +40,7 @@ namespace VouchReputationSystem
             // 
             // NetworkReachSlider
             // 
+            this.NetworkReachSlider.Cursor = System.Windows.Forms.Cursors.Default;
             this.NetworkReachSlider.Location = new System.Drawing.Point(12, 35);
             this.NetworkReachSlider.Name = "NetworkReachSlider";
             this.NetworkReachSlider.Size = new System.Drawing.Size(151, 45);
