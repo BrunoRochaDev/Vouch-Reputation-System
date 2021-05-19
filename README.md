@@ -19,7 +19,7 @@ A node can then be selected to be the observer node, creating a visualization of
 
 TODO explain the reputation algorithm
 
-It's important to note that reputation scores are subjective measure dependent on an observer and it's preferences and not an intrinsic property of a node.
+It's important to note that reputation scores are a subjective measure dependent on an observer and it's preferences and not an objective property of a node.
 
 Through VRS, a user can assess anyone's (even complete strangers) trustworthiness through their reputation score as long as someone is their personal network is connected to them.
 
