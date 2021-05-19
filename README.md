@@ -1,6 +1,8 @@
 # Vouch Reputation System #
 Vouch Reputation System, or VRS for short, is a decentralized reputation system for P2P networks written in C#.
 
+It's goal is to be a community-focused solution to the uncertainty of trust between unfamiliar peers in environments without authorities, building upon the already existing social bonds between it's participants.
+
 In VRS, every account in the network can vouch for or against any other, signalizing trust or mistrust. As such, all the different accounts and their vouch relations can be displayed as a diagram of a network of nodes.
 
 <p align="center">
