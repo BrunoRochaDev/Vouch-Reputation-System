@@ -7,7 +7,11 @@ In VRS, every account in the network can vouch for or against any other, signali
   <img src="https://user-images.githubusercontent.com/44985385/118741349-70754880-b824-11eb-8db5-f3136d270a5c.png">
 </p>
 
-A vouch for relation is only deemed valid if it's reciprocal between both parties, while a vouch against is not.
+<p align="center">
+  <i>Vouch for relations are in green, vouch against relations in red.</i>
+</p>
+
+A vouch for relation is only deemed valid if it's reciprocal between both parties. In contrast, vouch against relations are valid even if only one the parties vouch against the other.
 
 A node can then be selected to be the observer node, creating a visualization of a personal network comprising itself and the nodes it connects to (even tangentially). From that, each node in it's personal network is given a reputation score between zero and one. A node's reputation score is determined by it's distance to the observer node and it's vouch relations to every other node in the network. This way, even nodes with no direct vouch relation to the observer node can be assigned an accurate reputation score.
 
