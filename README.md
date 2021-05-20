@@ -10,7 +10,7 @@ In VRS, every account in the network can vouch for or against any other, signali
 </p>
 
 <p align="center">
-  <i>Vouch for relations are in green, vouch against relations in red.</i>
+  <i>Vouch for relations are in green, vouch against relations in red. The observer node is circled in white.</i>
 </p>
 
 A vouch for relation is only formed if it's reciprocal between both parties. In contrast, vouch against relations are formed even if only one the parties vouch against the other.
