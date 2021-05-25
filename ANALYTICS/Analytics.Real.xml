@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Analytics.Real</name>
+    </assembly>
+    <members>
+        <member name="T:Analytics.Functions.Sine">
+            <summary>
+            Sine function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Cosine">
+            <summary>
+            Cosine function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Tangent">
+            <summary>
+            Tangent function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Cotangent">
+            <summary>
+            Cotangent function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Secant">
+            <summary>
+            Secant function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Cosecant">
+            <summary>
+            Cosecant function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Arcsine">
+            <summary>
+            Arcsine function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Arccosine">
+            <summary>
+            Arccosine function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Arctangent">
+            <summary>
+            Arctangent function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Arccotangent">
+            <summary>
+            Arccotangent function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Arcsecant">
+            <summary>
+            Arcsecant function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Arccosecant">
+            <summary>
+            Arccosecant function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.HyperbolicSine">
+            <summary>
+            Hyperbolic Sine function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.HyperbolicCosine">
+            <summary>
+            Hyperbolic Cosine function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.HyperbolicTangent">
+            <summary>
+            Hyperbolic Tangent function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.HyperbolicCotangent">
+            <summary>
+            Hyperbolic Cotangent function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.HyperbolicSecant">
+            <summary>
+            Hyperbolic Secant function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.HyperbolicCosecant">
+            <summary>
+            Hyperbolic Cosecant function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.HyperbolicArcsine">
+            <summary>
+            Hyperbolic Arcsine function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.HyperbolicArccosine">
+            <summary>
+            Hyperbolic Arccosine function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.HyperbolicArctangent">
+            <summary>
+            Hyperbolic Arctangent function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.HyperbolicArccotangent">
+            <summary>
+            Hyperbolic Arccotangent function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.HyperbolicArcsecant">
+            <summary>
+            Hyperbolic Arcsecant function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.HyperbolicArcosecant">
+            <summary>
+            Hyperbolic Arccosecant function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Logarithm">
+            <summary>
+            Logarithm function
+            (NOTE: the Base of logarithm is the Parameter of the function)
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.NaturalLogarithm">
+            <summary>
+            Natural Logarithm function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.DecimalLogarithm">
+            <summary>
+            Decimal Logarithm function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.BinaryLogarithm">
+            <summary>
+            Binary Logarithm function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Exponent">
+            <summary>
+            Exponential function
+            </summary>
+        </member>
+        <member name="T:Analytics.Operators.RealAdd">
+            <summary>
+            Double + Double = Double
+            </summary>
+        </member>
+        <member name="T:Analytics.Operators.RealSubtract">
+            <summary>
+            Double - Double = Double
+            </summary>
+        </member>
+        <member name="T:Analytics.Operators.RealMultiply">
+            <summary>
+            Double * Double = Double
+            </summary>
+        </member>
+        <member name="T:Analytics.Operators.RealDivide">
+            <summary>
+            Double / Double = Double
+            </summary>
+        </member>
+        <member name="T:Analytics.Operators.RealPower">
+            <summary>
+            Double ^ Double = Double
+            </summary>
+        </member>
+        <member name="T:Analytics.Operators.RealMinus">
+            <summary>
+            - Double = Double
+            </summary>
+        </member>
+        <member name="T:Analytics.Operators.RealFactorial">
+            <summary>
+            Double! = Double
+            NOTE: the operand value must have nonnegative 
+            (almost) integer value (see IntegerValuePrecision constant).
+            WARNING: for large operand values the precision lost is possible.
+            </summary>
+        </member>
+        <member name="T:Analytics.Operators.RealAbsolute">
+            <summary>
+            |Double| = Double
+            </summary>
+        </member>
+        <member name="T:Analytics.Operators.RealSquareRoot">
+            <summary>
+            √(Double) = Double
+            </summary>   
+        </member>
+        <member name="T:Analytics.Operators.RealApproximatelyOperator">
+            <summary>
+            Double ≈ Double  = Boolean
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.SquareRoot">
+            <summary>
+            Square Root function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.NthRoot">
+            <summary>
+            Nth Root function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Power">
+            <summary>
+            Power function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Absolute">
+            <summary>
+            Absolute value 
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Signature">
+            <summary>
+            Signature
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Delta">
+            <summary>
+            Dirac Delta function 
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Heaviside">
+            <summary>
+            Heaviside step function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Ceiling">
+            <summary>
+            Ceiling function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Floor">
+            <summary>
+            Floor function
+            </summary>
+        </member>
+        <member name="T:Analytics.Functions.Fraction">
+            <summary>
+            Fractional part
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,3978 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Mathematics</name>
+    </assembly>
+    <members>
+        <member name="T:Mathematics.Fractions.Fraction">
+            <summary>
+            Common Fraction class.
+            Fraction is always reduced (after construction or any operation).
+            A fraction can be consructed from any numerator and denominator 
+            (the later cannot be 0) but after construction the denominator
+            is always positive (the sign returned in numerator).
+            </summary>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.Reduce">
+            <summary>
+            Private because the Fraction is always reduced
+            </summary>
+        </member>
+        <member name="F:Mathematics.Fractions.Fraction.Zero">
+            <summary>
+            Zero Fraction
+            </summary>
+        </member>
+        <member name="F:Mathematics.Fractions.Fraction.Unit">
+            <summary>
+            Unit fraction
+            </summary>
+        </member>
+        <member name="F:Mathematics.Fractions.Fraction.PositiveInfinity">
+            <summary>
+            Positive Infinity
+            </summary>
+        </member>
+        <member name="F:Mathematics.Fractions.Fraction.NegativeInfinity">
+            <summary>
+            Negative Infinity
+            </summary>
+        </member>
+        <member name="F:Mathematics.Fractions.Fraction.NaN">
+            <summary>
+            Not a valid fraction 0/0
+            </summary>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.#cctor">
+            <summary>
+            Initializes all static data
+            </summary>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.#ctor(System.Int64,System.Int64)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="numerator"></param>
+            <param name="denominator"></param>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.#ctor(System.Int64)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="number"></param>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.ToDouble">
+            <summary>
+            Fraction to double
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.Reverse">
+            <summary>
+            Fraction=1/Fraction
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.Negate">
+            <summary>
+            Fraction*(-1)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.Equals(Mathematics.Fractions.Fraction)">
+            <summary>
+            Equals
+            </summary>
+            <param name="that"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.GetHashCode">
+            <summary>
+            Hash code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.CompareTo(Mathematics.Fractions.Fraction)">
+            <summary>
+            Comparison method
+            </summary>
+            <param name="that"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Addition(Mathematics.Fractions.Fraction,Mathematics.Fractions.Fraction)">
+            <summary>
+            Fraction+Fraction=Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Addition(Mathematics.Fractions.Fraction,System.Double)">
+            <summary>
+            Fraction+double=doudle
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Addition(System.Double,Mathematics.Fractions.Fraction)">
+            <summary>
+            double+Fraction=doudle
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Subtraction(Mathematics.Fractions.Fraction,Mathematics.Fractions.Fraction)">
+            <summary>
+            Fraction-Fraction=Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Subtraction(Mathematics.Fractions.Fraction,System.Double)">
+            <summary>
+            Fraction-double=double
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Subtraction(System.Double,Mathematics.Fractions.Fraction)">
+            <summary>
+            double-Fraction=double
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Multiply(Mathematics.Fractions.Fraction,Mathematics.Fractions.Fraction)">
+            <summary>
+            Fraction*Fraction=Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Multiply(Mathematics.Fractions.Fraction,System.Double)">
+            <summary>
+            Fraction*double=double
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Multiply(System.Double,Mathematics.Fractions.Fraction)">
+            <summary>
+            double*Fraction=double
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Division(Mathematics.Fractions.Fraction,Mathematics.Fractions.Fraction)">
+            <summary>
+            Fraction/Fraction=Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Division(Mathematics.Fractions.Fraction,System.Double)">
+            <summary>
+            Fraction/double=double
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Division(System.Double,Mathematics.Fractions.Fraction)">
+            <summary>
+            double/Fraction=Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_UnaryNegation(Mathematics.Fractions.Fraction)">
+            <summary>
+            -Fraction
+            </summary>
+            <param name="a"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Equality(Mathematics.Fractions.Fraction,Mathematics.Fractions.Fraction)">
+            <summary>
+            Fraction==Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Equality(Mathematics.Fractions.Fraction,System.Double)">
+            <summary>
+            Fraction==double
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Equality(System.Double,Mathematics.Fractions.Fraction)">
+            <summary>
+            double==Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Inequality(Mathematics.Fractions.Fraction,Mathematics.Fractions.Fraction)">
+            <summary>
+            Fraction!=Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Inequality(Mathematics.Fractions.Fraction,System.Double)">
+            <summary>
+            Fraction!=double
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Inequality(System.Double,Mathematics.Fractions.Fraction)">
+            <summary>
+            double!=Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_GreaterThan(Mathematics.Fractions.Fraction,Mathematics.Fractions.Fraction)">
+            <summary>
+            Fraction>Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_GreaterThan(Mathematics.Fractions.Fraction,System.Double)">
+            <summary>
+            Fraction>double
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_GreaterThan(System.Double,Mathematics.Fractions.Fraction)">
+            <summary>
+            double>Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_LessThan(Mathematics.Fractions.Fraction,Mathematics.Fractions.Fraction)">
+            <summary>
+            Fraction Less Than Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_LessThan(Mathematics.Fractions.Fraction,System.Double)">
+            <summary>
+            Fraction Less Than double
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_LessThan(System.Double,Mathematics.Fractions.Fraction)">
+            <summary>
+            double Less Than Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_GreaterThanOrEqual(Mathematics.Fractions.Fraction,Mathematics.Fractions.Fraction)">
+            <summary>
+            Fraction>=Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_GreaterThanOrEqual(Mathematics.Fractions.Fraction,System.Double)">
+            <summary>
+            Fraction>=double
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_GreaterThanOrEqual(System.Double,Mathematics.Fractions.Fraction)">
+            <summary>
+            double>=Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_LessThanOrEqual(Mathematics.Fractions.Fraction,Mathematics.Fractions.Fraction)">
+            <summary>
+            Fraction Less Than or Equal Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_LessThanOrEqual(Mathematics.Fractions.Fraction,System.Double)">
+            <summary>
+            Fraction Less Than or Equal double
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_LessThanOrEqual(System.Double,Mathematics.Fractions.Fraction)">
+            <summary>
+            double Less Than or Equal Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Addition(Mathematics.Fractions.Fraction,System.Numerics.Complex)">
+            <summary>
+            Fraction+Complex=Complex
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Addition(System.Numerics.Complex,Mathematics.Fractions.Fraction)">
+            <summary>
+            Complex+Fraction=Fraction
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Subtraction(Mathematics.Fractions.Fraction,System.Numerics.Complex)">
+            <summary>
+            Fraction-Complex=Complex
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Subtraction(System.Numerics.Complex,Mathematics.Fractions.Fraction)">
+            <summary>
+            Complex-double=Complex
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Multiply(Mathematics.Fractions.Fraction,System.Numerics.Complex)">
+            <summary>
+            Fraction*Complex=Complex
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Multiply(System.Numerics.Complex,Mathematics.Fractions.Fraction)">
+            <summary>
+            Complex*Fraction=Complex
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Division(Mathematics.Fractions.Fraction,System.Numerics.Complex)">
+            <summary>
+            Fraction/Complex=Complex
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Fractions.Fraction.op_Division(System.Numerics.Complex,Mathematics.Fractions.Fraction)">
+            <summary>
+            Complex/Fraction=Complex
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mathematics.Fractions.Fraction.Numerator">
+            <summary>
+            Numerator (INCLUDING SIGN) of Fraction             
+            </summary>
+        </member>
+        <member name="P:Mathematics.Fractions.Fraction.Denominator">
+            <summary>
+            Denominator of Fraction 
+            </summary>
+        </member>
+        <member name="T:Mathematics.LA.RMatrix">
+            <summary>
+            General rectangular matrix
+            (wrapper for double[,] data).
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.IsNaN(Mathematics.LA.RMatrix)">
+            <summary>
+            Checks if a matrix is NaN
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Mathematics.LA.RMatrix.Data">
+            <summary>
+            Matrix components
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Matrix with zero components
+            </summary>
+            <param name="m"></param>
+            <param name="n"></param>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.#ctor(System.Int32,System.Int32,System.Double)">
+            <summary>
+            Matrix with constant components
+            </summary>
+            <param name="m"></param>
+            <param name="n"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.#ctor(System.Int32,System.Double)">
+            <summary>
+            Diagonal matrix with constant values
+            </summary>
+            <param name="n"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.#ctor(System.Double[0:,0:])">
+            <summary>
+            Matrix by data.
+            NOTE: source data not copied.
+            </summary>
+            <param name="a"></param>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.#ctor(System.Double[][])">
+            <summary>
+            Matrix by data.
+            NOTE: source data copied.
+            </summary>
+            <param name="a"></param>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.#ctor(Mathematics.LA.RMatrix)">
+            <summary>
+            Copy constructor.
+            NOTE: source data copied.
+            </summary>
+            <param name="Source"></param>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.#ctor(System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Matrix with random components.
+            </summary>
+            <param name="random"></param>
+            <param name="m"></param>
+            <param name="n"></param>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.GetRow(System.Int32)">
+            <summary>
+            Gets a row by index.
+            NOTE: source data copied.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.SetRow(System.Int32,Mathematics.LA.Vector)">
+            <summary>
+            Sets a row by index.
+            NOTE: source data copied.
+            </summary>
+            <param name="index"></param>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.GetColumn(System.Int32)">
+            <summary>
+            Gets a column by index.
+            NOTE: source data copied.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.SetColumn(System.Int32,Mathematics.LA.Vector)">
+            <summary>
+            Sets a column by index.
+            NOTE: source data copied.
+            </summary>
+            <param name="index"></param>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.GetMinor(System.Int32,System.Int32)">
+            <summary>
+            Gets a minor by index.
+            NOTE: source data copied.
+            </summary>
+            <param name="row"></param>
+            <param name="column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.Transposed">
+            <summary>
+            Creates transposed matrix.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.Transpose">
+            <summary>
+            Transposes the matrix.
+            NOTE: for SQUARE only.
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.Scale(System.Double)">
+            <summary>
+            Scales the matrix.
+            </summary>
+            <param name="f"></param>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.Min">
+            <summary>
+            Finds minimal component value.
+            </summary>
+            <returns>Min value or NaN, if there is no valid value.</returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.Max">
+            <summary>
+            Finds maximal component value.
+            </summary>
+            <returns>Max value or NaN, if there is no valid value.</returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.LS">
+            <summary>
+            Calculates Least-Squares Transformation of the matrix.
+            NOTE: result is square symmetric matrix.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.Inversed">
+            <summary>
+            Calculates inversed matrix.
+            NOTE: For square matrices only.
+                  If inversed matrix does not exist - returns NaN matrix.
+            WARNING: Algorithm uses Matrix class to implement function
+                     so, it is slow because data copied twice.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.Determinant">
+            <summary>
+            Calculates determinant.
+            NOTE: for square matrices only.
+            WARNING: Algorithm uses Matrix class to implement function
+                     so, it is slow because data copied twice.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.Adjoint">
+            <summary>
+            Calculates Adjoint Matrix
+            NOTE: for square matrices only.
+            WARNING: Algorithm uses Matrix class to implement function
+                     so, it is slow because data copied twice.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.op_Addition(Mathematics.LA.RMatrix,Mathematics.LA.RMatrix)">
+            <summary>
+            +
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.op_Subtraction(Mathematics.LA.RMatrix,Mathematics.LA.RMatrix)">
+            <summary>
+            -
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.op_UnaryNegation(Mathematics.LA.RMatrix)">
+            <summary>
+            -
+            </summary>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.op_Multiply(Mathematics.LA.RMatrix,System.Double)">
+            <summary>
+            *
+            </summary>
+            <param name="v"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.op_Multiply(System.Double,Mathematics.LA.RMatrix)">
+            <summary>
+            *
+            </summary>
+            <param name="x"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.op_Division(Mathematics.LA.RMatrix,System.Double)">
+            <summary>
+            /
+            </summary>
+            <param name="v"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.op_Multiply(Mathematics.LA.Vector,Mathematics.LA.RMatrix)">
+            <summary>
+            *
+            </summary>
+            <param name="x"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.op_Multiply(Mathematics.LA.RMatrix,Mathematics.LA.Vector)">
+            <summary>
+            *
+            </summary>
+            <param name="v"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.op_Multiply(Mathematics.LA.RMatrix,Mathematics.LA.RMatrix)">
+            <summary>
+            *
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.op_Equality(Mathematics.LA.RMatrix,Mathematics.LA.RMatrix)">
+            <summary>
+            ==
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.op_Inequality(Mathematics.LA.RMatrix,Mathematics.LA.RMatrix)">
+            <summary>
+            !=
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.GetHashCode">
+            <summary>
+            Hash code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.AddValue(Mathematics.LA.RMatrix)">
+            <summary>
+            Adds components to the matrix
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.AddValue(Mathematics.LA.RMatrix,System.Double)">
+            <summary>
+            Adds components with weights
+            </summary>
+            <param name="v"></param>
+            <param name="weight"></param>
+        </member>
+        <member name="M:Mathematics.LA.RMatrix.Multiplication(Mathematics.LA.RMatrix,Mathematics.LA.RMatrix)">
+            <summary>
+            By component multiplication
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mathematics.LA.RMatrix.Precision">
+            <summary>
+            Precision of matrix comparison operations
+            </summary>
+        </member>
+        <member name="P:Mathematics.LA.RMatrix.NaN">
+            <summary>
+            NaN matrix
+            </summary>
+        </member>
+        <member name="P:Mathematics.LA.RMatrix.RowCount">
+            <summary>
+            Row count
+            </summary>
+        </member>
+        <member name="P:Mathematics.LA.RMatrix.ColumnCount">
+            <summary>
+            Column count
+            </summary>
+        </member>
+        <member name="T:Mathematics.Special.Bessel">
+            <summary>
+            Bessel Functions
+            </summary>
+        </member>
+        <member name="M:Mathematics.Special.Bessel.J0(System.Double)">
+            <summary>
+            Bessel function of order zero
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.Bessel.J1(System.Double)">
+            <summary>
+            Bessel function of order one
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.Bessel.Y0(System.Double)">
+            <summary>
+            Bessel function of the second kind, order zero
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.Bessel.Y1(System.Double)">
+            <summary>
+            Bessel function of second kind of order one
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.Bessel.I0(System.Double)">
+            <summary>
+            Modified Bessel function of order zero
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.Bessel.I1(System.Double)">
+            <summary>
+            Modified Bessel function of order one
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.Bessel.K0(System.Double)">
+            <summary>
+            Modified Bessel function, second kind, order zero
+            </summary>
+            <param name="x">>0</param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.Bessel.K1(System.Double)">
+            <summary>
+            Modified Bessel function, second kind, order one
+            </summary>
+            <param name="x">>0</param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.CS.BaseSystem">
+            <summary>
+            Note about all Coordinate Systems.
+            Basic formulae for transformations between systems of different types
+            (for example Cartesian-Cylindrical) are from
+            Kochin, Vector and Tensor analysis (p 195).
+            All systems are RIGHT-handed.
+            There are three types of Coordinate System transformation relative to Global
+            (World) coordanate space: translation of the origin of the system, rotation about
+            the system axes and scaling along the system axes. The order of transformation
+            is Scaling->Rotation->Translation.
+            There are three types of Coordinates and Vectors Coordinate Systems deal with:
+            Global - data of position or vector in Global (World) space.
+            Relative - data of position or vector in CARTESIAN system such that
+            the origin and basis of the system are subjected to all transformations.
+            Local - data of position or vector in NATIVE components (for example r phi z
+            in Cylindrical system). The origin of Local space is the same as Relative.
+            There are Position, Vector and Normal transformations.
+            Positions are subjected to all types of transformations - Scaling, Rotation and Translations.
+            Vectors and Normals are not subjected to Translation (it does not metter for vectors).
+            Vector transformations differs from Normal transformations by Scaling.
+            Vectors scale as Vx*Sx Vy*Sy Vz*Sz but Normals scale as Nx/Sx Ny/Sy Nz/Sz.
+            The reason is when the surface is scaled say in direction x by 2 (surface
+            is longer in x direction) the normal to the surface gets shorter in x direction.
+            See also MARTIN H. SADD, ELASTICITY. Theory, Applications, and Numerics, appendix B.
+            From the book: CS Rotation matrix [Q] is such that {v}^=[Q]{v}, where {v} is
+            a vector from original CS and {v}^ in transformed (rotated) CS. Each i-th
+            row of the matrix is the coordinates of i-th ort {e}^ of the transformed CS
+            in original one.
+            NOTE: HERE THE ROTATION TENSOR IS SUCH THAT {v}=[Q]{v}^, THAT IS OPPOSITE TO
+            THE BOOK (AND ALL OTHER SOURCES).
+            </summary>
+        </member>
+        <member name="M:Mathematics.CS.BaseSystem.Lame(Mathematics.LA.Vector3D)">
+            <summary>
+            Lame's coefficients in Local point.
+            </summary>
+            <param name="LocalPoint"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.CS.BaseSystem.Metrics(Mathematics.LA.Vector3D)">
+            <summary>
+            Metrics tensor in Local point.
+            </summary>
+            <param name="LocalPoint"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.CS.BaseSystem.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:Mathematics.CS.BaseSystem.TypeName">
+            <summary>
+            System Type name.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.CS.BaseSystem.Move(Mathematics.LA.Vector3D)">
+            <summary>
+            Moves system by dv vector.
+            </summary>
+            <param name="dv"></param>
+        </member>
+        <member name="M:Mathematics.CS.BaseSystem.MoveTo(Mathematics.LA.Vector3D)">
+            <summary>
+            Moves sytem centre to v position.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:Mathematics.CS.BaseSystem.Rotate(Mathematics.LA.Vector3D)">
+            <summary>
+            Rotates system by a angles.
+            </summary>
+            <param name="a"></param>
+        </member>
+        <member name="M:Mathematics.CS.BaseSystem.CopyParameters(Mathematics.CS.BaseSystem@)">
+            <summary>
+            Copies system parameters.
+            </summary>
+            <param name="sys"></param>
+        </member>
+        <member name="M:Mathematics.CS.BaseSystem.CopySystem(Mathematics.CS.BaseSystem,Mathematics.CS.BaseSystem@)">
+            <summary>
+            Copies system.
+            </summary>
+            <param name="source"></param>
+            <param name="copy"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mathematics.CS.BaseSystem.Translation">
+            <summary>
+            Translation vector.
+            </summary>
+        </member>
+        <member name="P:Mathematics.CS.BaseSystem.EulerAngles">
+            <summary>
+            Rotation angles (in radians).
+            </summary>
+        </member>
+        <member name="P:Mathematics.CS.BaseSystem.Rotation">
+            <summary>
+            Rotation tensor.
+            </summary>
+        </member>
+        <member name="P:Mathematics.CS.BaseSystem.Scale">
+            <summary>
+            Scale Vector.
+            </summary>
+        </member>
+        <member name="P:Mathematics.CS.BaseSystem.X0">
+            <summary>
+            X component of translation vector.
+            </summary>
+        </member>
+        <member name="P:Mathematics.CS.BaseSystem.Y0">
+            <summary>
+            Y component of translation vector.
+            </summary>
+        </member>
+        <member name="P:Mathematics.CS.BaseSystem.Z0">
+            <summary>
+            Z component of translation vector.
+            </summary>
+        </member>
+        <member name="P:Mathematics.CS.BaseSystem.AX">
+            <summary>
+            X component of rotation vector.
+            </summary>
+        </member>
+        <member name="P:Mathematics.CS.BaseSystem.AY">
+            <summary>
+            Y component of rotation vector.
+            </summary>
+        </member>
+        <member name="P:Mathematics.CS.BaseSystem.AZ">
+            <summary>
+            Z component of rotation vector.
+            </summary>
+        </member>
+        <member name="P:Mathematics.CS.BaseSystem.SX">
+            <summary>
+            X component of scale vector.
+            </summary>
+        </member>
+        <member name="P:Mathematics.CS.BaseSystem.SY">
+            <summary>
+            Y component of scale vector.
+            </summary>
+        </member>
+        <member name="P:Mathematics.CS.BaseSystem.SZ">
+            <summary>
+            Z component of scale vector.
+            </summary>
+        </member>
+        <member name="T:Mathematics.CS.CurvilinearOrthogonalSystem">
+            <summary>
+            Curvilinear ortogonal system introduces transformations
+            using local basis of the system.
+            See http://en.wikipedia.org/wiki/Curvilinear_coordinates.
+            </summary>
+        </member>
+        <member name="T:Mathematics.CS.ParametricSystem">
+            <summary>
+            Parametric System is so that its geometry depends on parameters
+            (see toroidal as an example).
+            </summary>
+        </member>
+        <member name="P:Mathematics.CS.ParametricSystem.Parameters">
+            <summary>
+            Parameter vector.
+            </summary>
+        </member>
+        <member name="P:Mathematics.CS.ParametricSystem.Alpha">
+            <summary>
+            First parameter.
+            </summary>
+        </member>
+        <member name="P:Mathematics.CS.ParametricSystem.Beta">
+            <summary>
+            Second parameter.
+            </summary>
+        </member>
+        <member name="P:Mathematics.CS.ParametricSystem.Gamma">
+            <summary>
+            Third parameter.
+            </summary>
+        </member>
+        <member name="T:Mathematics.CS.Transformations">
+            <summary>
+            Static class to implement transformations.
+            </summary>
+        </member>
+        <member name="M:Mathematics.CS.Transformations.RotationTensors3D(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D,Mathematics.LA.Tensor3D@,Mathematics.LA.Tensor3D@,Mathematics.LA.Tensor3D@)">
+            <summary>
+            Forms Rotation Tensors by calculated sin and cos of rotation angles.
+            See note about rotation tensor. The tensor is such, that it represents
+            the transformation matrix to get original coordinates from transformed ones
+            that is {v}=[t]{v}^ (where {v}^ is the vector in rotated CS).
+            </summary>
+            <param name="s"></param>
+            <param name="c"></param>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <param name="t3"></param>
+        </member>
+        <member name="M:Mathematics.CS.Transformations.RotationTensor3D(Mathematics.LA.Vector3D)">
+            <summary>
+            Calculates Rotation Tensor by rotation angles.
+            Each angles vector component is the angle in radians of rotation
+            about the corresponding axis if the rotation is carried out subsequently
+            about the first, the second and the third axis.
+            </summary>
+            <param name="angles"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.CS.Transformations.RotationTensor3D(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Calculates Rotation Tensor by axes orts. Orts must be normalized vectors.
+            Rotation Tensor is nothing but Basis Vector coordinates of the transformed
+            (rotated) CS in the original CS.
+            Fletcher Dunn, 3D Math Primer for Graphics and Game Development, p 93.
+            NOTE: We must set each vector in the tensor's COLUMN NOT ROW because of
+            our Rotation Tensor treatement (see note about rotation tensor).
+            </summary>
+            <param name="ort1"></param>
+            <param name="ort2"></param>
+            <param name="ort3"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.LA.EMatrix">
+            <summary>
+            Base matrix exception
+            </summary>
+        </member>
+        <member name="T:Mathematics.LA.EMatrixDimensions">
+            <summary>
+            Matrix dimension exception
+            </summary>
+        </member>
+        <member name="T:Mathematics.LA.ERowIndex">
+            <summary>
+            Matrix row exception
+            </summary>
+        </member>
+        <member name="T:Mathematics.LA.EColumnIndex">
+            <summary>
+            Matrix column exception
+            </summary>
+        </member>
+        <member name="T:Mathematics.LA.Matrix">
+            <summary>
+            General rectangular matrix
+            (wrapper for double[][] data).
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.IsNaN(Mathematics.LA.Matrix)">
+            <summary>
+            Checks if a matrix is NaN
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Mathematics.LA.Matrix.Data">
+            <summary>
+            Matrix components
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Matrix with zero components
+            </summary>
+            <param name="m"></param>
+            <param name="n"></param>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.#ctor(System.Int32,System.Int32,System.Double)">
+            <summary>
+            Matrix with constant components
+            </summary>
+            <param name="m"></param>
+            <param name="n"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.#ctor(System.Int32,System.Double)">
+            <summary>
+            Diagonal matrix with constant values
+            </summary>
+            <param name="n"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.#ctor(System.Double[][])">
+            <summary>
+            Matrix by data.
+            NOTE: source data not copied.
+            </summary>
+            <param name="a"></param>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.#ctor(System.Double[0:,0:])">
+            <summary>
+            Matrix by data.
+            NOTE: source data copied.
+            </summary>
+            <param name="a"></param>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.#ctor(Mathematics.LA.Matrix)">
+            <summary>
+            Copy constructor.
+            NOTE: source data copied.
+            </summary>
+            <param name="Source"></param>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.#ctor(System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Matrix with random components.
+            </summary>
+            <param name="random"></param>
+            <param name="m"></param>
+            <param name="n"></param>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.GetRow(System.Int32)">
+            <summary>
+            Gets a row by index.
+            NOTE: source data copied.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.SetRow(System.Int32,Mathematics.LA.Vector)">
+            <summary>
+            Sets a row by index.
+            NOTE: source data copied.
+            </summary>
+            <param name="index"></param>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.GetColumn(System.Int32)">
+            <summary>
+            Gets a column by index.
+            NOTE: source data copied.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.SetColumn(System.Int32,Mathematics.LA.Vector)">
+            <summary>
+            Sets a column by index.
+            NOTE: source data copied.
+            </summary>
+            <param name="index"></param>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.GetMinor(System.Int32,System.Int32)">
+            <summary>
+            Gets a minor by index.
+            NOTE: source data copied.
+            </summary>
+            <param name="row"></param>
+            <param name="column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.Transposed">
+            <summary>
+            Creates transposed matrix.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.Transpose">
+            <summary>
+            Transposes the matrix.
+            NOTE: for SQUARE only.
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.Inversed">
+            <summary>
+            Calculates inversed matrix.
+            NOTE: For square matrices only.
+                  If inversed matrix does not exist - returns NaN matrix.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.Determinant">
+            <summary>
+            Calculates determinant.
+            NOTE: for square matrices only.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.Scale(System.Double)">
+            <summary>
+            Scales the matrix.
+            </summary>
+            <param name="f"></param>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.Min">
+            <summary>
+            Finds minimal component value.
+            </summary>
+            <returns>Min value or NaN, if there is no valid value.</returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.Max">
+            <summary>
+            Finds maximal component value.
+            </summary>
+            <returns>Max value or NaN, if there is no valid value.</returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.LS">
+            <summary>
+            Calculates Least-Squares Transformation of the matrix.
+            NOTE: result is square symmetric matrix.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.Adjoint">
+            <summary>
+            Calculates Adjoint Matrix
+            NOTE: for square matrices only.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.op_Addition(Mathematics.LA.Matrix,Mathematics.LA.Matrix)">
+            <summary>
+            +
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.op_Subtraction(Mathematics.LA.Matrix,Mathematics.LA.Matrix)">
+            <summary>
+            -
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.op_UnaryNegation(Mathematics.LA.Matrix)">
+            <summary>
+            -
+            </summary>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.op_Multiply(Mathematics.LA.Matrix,System.Double)">
+            <summary>
+            *
+            </summary>
+            <param name="v"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.op_Multiply(System.Double,Mathematics.LA.Matrix)">
+            <summary>
+            *
+            </summary>
+            <param name="x"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.op_Division(Mathematics.LA.Matrix,System.Double)">
+            <summary>
+            /
+            </summary>
+            <param name="v"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.op_Multiply(Mathematics.LA.Vector,Mathematics.LA.Matrix)">
+            <summary>
+            *
+            </summary>
+            <param name="x"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.op_Multiply(Mathematics.LA.Matrix,Mathematics.LA.Vector)">
+            <summary>
+            *
+            </summary>
+            <param name="v"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.op_Multiply(Mathematics.LA.Matrix,Mathematics.LA.Matrix)">
+            <summary>
+            *
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.op_Equality(Mathematics.LA.Matrix,Mathematics.LA.Matrix)">
+            <summary>
+            ==
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.op_Inequality(Mathematics.LA.Matrix,Mathematics.LA.Matrix)">
+            <summary>
+            !=
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.GetHashCode">
+            <summary>
+            Hash code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.AddValue(Mathematics.LA.Matrix)">
+            <summary>
+            Adds components to the matrix
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.AddValue(Mathematics.LA.Matrix,System.Double)">
+            <summary>
+            Adds components with weights
+            </summary>
+            <param name="v"></param>
+            <param name="weight"></param>
+        </member>
+        <member name="M:Mathematics.LA.Matrix.Multiplication(Mathematics.LA.Matrix,Mathematics.LA.Matrix)">
+            <summary>
+            By component multiplication
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mathematics.LA.Matrix.Precision">
+            <summary>
+            Precision of matrix comparison operations
+            </summary>
+        </member>
+        <member name="P:Mathematics.LA.Matrix.NaN">
+            <summary>
+            NaN matrix
+            </summary>
+        </member>
+        <member name="P:Mathematics.LA.Matrix.RowCount">
+            <summary>
+            Row count
+            </summary>
+        </member>
+        <member name="P:Mathematics.LA.Matrix.ColumnCount">
+            <summary>
+            Column count
+            </summary>
+        </member>
+        <member name="T:Mathematics.CS.CartesianSystem">
+            <summary>
+            Cartesian System
+            </summary>
+        </member>
+        <member name="T:Mathematics.CS.CylindricalSystem">
+            <summary>
+            Cylindrical Coordinate System
+            Kochin, Vector and Tensor analysis (p 195).
+            x = rho*cos(phi)   y = rho*sin(phi)   z = z
+            rho = sqrt(sqr(x)+sqr(y))   phi = arctan(y/x)
+            </summary>
+        </member>
+        <member name="T:Mathematics.CS.SphericalSystem">
+            <summary>
+            Spherical Coordinate System
+            Kochin, Vector and Tensor analysis (p 195).
+            Note : phi is the SECOND coordinate and theta is the THIRD one
+            (differes from reference book)
+            x = r*cos(phi)*sin(theta)   y = r*sin(phi)*sin(theta)   z = r*cos(theta)
+            r = sqrt(sqr(x)+sqr(y)+sqr(z))   phi = arctan(y/x)   theta = arctan(rho/z)
+            (where rho = sqrt(sqr(x)+sqr(y)) )
+            </summary>
+        </member>
+        <member name="T:Mathematics.Constants">
+            <summary>
+            Mathematics constants.
+            </summary>
+        </member>
+        <member name="F:Mathematics.Constants.V3DDIM">
+            <summary>
+            3D vector dimension constant - needed for some auxiliary functions
+            </summary>
+        </member>
+        <member name="T:Mathematics.ComplexConstants">
+            <summary>
+            Complex constants
+            </summary>
+        </member>
+        <member name="T:Mathematics.Functions">
+            <summary>
+            Static class realizing basic math functions.
+            </summary>
+        </member>
+        <member name="M:Mathematics.Functions.GCD(System.Int64,System.Int64)">
+            <summary>
+            Greatest Common Divisor
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.LCM(System.Int64,System.Int64)">
+            <summary>
+            Least Common Multiple
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.CommonFraction(System.Double,System.Int64@,System.Int64@)">
+            <summary>
+            Converts double value to Common Fraction representation.
+            Representation is NOT correct for periodic float values (but result IS correct).
+            </summary>
+            <param name="x"></param>
+            <param name="numerator"></param>
+            <param name="denominator"></param>
+        </member>
+        <member name="M:Mathematics.Functions.DoubleToFraction(System.Double,System.Int64@,System.Int64@)">
+            <summary>
+            Converts double value to Common Fraction representation.
+            Representation is correct even for periodic float values.
+            </summary>
+            <param name="x"></param>
+            <param name="numerator"></param>
+            <param name="denominator"></param>
+        </member>
+        <member name="M:Mathematics.Functions.Square(System.Double)">
+            <summary>
+            Square
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Delta(System.Double)">
+            <summary>
+            Dirac Delta impulse function
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Heaviside(System.Double)">
+            <summary>
+            Heaviside step function
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Factorial(System.Int32)">
+            <summary>
+            Factorial function.
+            NOT precise for big argument values.
+            </summary>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Hypot(System.Double,System.Double)">
+            <summary>
+            Hypot function
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Root(System.Double,System.Int32)">
+            <summary>
+            Root function
+            </summary>
+            <param name="x">Argument</param>
+            <param name="y">Degree of the root</param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Fraction(System.Double)">
+            <summary>
+            Fraction function
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Log2(System.Double)">
+            <summary>
+            Binary logarithm
+            </summary>
+        </member>
+        <member name="M:Mathematics.Functions.SinCosTrigonometric(System.Double,System.Double@,System.Double@)">
+            <summary>
+            Trigonometric Sine and Cosine
+            </summary>
+            <param name="arg"></param>
+            <param name="s"></param>
+            <param name="c"></param>
+        </member>
+        <member name="M:Mathematics.Functions.SinCosHyperbolic(System.Double,System.Double@,System.Double@)">
+            <summary>
+            Hyperbolic Sine and Cosine
+            </summary>
+            <param name="arg"></param>
+            <param name="SH"></param>
+            <param name="CH"></param>
+        </member>
+        <member name="M:Mathematics.Functions.Cotan(System.Double)">
+            <summary>
+            Cotangent
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Sec(System.Double)">
+            <summary>
+            Secant
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Cosec(System.Double)">
+            <summary>
+            Cosecant
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arccot(System.Double)">
+            <summary>
+            Arccotangent
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arcsec(System.Double)">
+            <summary>
+            Arcsecant
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arccsc(System.Double)">
+            <summary>
+            Arccosecant
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Coth(System.Double)">
+            <summary>
+            Hyperbolic Cotangent
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Sech(System.Double)">
+            <summary>
+            Hyperbolic Secant
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Cosech(System.Double)">
+            <summary>
+            Hyperbolic Cosecant
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arcsinh(System.Double)">
+            <summary>
+            Hyperbolic Arcsine
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arccosh(System.Double)">
+            <summary>
+            Hyperbolic Arccosine
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arctanh(System.Double)">
+            <summary>
+            Hyperbolic Arctangent
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arcoth(System.Double)">
+            <summary>
+            Hyperbolic Arccotangent
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arsech(System.Double)">
+            <summary>
+            Hyperbolic Arcsecant
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arcsch(System.Double)">
+            <summary>
+            Hyperbolic Arccosecant
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.AbsSqr(System.Numerics.Complex)">
+            <summary>
+            Square of magnitude
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Root(System.Numerics.Complex,System.Numerics.Complex)">
+            <summary>
+            Complex Root function
+            </summary>
+            <param name="x">Argument</param>
+            <param name="y">Degree of the root</param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Root(System.Numerics.Complex,System.Double)">
+            <summary>
+            Complex Root function
+            </summary>
+            <param name="x">Argument</param>
+            <param name="y">Degree of the root</param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Root(System.Double,System.Numerics.Complex)">
+            <summary>
+            Complex Root function
+            </summary>
+            <param name="x">Argument</param>
+            <param name="y">Degree of the root</param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Log(System.Numerics.Complex,System.Numerics.Complex)">
+            <summary>
+            Complex Logarithm function.
+            </summary>
+            <param name="x">Base of the logarithm</param>
+            <param name="y">Argument</param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Log(System.Numerics.Complex,System.Double)">
+            <summary>
+            Complex Logarithm function.
+            </summary>
+            <param name="x">Base of the logarithm</param>
+            <param name="y">Argument</param>
+            <returns></returns>       
+        </member>
+        <member name="M:Mathematics.Functions.Log2(System.Numerics.Complex)">
+            <summary>
+            Complex binary Logarithm
+            </summary>
+        </member>
+        <member name="M:Mathematics.Functions.Inverse(System.Numerics.Complex)">
+            <summary>
+            Complex inverse
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.IsZeroComplex(System.Numerics.Complex)">
+            <summary>
+            Equals Zero
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Cotan(System.Numerics.Complex)">
+            <summary>
+            Cotangent
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Sec(System.Numerics.Complex)">
+            <summary>
+            Secant
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Cosec(System.Numerics.Complex)">
+            <summary>
+            Cosecant
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arccot(System.Numerics.Complex)">
+            <summary>
+            Arccotangent
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arcsec(System.Numerics.Complex)">
+            <summary>
+            Arcsecant
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arccsc(System.Numerics.Complex)">
+            <summary>
+            Arccosecant
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Coth(System.Numerics.Complex)">
+            <summary>
+            Hyperbolic cotangent
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Sech(System.Numerics.Complex)">
+            <summary>
+            Hyperbolic secant
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Cosech(System.Numerics.Complex)">
+            <summary>
+            Hyperbolic cosecant
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arcsinh(System.Numerics.Complex)">
+            <summary>
+            Hyperbolic arcsine
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arccosh(System.Numerics.Complex)">
+            <summary>
+            Hyperbolic arccosine
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arctanh(System.Numerics.Complex)">
+            <summary>
+            Hyperbolic arctangent
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arcoth(System.Numerics.Complex)">
+            <summary>
+            Hyperbolic arccotangent
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arcsech(System.Numerics.Complex)">
+            <summary>
+            Hyperbolic arcsecant
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.Arcsch(System.Numerics.Complex)">
+            <summary>
+            Hyperbolic arccosecant
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.RealEqual(System.Double,System.Double)">
+            <summary>
+            Compares two doubles for equality with given precision.
+            Takes into account infinities (negative and positive) and NaNs.
+            Do NOT confuse Actual and Expected values - it takes sense.
+            </summary>
+            <param name="expected"></param>
+            <param name="actual"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Functions.ComplexEqual(System.Numerics.Complex,System.Numerics.Complex)">
+            <summary>
+            Compares two complex for equality with given precision.
+            Takes into account infinities (negative and positive) and NaNs.
+            Do NOT confuse Actual and Expected values - it takes sense.
+            </summary>
+            <param name="expected"></param>
+            <param name="actual"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mathematics.Functions.Precision">
+            <summary>
+            Precision for real values comparison.
+            </summary>
+        </member>
+        <member name="T:Mathematics.NL.VectorNorm">
+            <summary>
+            Abstract class for Vector Norm calculator.
+            </summary>
+        </member>
+        <member name="M:Mathematics.NL.VectorNorm.Calculate(System.Double[])">
+            <summary>
+            Calculation method.
+            </summary>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.NL.MaxNorm">
+            <summary>
+            Maximum absolute norm calculator.
+            </summary>
+        </member>
+        <member name="M:Mathematics.NL.MaxNorm.Calculate(System.Double[])">
+            <summary>
+            Calculates Maximum Absolute norm.
+            </summary>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.NL.EuclidianNorm">
+            <summary>
+            Euclidian norm calculator.
+            </summary>
+        </member>
+        <member name="M:Mathematics.NL.EuclidianNorm.Calculate(System.Double[])">
+            <summary>
+            Calculates Euclidian norm.
+            </summary>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.NL.SolverOptions">
+            <summary>
+            Solver options.
+            </summary>
+        </member>
+        <member name="M:Mathematics.NL.SolverOptions.#ctor">
+            <summary>
+            Default constructor
+            (initializes default option values)
+            </summary>
+        </member>
+        <member name="P:Mathematics.NL.SolverOptions.MaxIterationCount">
+            <summary>
+            Max iteration count.
+            </summary>
+        </member>
+        <member name="P:Mathematics.NL.SolverOptions.SolutionPrecision">
+            <summary>
+            Solution precision.
+            </summary>
+        </member>
+        <member name="P:Mathematics.NL.SolverOptions.Norm">
+            <summary>
+            Norm calculator
+            </summary>
+        </member>
+        <member name="T:Mathematics.NL.SolutionResult">
+            <summary>
+            Solution result.
+            </summary>
+        </member>
+        <member name="M:Mathematics.NL.SolutionResult.#ctor">
+            <summary>
+            Default constructor
+            (initializes default values)
+            </summary>
+        </member>
+        <member name="P:Mathematics.NL.SolutionResult.IterationCount">
+            <summary>
+            The count of iterations made.
+            </summary>
+        </member>
+        <member name="P:Mathematics.NL.SolutionResult.Error">
+            <summary>
+            The final Solution error.
+            </summary>
+        </member>
+        <member name="P:Mathematics.NL.SolutionResult.Converged">
+            <summary>
+            Solution Converged.
+            </summary>
+        </member>
+        <member name="P:Mathematics.NL.SolutionResult.Message">
+            <summary>
+            Message
+            </summary>
+        </member>
+        <member name="T:Mathematics.NL.NonlinearSolver">
+            <summary>
+            Abstract nonlinear solver.
+            </summary>
+        </member>
+        <member name="M:Mathematics.NL.NonlinearSolver.Validate(System.Double[])">
+            <summary>
+            Validates calculated root values.
+            </summary>
+            <param name="x"></param>
+            <returns>True, if there is no NaN or Infinity</returns>
+        </member>
+        <member name="M:Mathematics.NL.NonlinearSolver.Solve(Mathematics.NL.NonlinearSystem,System.Double[],Mathematics.NL.SolverOptions,System.Double[]@)">
+            <summary>
+            Solution method.
+            </summary>
+            <param name="system"></param>
+            <param name="x0"></param>
+            <param name="opt"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.NL.IterativeSolver">
+            <summary>
+            Base Abstract Iterative Solver.
+            </summary>
+        </member>
+        <member name="M:Mathematics.NL.IterativeSolver.Iteration(Mathematics.NL.NonlinearSystem,System.Double[],System.Double[]@)">
+            <summary>
+            Iteration.
+            </summary>
+            <param name="system"></param>
+            <param name="x0">Current x values</param>
+            <param name="x1">Next (calculated) x values</param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.NL.IterativeSolver.Solve(Mathematics.NL.NonlinearSystem,System.Double[],Mathematics.NL.SolverOptions,System.Double[]@)">
+            <summary>
+            Common Iterative Solution method.
+            TODO: optimize the number of system values calculation per iteration.
+            </summary>
+            <param name="system"></param>
+            <param name="x0"></param>
+            <param name="opt"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.NL.SimpleSolver">
+            <summary>
+            Simple iteration solver.
+            </summary>
+        </member>
+        <member name="F:Mathematics.NL.SimpleSolver.s">
+            <summary>
+            Scale value.
+            </summary>
+        </member>
+        <member name="M:Mathematics.NL.SimpleSolver.Iteration(Mathematics.NL.NonlinearSystem,System.Double[],System.Double[]@)">
+            <summary>
+            Simple iteration x[i+1] = x[i] + s*F(x[i])
+            </summary>
+            <param name="system"></param>
+            <param name="x0"></param>
+            <param name="x1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.NL.SimpleSolver.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="P:Mathematics.NL.SimpleSolver.Scale">
+            <summary>
+            Scale.
+            </summary>
+        </member>
+        <member name="T:Mathematics.NL.NewtonRaphsonSolver">
+            <summary>
+            Newton-Raphson Solver.
+            TODO: optimize the number of system values calculation per iteration.
+            </summary>
+        </member>
+        <member name="M:Mathematics.NL.NewtonRaphsonSolver.Iteration(Mathematics.NL.NonlinearSystem,System.Double[],System.Double[]@)">
+            <summary>
+            Iteration.
+            x[i+1] = x[i] - y[i]/J(x[i])
+            </summary>
+            <param name="system"></param>
+            <param name="x0"></param>
+            <param name="x1"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.LA.Vector3D">
+            <summary>
+             3D Vector.
+             The Vector class realizes Linear Algebra Vector 3D operations.
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.#cctor">
+            <summary>
+            Initializes static data.
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Length">
+            <summary>
+            Calculates vector length.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Length2D">
+            <summary>
+            Calculates vector length by first 2 components.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.IsZero">
+            <summary>
+            All components are Zero.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.IsNaN">
+            <summary>
+            One or more components are NaN.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.IsInfinite">
+            <summary>
+            One or more components are Infinite.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Normalize">
+            <summary>
+            Normalizes vector components.
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Inverse">
+            <summary>
+            Inverses vector direction.
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="x1"></param>
+            <param name="x2"></param>
+            <param name="x3"></param>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.#ctor(System.Double)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="x"></param>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Scale(System.Double)">
+            <summary>
+            Scales vector by factor.
+            </summary>
+            <param name="r"></param>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.SinCos(Mathematics.LA.Vector3D@,Mathematics.LA.Vector3D@)">
+            <summary>
+            Calculates sines and cosines of the vector angle.
+            </summary>
+            <param name="sines"></param>
+            <param name="cosines"></param>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Dot(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Dot Product
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Cross(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Cross Product
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.MultiplyComponents(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Multiplies vector components
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.DivideComponents(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Divides vector components
+            (does not check zero division)
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Distance(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Distance between two points.
+            </summary>
+            <param name="p1"></param>
+            <param name="p2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Normal(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Unit normal to the vectors.
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Direction(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Unit direction from the first point to the second one.
+            </summary>
+            <param name="p1"></param>
+            <param name="p2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Projection(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Projection of the first vector to the second (must be normalized) one.
+            </summary>
+            <param name="v1"></param>
+            <param name="direction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Interpolate(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D,System.Double)">
+            <summary>
+            Linear interpolation between two vectors.
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <param name="ratio"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Angle(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Angle (in radians) between two vectors.
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Collinear(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D,System.Double)">
+            <summary>
+            Vectors are collinear (within the specified precision).
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <param name="precision"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Collinear(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Vectors are collinear (within default vector precision).
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Ortogonal(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D,System.Double)">
+            <summary>
+            Vectors are ortogonal (within the specified precision).
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <param name="precision"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Ortogonal(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Vectors are ortogonal (within default vector precision).
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.op_Equality(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Exact equal.
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.op_Inequality(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Exact not equal.
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.op_Addition(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            +
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.op_Subtraction(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            -
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.op_UnaryNegation(Mathematics.LA.Vector3D)">
+            <summary>
+            -
+            </summary>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.op_Multiply(System.Double,Mathematics.LA.Vector3D)">
+            <summary>
+            *
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.op_Multiply(Mathematics.LA.Vector3D,System.Double)">
+            <summary>
+            *
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.op_Multiply(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Cross Product
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.op_Division(Mathematics.LA.Vector3D,System.Double)">
+            <summary>
+            /
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.op_BitwiseOr(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Or operator checks if two vectors are collinear (within default vector precision)
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.op_BitwiseAnd(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            And operator checks if two vectors are ortogonal (within default vector precision)
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.ToString(System.Globalization.CultureInfo)">
+            <summary>
+            ToString
+            </summary>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.Equals(System.Object)">
+            <summary>
+            Equals with default vector precision.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.GetHashCode">
+            <summary>
+            Hash code.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.TriangleArea(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Calculates Triangle Area by three points.
+            </summary>
+            <param name="p1"></param>
+            <param name="p2"></param>
+            <param name="p3"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector3D.QuadArea(Mathematics.LA.Vector3D,Mathematics.LA.Vector3D,Mathematics.LA.Vector3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Calculates the Quad area APPROXIMATELY as area 
+            of two triangles but the Quad can be NOT PLANE.
+            </summary>
+            <param name="p1"></param>
+            <param name="p2"></param>
+            <param name="p3"></param>
+            <param name="p4"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mathematics.LA.Vector3D.VectorPrecision">
+            <summary>
+            Default precision of vector operations (collinearity, ortogonality).
+            </summary>
+        </member>
+        <member name="P:Mathematics.LA.Vector3D.Item(System.Int32)">
+            <summary>
+            Vector component by index.
+            NOTE: index begins with 1 NOT zero.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.LA.Tensor3D">
+            <summary>
+            3D Tensor.
+            The Tensor class realizes Linear Algebra Tensor 3D functions.
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.#cctor">
+            <summary>
+            Initializes all static data.
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.GetRow(System.Int32)">
+            <summary>
+            Gets tensor's row.
+            NOTE: row index begins with 1.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.SetRow(System.Int32,Mathematics.LA.Vector3D)">
+            <summary>
+            Sets tensor's row.
+            NOTE: row index begins with 1.
+            </summary>
+            <param name="index"></param>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.GetColumn(System.Int32)">
+            <summary>
+            Gets tensor's column.
+            NOTE: column index begins with 1.
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.SetColumn(System.Int32,Mathematics.LA.Vector3D)">
+            <summary>
+            Sets tensor's column.
+            NOTE: column index begins with 1.
+            </summary>
+            <param name="index"></param>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="a11"></param>
+            <param name="a12"></param>
+            <param name="a13"></param>
+            <param name="a21"></param>
+            <param name="a22"></param>
+            <param name="a23"></param>
+            <param name="a31"></param>
+            <param name="a32"></param>
+            <param name="a33"></param>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.#ctor(System.Double)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="x"></param>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.Invariant1">
+            <summary>
+            Invariant 1
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.Invariant2">
+            <summary>
+            Invariant 2
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.Invariant3">
+            <summary>
+            Invariant 3
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.Scale(System.Double)">
+            <summary>
+            Scales tensor by factor.
+            </summary>
+            <param name="r"></param>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.ExtendSymmetric">
+            <summary>
+            Makes the tensor SYMMETRIC by extending
+            left bottom part to right top part.
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.ExtendAntisymmetric">
+            <summary>
+            Makes the tensor ANTISYMMETRIC by extending
+            left bottom part to right top part with negation
+            and SET diagonal values to 0.0.
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.MakeDiagonal">
+            <summary>
+            Makes the tensor DIAGONAL by setting
+            nondiagonal elements to 0.0.
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.Symmetric">
+            <summary>
+            Calculates SYMMETRIC part of the tensor.
+            S[i][j]=1/2(T[i][j]+T[j][i])
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.Antisymmetric">
+            <summary>
+            Calculates ANTISYMMETRIC part of the tensor.
+            A[i][j]=1/2(T[i][j]-T[j][i])
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.IsSymmetric">
+            <summary>
+            Is symmetric.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.IsAntisymmetric">
+            <summary>
+            Is antisymmetric.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.IsDiagonal">
+            <summary>
+            Is diagonal.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.IsZero">
+            <summary>
+            All components are Zero.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.IsNaN">
+            <summary>
+            One or more components are NaN.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.IsInfinite">
+            <summary>
+            One or more components are Infinite.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.Transposed">
+            <summary>
+            Returns transposed tensor.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.Inversed(Mathematics.LA.Tensor3D@)">
+            <summary>
+            Calculates inversed tensor.
+            </summary>
+            <param name="inverse"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.MultiplyComponents(Mathematics.LA.Tensor3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            Multiplies tensors' components.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.DivideComponents(Mathematics.LA.Tensor3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            Divides tensors' components.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.Interpolate(Mathematics.LA.Tensor3D,Mathematics.LA.Tensor3D,System.Double)">
+            <summary>
+            Linear interpolation between two tensors.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <param name="f"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.op_Equality(Mathematics.LA.Tensor3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            Exact equality.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.op_Inequality(Mathematics.LA.Tensor3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            Exact inequality.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.op_Addition(Mathematics.LA.Tensor3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            Tensors' sum.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.op_Subtraction(Mathematics.LA.Tensor3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            Tensors' difference.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.op_UnaryNegation(Mathematics.LA.Tensor3D)">
+            <summary>
+            -
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.op_Multiply(System.Double,Mathematics.LA.Tensor3D)">
+            <summary>
+            *
+            </summary>
+            <param name="x"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.op_Multiply(Mathematics.LA.Tensor3D,System.Double)">
+            <summary>
+            *
+            </summary>
+            <param name="t1"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.op_Multiply(Mathematics.LA.Tensor3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            Tensors' product.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.Transposed1Product(Mathematics.LA.Tensor3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            Product of the first TRANSPOSED tensor and the second.
+            </summary>
+            <param name="t1t"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.Transposed2Product(Mathematics.LA.Tensor3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            Product of the first tensor and the TRANSPOSED second.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.op_Multiply(Mathematics.LA.Tensor3D,Mathematics.LA.Vector3D)">
+            <summary>
+            [t]  *{v}   = {v}
+            [3x3]*[3x1] = [3x1]
+            </summary>
+            <param name="t"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.op_Multiply(Mathematics.LA.Vector3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            {v}  *[t]   = {v}
+            [1x3]*[3x3] = [1x3]
+            </summary>
+            <param name="v"></param>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.TransposedVectorProduct(Mathematics.LA.Tensor3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Multiplies the transposed tensor on the vector.
+            </summary>
+            <param name="tt"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.VectorTransposedProduct(Mathematics.LA.Vector3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            Multiplies the vector on the transposed tensor.
+            </summary>
+            <param name="v"></param>
+            <param name="tt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.op_Division(Mathematics.LA.Tensor3D,System.Double)">
+            <summary>
+            /
+            </summary>
+            <param name="t1"></param>
+            <param name="r"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.op_Division(System.Double,Mathematics.LA.Tensor3D)">
+            <summary>
+            /
+            </summary>
+            <param name="r"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.op_Division(Mathematics.LA.Vector3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            /
+            </summary>
+            <param name="v1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.op_Division(Mathematics.LA.Tensor3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            /
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.Power(System.Int32)">
+            <summary>
+            n-th power of the tensor.
+            If n is positive, t^n=t*t*...*t (n times).
+            If n is negative, the previous tensor inversed.
+            </summary>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.Equals(System.Object)">
+            <summary>
+            Equals with default tensor precision.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.GetHashCode">
+            <summary>
+            Hash code.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.ToString(System.Globalization.CultureInfo)">
+            <summary>
+            ToString
+            </summary>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.ToString">
+            <summary>
+            ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.SolveVectorSystem(System.Double,Mathematics.LA.Tensor3D,Mathematics.LA.Vector3D,Mathematics.LA.Vector3D@)">
+            <summary>
+            Solves vector linear system by precalculated tensor's determinant.
+            </summary>
+            <param name="det"></param>
+            <param name="a"></param>
+            <param name="b"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.SolveVectorSystem(Mathematics.LA.Tensor3D,Mathematics.LA.Vector3D,Mathematics.LA.Vector3D@)">
+            <summary>
+            Solves vector linear system.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.PrincipalDirection(Mathematics.LA.Tensor3D,System.Double,Mathematics.LA.Vector3D@)">
+            <summary>
+            Calculates the direction of a principal value v.
+            Theory for principal values
+            V.Novatskiy, Theory of Elasticity, p. 24, p. 48.
+            MARTIN H. SADD, ELASTICITY Theory, Applications, and Numerics, p. 12, p. 55.
+            </summary>
+            <param name="t"></param>
+            <param name="v"></param>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Tensor3D.PrincipalValuesSymmetric(Mathematics.LA.Tensor3D,System.Double,Mathematics.LA.Tensor3D@,Mathematics.LA.Vector3D@,Mathematics.LA.Vector3D@,Mathematics.LA.Vector3D@,Mathematics.LA.Vector3D@,Mathematics.LA.Vector3D@,Mathematics.LA.Vector3D@)">
+            <summary>
+            Calculates the principal values of a SYMMETRIC tensor and its 'directions'.
+            Returnes six principal values in left-bottom tensor part.
+            Note: because t may be not precise we have to introduce the precision
+            to define if the equation can be solved.
+            </summary>
+            <param name="t"></param>
+            <param name="precision"></param>
+            <param name="values"></param>
+            <param name="n1"></param>
+            <param name="n2"></param>
+            <param name="n3"></param>
+            <param name="n12"></param>
+            <param name="n13"></param>
+            <param name="n23"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mathematics.LA.Tensor3D.TensorPrecision">
+            <summary>
+            Default precision for tensor operations.
+            </summary>
+        </member>
+        <member name="P:Mathematics.LA.Tensor3D.Item(System.Int32,System.Int32)">
+            <summary>
+            Item by indexes.
+            NOTE: indexes begin with 1 NOT zero.
+            </summary>
+            <param name="index1"></param>
+            <param name="index2"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.LA.ESolver">
+            <summary>
+            Base solver exception.
+            </summary>
+        </member>
+        <member name="T:Mathematics.LA.EZeroElement">
+            <summary>
+            Zero element exception.
+            </summary>
+        </member>
+        <member name="T:Mathematics.LA.LES">
+            <summary>
+              Linear Equation System
+              (static class for low-level operations).
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.LES.Gauss(System.Double[][],System.Double[],System.Double[]@)">
+            <summary>
+            Gauss' method.
+            NOTE: source data copied to make triangle matrix
+                  so, primary data not changed.
+            </summary>
+            <param name="matrix"></param>
+            <param name="vector"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.LES.GaussPartialPivoting(System.Double[][],System.Double[],System.Double[]@)">
+            <summary>
+            Gauss' method with partial pivoting.
+            NOTE: source data copied to make triangle matrix
+                  so, primary data not changed.
+            </summary>
+            <param name="matrix"></param>
+            <param name="vector"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.LES.GaussCompletePivoting(System.Double[][],System.Double[],System.Double[]@)">
+            <summary>
+            Gauss' method with complete pivoting.
+            NOTE: source data copied to make triangle matrix
+                  so, primary data not changed.
+            </summary>
+            <param name="matrix"></param>
+            <param name="vector"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.LES.LUExpansion(System.Int32,System.Double[][]@,System.Double[][]@,System.Int32[]@,System.Int32@)">
+            <summary>
+            LU.
+            NOTE: source matrix not copied so, primary data changed.
+                  if LU is null, new memory allocated.
+            </summary>
+            <param name="len"></param>
+            <param name="m"></param>
+            <param name="LU"></param>
+            <param name="rc"></param>
+            <param name="rcn"></param>
+        </member>
+        <member name="M:Mathematics.LA.LES.LUToArray(System.Int32,System.Double[][],System.Int32[],System.Double[]@)">
+            <summary>
+            Applies LU to the vector.
+            </summary>
+            <param name="len"></param>
+            <param name="LU"></param>
+            <param name="rc"></param>
+            <param name="a"></param>
+        </member>
+        <member name="M:Mathematics.LA.LES.BackPassage(System.Int32,System.Double[][],System.Double[],System.Double[]@)">
+            <summary>
+            Back passage
+            </summary>
+            <param name="len"></param>
+            <param name="m"></param>
+            <param name="a"></param>
+            <param name="x"></param>
+        </member>
+        <member name="M:Mathematics.LA.LES.InverseMatrix(System.Double[][],System.Double[][]@)">
+            <summary>
+            Calculates Inversed Matrix.
+            </summary>
+            <param name="matrix"></param>
+            <param name="inversed"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.LES.Determinant(System.Double[][],System.Double@)">
+            <summary>
+            Calculates Determinant.
+            </summary>
+            <param name="matrix"></param>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.LES.RunMethod(System.Double[],System.Double[],System.Double[],System.Double[],System.Double[]@)">
+            <summary>
+              Solving three-diagonal system
+              c[0]y[0] +b[0]y[1]               = f[0]
+              a[i]y[i-1] +c[i]y[i] +b[i]y[i+1] = f[i]   i=1..n-1
+              a[n]y[n-1] +c[n]y[n]             = f[n]
+            </summary>
+        </member>
+        <member name="T:Mathematics.LA.EVector">
+            <summary>
+            Base Vector Exception
+            </summary>
+        </member>
+        <member name="T:Mathematics.LA.EVectorDimensions">
+            <summary>
+            Vector Dimension Exception
+            </summary>
+        </member>
+        <member name="T:Mathematics.LA.Vector">
+            <summary>
+              N-dimensional Euclidian Vector
+            </summary>
+        </member>
+        <member name="F:Mathematics.LA.Vector.Data">
+            <summary>
+            Vector components
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.Vector.#ctor(System.Int32)">
+            <summary>
+            Vector with zero components
+            </summary>
+            <param name="l"></param>
+        </member>
+        <member name="M:Mathematics.LA.Vector.#ctor(System.Int32,System.Double)">
+            <summary>
+            Vector with constant component value
+            </summary>
+            <param name="l"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Mathematics.LA.Vector.#ctor(System.Double[])">
+            <summary>
+            Vector by data.
+            NOTE: source data not copied.
+            </summary>
+            <param name="a"></param>
+        </member>
+        <member name="M:Mathematics.LA.Vector.#ctor(Mathematics.LA.Vector)">
+            <summary>
+            Copy constructor.
+            NOTE: source data copied.
+            </summary>
+            <param name="Source"></param>
+        </member>
+        <member name="M:Mathematics.LA.Vector.#ctor(System.Boolean,System.Int32)">
+            <summary>
+            Vector with rabdom component values
+            </summary>
+            <param name="random"></param>
+            <param name="l"></param>
+        </member>
+        <member name="M:Mathematics.LA.Vector.Norm">
+            <summary>
+            Euclidian Vector Norm
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector.Normalize">
+            <summary>
+            Normalizes the vector
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.Vector.Scale(System.Double)">
+            <summary>
+            Scales the vector
+            </summary>
+            <param name="f"></param>
+        </member>
+        <member name="M:Mathematics.LA.Vector.Inverse">
+            <summary>
+            Inverses the vector (direction)
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.Vector.Min">
+            <summary>
+            Finds minimal component value.
+            </summary>
+            <returns>Min value or NaN, if there is no valid value.</returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector.Max">
+            <summary>
+            Finds maximal component value.
+            </summary>
+            <returns>Max value or NaN, if there is no valid value.</returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector.op_Addition(Mathematics.LA.Vector,Mathematics.LA.Vector)">
+            <summary>
+            +
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector.op_Subtraction(Mathematics.LA.Vector,Mathematics.LA.Vector)">
+            <summary>
+            -
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector.op_UnaryNegation(Mathematics.LA.Vector)">
+            <summary>
+            -
+            </summary>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector.op_Multiply(Mathematics.LA.Vector,System.Double)">
+            <summary>
+            *
+            </summary>
+            <param name="v"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector.op_Multiply(System.Double,Mathematics.LA.Vector)">
+            <summary>
+            *
+            </summary>
+            <param name="x"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector.op_Multiply(Mathematics.LA.Vector,Mathematics.LA.Vector)">
+            <summary>
+            Dot product
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector.op_Division(Mathematics.LA.Vector,System.Double)">
+            <summary>
+            /
+            </summary>
+            <param name="v"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector.op_Equality(Mathematics.LA.Vector,Mathematics.LA.Vector)">
+            <summary>
+            ==
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector.op_Inequality(Mathematics.LA.Vector,Mathematics.LA.Vector)">
+            <summary>
+            !=
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector.Equals(System.Object)">
+            <summary>
+            Equals
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector.GetHashCode">
+            <summary>
+            Hash code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.Vector.AddValue(Mathematics.LA.Vector)">
+            <summary>
+            Adds components to the vector
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:Mathematics.LA.Vector.AddValue(Mathematics.LA.Vector,System.Double)">
+            <summary>
+            Adds components with weights
+            </summary>
+            <param name="v"></param>
+            <param name="weight"></param>
+        </member>
+        <member name="M:Mathematics.LA.Vector.Multiplication(Mathematics.LA.Vector,Mathematics.LA.Vector)">
+            <summary>
+            By component multiplication
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mathematics.LA.Vector.Precision">
+            <summary>
+            Precision of vector comparison operations
+            </summary>
+        </member>
+        <member name="P:Mathematics.LA.Vector.Length">
+            <summary>
+            Number of components
+            </summary>
+        </member>
+        <member name="T:Mathematics.LA.DTensor3D">
+            <summary>
+            Diagonal 3D Tensor.
+            Described by three diagonal components.
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.DTensor3D.op_Equality(Mathematics.LA.DTensor3D,Mathematics.LA.DTensor3D)">
+            <summary>
+            Exact equal.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.DTensor3D.Equals(System.Object)">
+            <summary>
+            Equals with default tensor precision.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.DTensor3D.GetHashCode">
+            <summary>
+            Hash code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.DTensor3D.Interpolate(Mathematics.LA.DTensor3D,Mathematics.LA.DTensor3D,System.Double)">
+            <summary>
+            Linear interpolation between two tensors.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <param name="f"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.DTensor3D.SolveVectorSystem(Mathematics.LA.DTensor3D,Mathematics.LA.Vector3D,Mathematics.LA.Vector3D@)">
+            <summary>
+            Solves a linear system: [a]*{x}={b} by Cramer method. Returns TRUE if successful.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.DTensor3D.op_Explicit(Mathematics.LA.DTensor3D)~Mathematics.LA.Tensor3D">
+            <summary>
+            Implicit conversion is not safe and can lead to stupid
+            errors in code, so use explicit conversion operator.
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.DTensor3D.op_Equality(Mathematics.LA.Tensor3D,Mathematics.LA.DTensor3D)">
+            <summary>
+            Exact equal.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.DTensor3D.op_Equality(Mathematics.LA.DTensor3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            Exact equal.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.DTensor3D.Equal(Mathematics.LA.DTensor3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            Equals with default tensor precision.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.DTensor3D.op_Explicit(Mathematics.LA.DTensor3D)~Mathematics.LA.STensor3D">
+            <summary>
+            Implicit conversion is not safe and can lead to stupid
+            errors in code, so use explicit conversion operator.
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.DTensor3D.op_Explicit(Mathematics.LA.STensor3D)~Mathematics.LA.DTensor3D">
+            <summary>
+            Implicit conversion is not safe and can lead to stupid
+            errors in code, so use explicit conversion operator.
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.DTensor3D.op_Equality(Mathematics.LA.STensor3D,Mathematics.LA.DTensor3D)">
+            <summary>
+            Exact equal.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.DTensor3D.op_Equality(Mathematics.LA.DTensor3D,Mathematics.LA.STensor3D)">
+            <summary>
+            Exact equal.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.DTensor3D.Equal(Mathematics.LA.DTensor3D,Mathematics.LA.STensor3D)">
+            <summary>
+            Equals with default tensor precision.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mathematics.LA.DTensor3D.Item(System.Int32,System.Int32)">
+            <summary>
+            Tensor component by indexes
+            (indexes begin with 1)
+            </summary>
+            <param name="index1"></param>
+            <param name="index2"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.CS.ProlateSpheroidalSystem">
+            <summary>
+            Prolate Spheroidal Coordinate system
+            Note : phi is the SECOND coordinate and theta is the THIRD one
+            (differes from reference article http://en.wikipedia.org/wiki/Prolate_spheroidal_coordinates)
+            Direct transformation
+            x = a*sinh(mu)*cos(phi)*sin(theta)      Where a is the parameter of the system.
+            y = a*sinh(mu)*sin(phi)*sin(theta)      mu=0..infinity, phi=0..2*Pi
+            z = a*cosh(mu)*cos(theta)               theta=0..Pi (NOTE: theta - ?)
+            Inverse transformation
+            mu = arccosh((d1+d2)/(2 a))             Where rho^2 = x^2 + y^2,
+            phi = arctan(y/x)                       d1^2 = rho^2 + (z+a)^2, d2^2 = rho^2 + (z-a)^2
+            theta = arccos((d1-d2)/(2 a))           SIGN OF theta IS always '+' (theta=0..Pi).
+            </summary>
+        </member>
+        <member name="T:Mathematics.CS.OblateSpheroidalSystem">
+            <summary>
+            Oblate Spheroidal Coordinate system
+            Note : phi is the SECOND coordinate and theta is the THIRD one
+            (differes from reference article http://en.wikipedia.org/wiki/Oblate_spheroidal_coordinates)
+            Direct transformation
+            x = a*cosh(mu)*cos(phi)*cos(theta)      Where a is the parameter of the system.
+            y = a*cosh(mu)*sin(phi)*cos(theta)      mu=0..infinity, phi=-Pi..Pi
+            z = a*sinh(mu)*sin(theta)               theta=-Pi/2..Pi/2 (NOTE: theta differes from Spherical CS)
+            Inverse transformation
+            mu = arccosh((d1+d2)/(2a))              Where rho^2 = x^2 + y^2,
+            phi = arctan(y/x)                       d1^2 = (rho+a)^2 + z^2, d2^2 = (rho-a)^2 + z^2
+            theta = arccos((d1-d2)/(2a))            Sigh of mu is always '+', SIGN OF theta IS AS OF z.
+            </summary>
+        </member>
+        <member name="T:Mathematics.NL.Equation">
+            <summary>
+            Equation.
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.NL.Derivative">
+            <summary>
+            Derivative.
+            Computes the derivative of an equation by j-th variable.
+            </summary>
+            <param name="x"></param>
+            <param name="j"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.NL.NonlinearSystem">
+            <summary>
+            Base class for Nonlinear Equation system.
+            </summary>
+        </member>
+        <member name="M:Mathematics.NL.NonlinearSystem.GetDerivativeSupported">
+            <summary>
+            Gets if the System supports derivative calculation.
+            False by default, must be overriden in inherited classes if supported.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.NL.NonlinearSystem.GetDim">
+            <summary>
+            Get dimension
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.NL.NonlinearSystem.GetSystemType">
+            <summary>
+            Gets system type description.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.NL.NonlinearSystem.Calculate(System.Double[],System.Double[]@)">
+            <summary>
+            Calculates equation values for given variable values.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.NL.NonlinearSystem.Jacobian(System.Double[],System.Double[][]@)">
+            <summary>
+            Calculates the system's Jacobian.
+            (must be overriden in inherited classes if derivative calculation supported)
+            </summary>
+            <param name="x"></param>
+            <param name="J"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.NL.NonlinearSystem.Print">
+            <summary>
+            Prints all data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Mathematics.NL.NonlinearSystem.Dimension">
+            <summary>
+            Dimension (the number of equations).
+            </summary>
+        </member>
+        <member name="P:Mathematics.NL.NonlinearSystem.DerivativeSupported">
+            <summary>
+            The system supports derivatives.
+            </summary>
+        </member>
+        <member name="T:Mathematics.NL.EquationSystem">
+            <summary>
+            Nonlinear Equation system (wich defined by separate equations).
+            </summary>
+        </member>
+        <member name="M:Mathematics.NL.EquationSystem.GetSystemType">
+            <summary>
+            Equation system type description.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.NL.EquationSystem.Calculate(System.Double[],System.Double[]@)">
+            <summary>
+            Calculate
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.NL.EquationSystem.#ctor(Mathematics.NL.Equation[])">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="equations"></param>
+        </member>
+        <member name="M:Mathematics.NL.EquationSystem.#ctor(Mathematics.NL.Equation[],Mathematics.NL.Derivative[])">
+            <summary>
+            Constructor with derivatives.
+            </summary>
+            <param name="equations"></param>
+            <param name="derivatives"></param>
+        </member>
+        <member name="M:Mathematics.NL.EquationSystem.Jacobian(System.Double[],System.Double[][]@)">
+            <summary>
+            Jacobian (can be calculated if derivative equations assigned).
+            </summary>
+            <param name="x"></param>
+            <param name="J"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.NL.ConstructedSystem">
+            <summary>
+            Base abstract class for Equation Systems those can be constructed.
+            Just introduces default constructor (to simplify ancestors implementation).
+            </summary>
+        </member>
+        <member name="T:Mathematics.LA.STensor3D">
+            <summary>
+            Symmetric 3D Tensor.
+            Described by six components - three diagonal
+            and three under the main diagonal (left-bottom part).
+            NOTE: Functions with transposed symmetric tensor are not needed
+            because symmetric tensor and its transposed are the same.
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.SetRow(System.Int32,Mathematics.LA.Vector3D)">
+            <summary>
+            WARNING: setting row value implicitly affects other rows
+            because data changed so, that the tensor keeps symmetric.
+            </summary>
+            <param name="index"></param>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.SetColumn(System.Int32,Mathematics.LA.Vector3D)">
+            <summary>
+            WARNING: setting column value implicitly affects other columns
+            because data changed so, that the tensor keeps symmetric.
+            </summary>
+            <param name="index"></param>
+            <param name="Value"></param>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.MakeDiagonal">
+            <summary>
+            Makes tensor diagonal by setting nondiagonal elements to zero.
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.SymmetricProduct(Mathematics.LA.STensor3D,Mathematics.LA.STensor3D)">
+            <summary>
+            Special function for Symmetric Product
+            when product of two symmetric tensors is also symmetric
+            (for an example, tensor multiplied by itself).
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.Power(System.Int32)">
+            <summary>
+            n-th power of the SYMMETRIC tensor.
+            If n is positive, t^n=t*t*...*t (n times).
+            If n is negative, the previous tensor inversed.
+            </summary>
+            <param name="n"></param>
+            <returns>SYMMETRIC tensor</returns>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.op_Equality(Mathematics.LA.STensor3D,Mathematics.LA.STensor3D)">
+            <summary>
+            Exact equal.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.op_Inequality(Mathematics.LA.STensor3D,Mathematics.LA.STensor3D)">
+            <summary>
+            Exact not equal.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.Equals(System.Object)">
+            <summary>
+            Equals with default tensor precision.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.GetHashCode">
+            <summary>
+            Hash code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.op_Multiply(Mathematics.LA.STensor3D,Mathematics.LA.STensor3D)">
+            <summary>
+            Product of two symmetric tensors is not (in general) a symmetric tensor.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.Interpolate(Mathematics.LA.STensor3D,Mathematics.LA.STensor3D,System.Double)">
+            <summary>
+            Linear interpolation between two tensors.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <param name="f"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.SolveVectorSystem(System.Double,Mathematics.LA.STensor3D,Mathematics.LA.Vector3D,Mathematics.LA.Vector3D@)">
+            <summary>
+            Solves a linear system: [a]*{x}={b} by Cramer method. Returns TRUE if successful.
+            </summary>
+            <param name="det"></param>
+            <param name="a"></param>
+            <param name="b"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.SolveVectorSystem(Mathematics.LA.STensor3D,Mathematics.LA.Vector3D,Mathematics.LA.Vector3D@)">
+            <summary>
+            Solves a linear system: [a]*{x}={b} by Cramer method. Returns TRUE if successful.
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.PrincipalDirection(Mathematics.LA.STensor3D,System.Double,Mathematics.LA.Vector3D@)">
+            <summary>
+            Calculates principal direction for principal value v.
+            </summary>
+            <param name="t"></param>
+            <param name="v"></param>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.PrincipalValues(Mathematics.LA.STensor3D,System.Double,Mathematics.LA.STensor3D@,Mathematics.LA.Vector3D@,Mathematics.LA.Vector3D@,Mathematics.LA.Vector3D@,Mathematics.LA.Vector3D@,Mathematics.LA.Vector3D@,Mathematics.LA.Vector3D@)">
+            <summary>
+            Calculates principal values and principal directions.
+            </summary>
+            <param name="t"></param>
+            <param name="precision"></param>
+            <param name="values"></param>
+            <param name="n1"></param>
+            <param name="n2"></param>
+            <param name="n3"></param>
+            <param name="n12"></param>
+            <param name="n13"></param>
+            <param name="n23"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.op_Explicit(Mathematics.LA.STensor3D)~Mathematics.LA.Tensor3D">
+            <summary>
+            Implicit conversion is not safe and can lead to stupid
+            errors in code, so use explicit conversion operator.
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.op_Explicit(Mathematics.LA.Tensor3D)~Mathematics.LA.STensor3D">
+            <summary>
+            Implicit conversion is not safe and can lead to stupid
+            errors in code, so use explicit conversion operator.
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.op_Equality(Mathematics.LA.Tensor3D,Mathematics.LA.STensor3D)">
+            <summary>
+            Exact equal.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.op_Equality(Mathematics.LA.STensor3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            Exact equal.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.STensor3D.Equal(Mathematics.LA.STensor3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            Equal with precision.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mathematics.LA.STensor3D.Item(System.Int32,System.Int32)">
+            <summary>
+            Tensor's component by indexes 
+            (indexes begin with 1)
+            </summary>
+            <param name="index1"></param>
+            <param name="index2"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.LA.ATensor3D">
+            <summary>
+            Antisymmetric 3D Tensor.
+            Described by tree components under the main diagonal (left-bottom part).
+            NOTE: Diagonal elements for antisymmetric tensors are always ZERO.
+                  Invariant1 and Invariant3 are always 0.0.
+                  Inversed tensor does not exist because determinant is always 0.0.
+                  Even power of antisymmetric tensor is a symmetric one and
+                  odd power is antisymmetric, so the function returns general tensor.
+            </summary>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.SelfProduct">
+            <summary>
+            Product of any antisymmetric tensor by
+            itself is a symmetric tensor.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.SymProduct(Mathematics.LA.STensor3D)">
+            <summary>
+            Multiplies symmetric tensor by itself when it is known that the product
+            is an antisymmetric tensor (when calculating power as an example).
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.Power(System.Int32)">
+            <summary>
+            n-th power of the tensor.
+            WARNING: n>=0, for n less than 0 NaN result is returned
+            because inversed tensor does NOT exist.
+            </summary>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.op_Equality(Mathematics.LA.ATensor3D,Mathematics.LA.ATensor3D)">
+            <summary>
+            Exact equal.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.Equals(System.Object)">
+            <summary>
+            Equal with precision.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.GetHashCode">
+            <summary>
+            Hash code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.op_Multiply(Mathematics.LA.ATensor3D,Mathematics.LA.ATensor3D)">
+            <summary>
+            Product of two antisymmetric tensors is not (in general) an antisymmetric tensor.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.TransposedVectorProduct(Mathematics.LA.ATensor3D,Mathematics.LA.Vector3D)">
+            <summary>
+            Multiplies transposed tensor and a vector.
+            </summary>
+            <param name="tt"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.VectorTransposedProduct(Mathematics.LA.Vector3D,Mathematics.LA.ATensor3D)">
+            <summary>
+            Multiplies a vector and transposed tensor.
+            </summary>
+            <param name="v"></param>
+            <param name="tt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.Transposed1Product(Mathematics.LA.ATensor3D,Mathematics.LA.ATensor3D)">
+            <summary>
+            Multiplies transposed first tensor by the second.
+            </summary>
+            <param name="t1t"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.Transposed2Product(Mathematics.LA.ATensor3D,Mathematics.LA.ATensor3D)">
+            <summary>
+            Multiplies the first tensor by transposed second.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.MultiplyComponents(Mathematics.LA.ATensor3D,Mathematics.LA.ATensor3D)">
+            <summary>
+            Multiplying components of two antisymmetric tensors leads to
+            symmetric tensor with zero diagonal.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.Interpolate(Mathematics.LA.ATensor3D,Mathematics.LA.ATensor3D,System.Double)">
+            <summary>
+            Linear interpolation between two tensors.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <param name="f"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.op_Explicit(Mathematics.LA.ATensor3D)~Mathematics.LA.Tensor3D">
+            <summary>
+            Implicit conversion is not safe and can lead to stupid
+            errors in code, so use explicit conversion operator.
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.op_Explicit(Mathematics.LA.Tensor3D)~Mathematics.LA.ATensor3D">
+            <summary>
+            Implicit conversion is not safe and can lead to stupid
+            errors in code, so use explicit conversion operator.
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.op_Equality(Mathematics.LA.Tensor3D,Mathematics.LA.ATensor3D)">
+            <summary>
+            Exact equal.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.op_Equality(Mathematics.LA.ATensor3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            Exact equal.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.LA.ATensor3D.Equal(Mathematics.LA.ATensor3D,Mathematics.LA.Tensor3D)">
+            <summary>
+            Equal with default tensor precision.
+            </summary>
+            <param name="t1"></param>
+            <param name="t2"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mathematics.LA.ATensor3D.Item(System.Int32,System.Int32)">
+            <summary>
+            Tensor components by indexes
+            (indexes begin with 1).
+            </summary>
+            <param name="index1"></param>
+            <param name="index2"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.Special.LegendrePolynomial">
+            <summary>
+            Legendre Polynomial.
+            </summary>
+        </member>
+        <member name="F:Mathematics.Special.LegendrePolynomial.fnValues">
+            <summary>
+            data for a sequence of Legendre functions [0..n]
+            </summary>
+        </member>
+        <member name="F:Mathematics.Special.LegendrePolynomial.fdnValues">
+            <summary>
+            data for a sequence of the first derivative of Legendre functions [0..n]
+            </summary>
+        </member>
+        <member name="F:Mathematics.Special.LegendrePolynomial.fd2nValues">
+            <summary>
+            data for a sequence of the second derivative of Legendre functions [0..n]
+            </summary>
+        </member>
+        <member name="F:Mathematics.Special.LegendrePolynomial.fnmPowers">
+            <summary>
+            data for Legendre [n,m] powers
+            </summary>
+        </member>
+        <member name="F:Mathematics.Special.LegendrePolynomial.fdnmPowers">
+            <summary>
+            data for Legendre [n,m] derivative powers
+            </summary>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomial.FillN(System.Int32,System.Double)">
+            <summary>
+            Fills data for a sequence of Legendre functions [0..n]
+            </summary>
+            <param name="n"></param>
+            <param name="x"></param>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomial.FilldN(System.Int32,System.Double)">
+            <summary>
+            Fills data for a sequence of the first derivative of Legendre functions [0..n]
+            </summary>
+            <param name="n"></param>
+            <param name="x"></param>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomial.Filld2N(System.Int32,System.Double)">
+            <summary>
+            Fills data for a sequence of the second derivative of Legendre functions [0..n]
+            </summary>
+            <param name="n"></param>
+            <param name="x"></param>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomial.FillPowers(System.Double,System.Int32,System.Double[]@)">
+            <summary>
+            Fills the array of powers of x from 0 to pmax
+            </summary>
+            <param name="x"></param>
+            <param name="pmax"></param>
+            <param name="powers"></param>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomial.InitVariables">
+            <summary>
+            Initializes data
+            </summary>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomial.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:Mathematics.Special.LegendrePolynomialI">
+            <summary>
+            Legendre Polynomial of the first kind.
+            Literature for The Associated Legendre polynomial of the first kind P:
+            Janke (Yanke) Special functions. Moscow, 1964. p. 162.
+            </summary>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomialI.Pn(System.Int32,System.Double)">
+            <summary>
+            Calculates P[n](x)
+            </summary>
+            <param name="n"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomialI.dPn(System.Int32,System.Double)">
+            <summary>
+            Calculates the first derivative of P[n](x) by x
+            </summary>
+            <param name="n"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomialI.d2Pn(System.Int32,System.Double)">
+            <summary>
+            Calculates the second derivative of P[n](x) by x
+            </summary>
+            <param name="n"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomialI.Pnm(System.Int32,System.Int32,System.Double)">
+            <summary>
+            Calculates P[n,m](x) for [-1 1]
+            Note : there is a problem with P[n,m] calculation for high powers n (n>40).
+            It is due to rounding in float pointing operations in sum calculation.
+            Value is not precise near abs(x)=1.0. The more power the more length
+            of "wrong" values. For example, with n=50 the length is 0.2, that is
+            for n=50 the value of P[n,m](x) is precise for abs(x) less than 0.8.
+            (check is P[n,0](x)=P[n](x))
+            </summary>
+            <param name="n"></param>
+            <param name="m"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomialI.dPnm(System.Int32,System.Int32,System.Double)">
+            <summary>
+            Calculates the first derivative of P[n,m](x) by x (for [-1 1])
+            </summary>
+            <param name="n"></param>
+            <param name="m"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomialI.PnmDSqrtX(System.Int32,System.Int32,System.Double)">
+            <summary>
+            Calculates P[n,m](x)/(1.0-x^2)^(0.5) taking into account singularity for (1.0-x^2)=0
+            </summary>
+            <param name="n"></param>
+            <param name="m"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomialI.PnmDSqrtX1(System.Int32,System.Int32,System.Double,System.Double,System.Double@,System.Double@)">
+            <summary>
+            Calculates P[n,m](x) and P[n,m](x)/(1.0-x^2)^(0.5) taking into account 
+            singularity for (1.0-x^2)=0 by precalculated sqrtx = (1-x^2)^(1/2).
+            </summary>
+            <param name="n"></param>
+            <param name="m"></param>
+            <param name="x"></param>
+            <param name="sqrtx"></param>
+            <param name="lpnm"></param>
+            <param name="lpnmdsqrt"></param>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomialI.PnmDSqrtX2(System.Int32,System.Int32,System.Double,System.Double,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Calculates P[n,m](x) and P[n,m](x)/(1.0-x^2)^(0.5) and P[n,m](x)/(1.0-x^2)
+            taking into account singularity for (1.0-x^2)=0 by precalculated sqrtx = (1-x^2)^(1/2).
+            </summary>
+            <param name="n"></param>
+            <param name="m"></param>
+            <param name="x"></param>
+            <param name="sqrtx"></param>
+            <param name="lpnm"></param>
+            <param name="lpnmdsqrt"></param>
+            <param name="lpnmdsqrt2"></param>
+        </member>
+        <member name="T:Mathematics.Special.LegendrePolynomialII">
+            <summary>
+            Legendre Polynomial of the second kind.
+            Literature for The Associated Legendre polynomial of the second kind Q:
+            Janke (Yanke) Special functions. Moscow, 1964. p. 162.
+            </summary>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomialII.Qn(System.Int32,System.Double)">
+            <summary>
+            Calculates Q[n](x)
+            </summary>
+            <param name="n"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomialII.dQn(System.Int32,System.Double)">
+            <summary>
+            Calculates the first derivative of Q[n](x) by x
+            </summary>
+            <param name="n"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomialII.d2Qn(System.Int32,System.Double)">
+            <summary>
+            Calculates the second derivative of Q[n](x) by x
+            </summary>
+            <param name="n"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomialII.Qnm(System.Int32,System.Int32,System.Double)">
+            <summary>
+            Calculates Q[n,m](x) for [-1 1]
+            </summary>
+            <param name="n"></param>
+            <param name="m"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomialII.QnmDSqrtX(System.Int32,System.Int32,System.Double)">
+            <summary>
+            Calculates Q[n,m](x)/(1.0-x^2)^(0.5) with no singularity for (1.0-x^2)=0
+            </summary>
+            <param name="n"></param>
+            <param name="m"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomialII.dQnm(System.Int32,System.Int32,System.Double)">
+            <summary>
+            Calculates the first derivative of Q[n,m](x) by x (for [-1 1])
+            </summary>
+            <param name="n"></param>
+            <param name="m"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.Special.LegendrePolynomialISimple">
+            <summary>
+            SIMPLE P[n,m](x) calculation realization
+            </summary>
+        </member>
+        <member name="M:Mathematics.Special.LegendrePolynomialISimple.dPnm(System.Int32,System.Int32,System.Double)">
+            <summary>
+            TODO : check the precision of the calculation for high n!
+            It canNOT be more precise then P[n,m] calculation due to using
+            the same sum function that gives the error.
+            </summary>
+            <param name="n"></param>
+            <param name="m"></param>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Mathematics.Special.LegendrePolynomialIFast">
+            <summary>
+            FAST P[n,m](x) calculation realization
+            (based on precalculation of all coefficients not dependant on x)
+            </summary>
+        </member>
+        <member name="F:Mathematics.Special.LegendrePolynomialIFast.MaxPrecisePower">
+            <summary>
+            This const based on the current precise calculation
+            for P[n,m] but is not a strong restriction on the max power of polynomials.
+            </summary>
+        </member>
+        <member name="F:Mathematics.Special.LegendrePolynomialIFast.fnmIntPrefixes">
+            <summary>
+            integer prefixes for [n,m]
+            </summary>
+        </member>
+        <member name="F:Mathematics.Special.LegendrePolynomialIFast.fnmPowPrefixes">
+            <summary>
+            prefixes with powers in the sum of [n,m]
+            </summary>
+        </member>
+        <member name="F:Mathematics.Special.LegendrePolynomialIFast.fMaxnmCalculated">
+            <summary>
+            Max Power of [n,m] the data calculated for
+            </summary>
+        </member>
+    </members>
+</doc>

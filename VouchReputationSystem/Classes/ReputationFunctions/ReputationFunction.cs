@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Analytics.Nonlinear;
+using Mathematics.NL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,18 +23,59 @@ namespace VouchReputationSystem.Classes.ReputationFunctions
 
         public List<AccountNode> GetReputationList(List<AccountNode> _nodeList)
         {
-            foreach (AccountNode _node in _nodeList)
-                _node.reputation = Function(_node);
+            List<AccountNode> nodesWithoutObserver = new List<AccountNode>(_nodeList);
+            nodesWithoutObserver.Remove(observerNode);
 
-            return _nodeList;
+            List<string> variables = new List<string>();
+            List<string> functions = new List<string>();
+            foreach (AccountNode _node in nodesWithoutObserver)
+            {
+                variables.Add(_node.name);
+                functions.Add(GetFunction(_node));
+
+                Console.WriteLine(_node.name);
+            }
+
+            double[] reputationArray = LinearSystemSolver(variables.ToArray(), functions.ToArray());
+
+
+            for (int i = 0; i < reputationArray.Length;i++)
+            {
+                nodesWithoutObserver[i].reputation = reputationArray[i];
+            }
+
+            nodesWithoutObserver.Add(observerNode);
+
+            return nodesWithoutObserver;
         }
 
-        public AccountNode GetReputationOfNode(AccountNode _node)
+        public abstract string GetFunction(AccountNode _node);
+
+        public double[] LinearSystemSolver(string[] variables, string[] functions)
         {
-            _node.reputation = Function(_node);
-            return _node;
-        }
+            // creating nonlinear system instance - Analytical System
+            NonlinearSystem system = new AnalyticalSystem(variables, functions);
 
-        public abstract float Function(AccountNode _node);
+            double[] x0;
+            SolverOptions options;
+            double[] result;
+            SolutionResult actual;
+
+            // creating nonlinear solver instance - Newton-Raphson solver.
+            NonlinearSolver solver = new NewtonRaphsonSolver();
+
+            x0 = new double[] { 0.2, 0.2 }; // initial guess for variable values
+            options = new SolverOptions() // options for solving nonlinear problem
+            {
+                MaxIterationCount = 100,
+                SolutionPrecision = 1e-5
+            };
+
+            result = null;
+            // solving the system
+            actual = solver.Solve(system, x0, options, ref result);
+
+            return result;
+        }
     }
 }

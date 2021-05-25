@@ -1,19 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
 using VouchReputationSystem.Classes;
+
+using Mathematics.NL;
+using System.Reflection;
+using Analytics.Nonlinear;
 
 namespace VouchReputationSystem
 {
     static class Program
     {
+        private static void LoadReq()
+        {
+            string[] req = new string[] { "Analytics.Real", "Analytics.Derivatives" };
+
+            int n = req.Length;
+            for (int i = 0; i < n; i++)
+            {
+                string sname = req[i];
+                try
+                {
+                    Assembly.Load(sname);
+                }
+                catch (Exception)
+                {
+                }
+            }
+        }
+
         // The main entry point for the application.
         [STAThread]
         static void Main()
         {
+            LoadReq();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             DiagramForm Diagram = new DiagramForm(CreateNetwork());

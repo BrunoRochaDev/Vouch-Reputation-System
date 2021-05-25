@@ -18,6 +18,7 @@ namespace VouchReputationSystem.Classes
 
             SetupGraphics();
         }
+        //Creates the node from the account with a custom weight multiplier
         public AccountNode(AccountChain _acc, float _weight)
         {
             this.name = _acc.name;
@@ -27,27 +28,25 @@ namespace VouchReputationSystem.Classes
             SetupGraphics();
         }
 
+        //Setup the references to the brushes and pens that will be used later on.
         void SetupGraphics()
         {
-            /*mFill = new LinearGradientBrush(
-new Point(0, 10),
-new Point(200, 10),
-Color.FromArgb(255, 255, 0, 0),   // Opaque red
-Color.FromArgb(255, 0, 0, 255));  // Opaque blue
-        */
             mFont = new SolidBrush(Color.FromArgb(237, 242, 243));
             mStroke = new Pen(Color.FromArgb(237, 242, 243)) {  Width = 3 };
             mFill = new SolidBrush(Color.FromArgb(82, 137, 181));
         }
+        
+        //Dictionary containing all the different neighbours nodes (key) and it's relation polarity (value)
         public Dictionary<AccountNode, bool> neighbours = new Dictionary<AccountNode, bool>();
 
         //Weight of node determined locally
         private float _weight = 1;
         public float weight { get { return _weight; } set { _weight = Util.LimitRange(_weight, 1.5f, 0.5f); } }
 
+        //Distance of this node to the observer node
         public int distanceFromObserver = 0;
 
-        public float reputation = 1;
+        public double reputation = 1;
 
         //For the AStar algoritm, will store what node it previously came from so it cn trace the shortest path.
         public AccountNode ParentNode;
@@ -176,14 +175,24 @@ Color.FromArgb(255, 0, 0, 255));  // Opaque blue
                 graphics.DrawEllipse(mStroke, bounds);
 
             StringFormat _StringFormat = new System.Drawing.StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-            graphics.DrawString(this.name, new System.Drawing.Font("Arial", 12), mFont, bounds, _StringFormat);
+
+            string nodeText = this.name;
+            if (!isObserver)
+            {
+                double truncatedRep = Math.Truncate(this.reputation * 100) / 100;
+                nodeText = this.name + "\n" + truncatedRep;
+                nodeText = nodeText.Replace(',', '.');
+            }
+
+            graphics.DrawString(nodeText, new System.Drawing.Font("Arial", 12), mFont, bounds, _StringFormat);
         }
 
         public Size Size
         {
             get
             {
-                return new Size(64, 64);
+                return new Size((int)(64 + ((this.reputation - 1) * 16)), (int)(64 + ((this.reputation - 1) * 16)));
+                //return new Size(64, 64);
             }
         }
     }

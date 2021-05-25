@@ -4,7 +4,7 @@
 using System;
 using System.Drawing;
 
-namespace VouchReputationSystem.Classes
+namespace VouchReputationSystem.Classes.Diagram
 {
 	/// <summary>
 	/// Represents a 2-dimensional vector where each component is a <see cref="System.Double"/>.
