@@ -13,7 +13,8 @@ namespace VouchReputationSystem
 {
     static class Program
     {
-        private static void LoadReq()
+        //Setups up the linear algebra library
+        private static void LinearAlgebraSetup()
         {
             string[] req = new string[] { "Analytics.Real", "Analytics.Derivatives" };
 
@@ -35,13 +36,14 @@ namespace VouchReputationSystem
         [STAThread]
         static void Main()
         {
-            LoadReq();
+            LinearAlgebraSetup();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             DiagramForm Diagram = new DiagramForm(CreateNetwork());
             Application.Run(Diagram);
         }
+      
         static Network CreateNetwork()
         {
             AccountChain adam = new AccountChain("Adam");
@@ -85,17 +87,16 @@ namespace VouchReputationSystem
             john.VouchFor(joseph);
 
             //------------------------------------
-
             AccountChain abel = new AccountChain("Abel");
             AccountChain eve = new AccountChain("Eve");
             AccountChain cain = new AccountChain("Cain");
 
             abel.VouchFor(adam);
-            eve.VouchFor(adam);
+            //eve.VouchFor(adam);
             cain.VouchFor(adam);
 
             adam.VouchFor(abel);
-            adam.VouchFor(eve);
+            adam.VouchAgainst(eve);
             adam.VouchFor(cain);
 
             abel.VouchFor(cain);
@@ -103,6 +104,8 @@ namespace VouchReputationSystem
 
             eve.VouchAgainst(cain);
             abel.VouchAgainst(eve);
+            
+            //------------------------------------
 
             //Creates the networks through Adam's perspective
             Network _network = new Network(adam);

@@ -46,6 +46,11 @@ namespace VouchReputationSystem.Classes
         //Distance of this node to the observer node
         public int distanceFromObserver = 0;
 
+        //If the node can reach the observer travelling exclusively through positive or negative connections.
+        public bool hasVouchForPath = false;
+        public bool hasVouchAgainstPath = false;
+
+
         public double reputation = 1;
 
         //For the AStar algoritm, will store what node it previously came from so it cn trace the shortest path.

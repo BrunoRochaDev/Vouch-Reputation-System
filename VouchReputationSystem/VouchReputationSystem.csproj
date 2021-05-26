@@ -119,7 +119,7 @@
     <Compile Include="Classes\LinearAlgebra\Analytics.NL.System.cs" />
     <Compile Include="Classes\Network.cs" />
     <Compile Include="Classes\Pathfinding.cs" />
-    <Compile Include="Classes\ReputationFunctions\LinearFalloff.cs" />
+    <Compile Include="Classes\ReputationFunctions\GeometricFalloff.cs" />
     <Compile Include="Classes\ReputationFunctions\ReputationFunction.cs" />
     <Compile Include="Classes\Util.cs" />
     <Compile Include="Classes\Diagram\Vector.cs" />

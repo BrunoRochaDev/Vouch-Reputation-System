@@ -36,6 +36,10 @@ namespace VouchReputationSystem.Classes.ReputationFunctions
                 Console.WriteLine(_node.name);
             }
 
+            //This only happens if there are not bounds in the network
+            if (variables.Count == 0)
+                return allNodes;
+
             double[] reputationArray = LinearSystemSolver(variables.ToArray(), functions.ToArray());
 
 

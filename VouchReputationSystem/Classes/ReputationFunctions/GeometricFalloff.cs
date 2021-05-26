@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace VouchReputationSystem.Classes.ReputationFunctions
 {
-    class LinearFalloff : ReputationFunction
+    class GeometricFalloff : ReputationFunction
     {
-        public LinearFalloff(Network _network) : base(_network)
+        public GeometricFalloff(Network _network) : base(_network)
         {
             //Constructor
         }
@@ -22,20 +22,31 @@ namespace VouchReputationSystem.Classes.ReputationFunctions
                 selfRep = observerNode.vouches[_node] ? 1 : 0;
 
             string numerator = selfRep + "+";
-            string denominator = "1+";
+            //The first term of the denominator should be it's w
+            string denominator =  "1+";
 
             foreach (AccountNode _neighbour in _node.neighbours.Keys)
             {
                 if (_neighbour.Equals(observerNode))
                     continue;
 
-                int term = (_node.neighbours[_neighbour] ? 1 : 0);
+                //If the neighbour has no path for or against to the observer, then dont take it into consideration.
+                if (!_neighbour.hasVouchForPath && !_neighbour.hasVouchAgainstPath)
+                    continue;
 
-                float distanceWeight = ((float)network.networkReach - (float)_node.distanceFromObserver) / (float)network.networkReach;
+                float term = (_node.neighbours[_neighbour] ? 1 : 0);
 
-                //Adds a minimum for the distance weight. Placeholder.
-                if (distanceWeight <= 0)
-                    distanceWeight = 0.1f;
+                //Invert it if arawahawhawanbz
+                if(!_neighbour.hasVouchForPath || !_neighbour.hasVouchForPath)
+                {
+                    if (term == 1 && _neighbour.hasVouchForPath && !_neighbour.hasVouchForPath)
+                        term = 0;
+                    if (term == 0 && !_neighbour.hasVouchForPath && _neighbour.hasVouchForPath)
+                        term = 1;
+                }
+
+                //The distance weight is calculated as 1/2^n, where n is the node's distance to the observer.
+                float distanceWeight = (float)(1 / Math.Pow(2, _neighbour.distanceFromObserver));
 
                 string weight = _neighbour.name + "*" + distanceWeight;
 

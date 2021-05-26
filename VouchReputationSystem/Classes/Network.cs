@@ -124,11 +124,16 @@ namespace VouchReputationSystem.Classes
         {
             //First of all, setup all the nodes distances
             foreach (AccountNode _node in allNodes)
+            {
                 _node.distanceFromObserver = Pathfinding.GetNodeDistance(_node, observerNode);
+                _node.hasVouchForPath = Pathfinding.HasVouchPath(_node, observerNode,true);
+                _node.hasVouchAgainstPath = Pathfinding.HasVouchPath(_node, observerNode, false);
+            }
 
             //Creates the reputation function
-            ReputationFunction reputationFunction = new LinearFalloff(this);
+            ReputationFunction reputationFunction = new GeometricFalloff(this);
 
+            //Gets the updated list with the reputation setup.
             allNodes = reputationFunction.GetReputationList(allNodes);
         }
 
