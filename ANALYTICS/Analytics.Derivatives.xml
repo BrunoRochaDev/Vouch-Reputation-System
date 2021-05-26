@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Analytics.Derivatives</name>
+    </assembly>
+    <members>
+        <member name="T:Analytics.Derivatives.SineDerivative">
+            <summary>
+            Sine derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.CosineDerivative">
+            <summary>
+            Cosine derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.TangentDerivative">
+            <summary>
+            Tangent derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.CotangentDerivative">
+            <summary>
+            Cotangent derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.SecantDerivative">
+            <summary>
+            Secant derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.CosecantDerivative">
+            <summary>
+            Cosecant derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.ArcsineDerivative">
+            <summary>
+            Arcsine derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.ArccosineDerivative">
+            <summary>
+            Arccosine derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.ArctangentDerivative">
+            <summary>
+            Arctangent derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.ArccotangentDerivative">
+            <summary>
+            Arccotangent derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.ArcsecantDerivative">
+            <summary>
+            Arcsecant derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.ArccosecantDerivative">
+            <summary>
+            Arccosecant derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.HyperbolicSineDerivative">
+            <summary>
+            Hyperbolic Sine derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.HyperbolicCosineDerivative">
+            <summary>
+            Hyperbolic Cosine derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.HyperbolicTangentDerivative">
+            <summary>
+            Hyperbolic Tangent derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.HyperbolicCotangentDerivative">
+            <summary>
+            Hyperbolic Cotangent derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.HyperbolicSecantDerivative">
+            <summary>
+            Hyperbolic Secant derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.HyperbolicCosecantDerivative">
+            <summary>
+            Hyperbolic Cosecant derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.HyperbolicArcsineDerivative">
+            <summary>
+            Hyperbolic Arcsine derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.HyperbolicArccosineDerivative">
+            <summary>
+            Hyperbolic Arccosine derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.HyperbolicArctangentDerivative">
+            <summary>
+            Hyperbolic Arctangent derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.HyperbolicArccotangentDerivative">
+            <summary>
+            Hyperbolic Arccotangent derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.HyperbolicArcsecantDerivative">
+            <summary>
+            Hyperbolic Arcsecant derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.HyperbolicArccosecantDerivative">
+            <summary>
+            Hyperbolic Arccosecant derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.LogarithmDerivative">
+            <summary>
+            Logarithm derivative
+            (NOTE: the Base of logarithm is the Parameter of the log function)
+            </summary>
+        </member>
+        <member name="M:Analytics.Derivatives.LogarithmDerivative.Derivative(Analytics.Derivatives.DerivativeContext,Analytics.Syntactic.FunctionExpression,System.String)">
+            <summary>
+            Calculates derivative of the Logarithm function log{a(x)}(g(x))'.
+            There are three main cases:
+            1. a=const, log{a}(g(x))' = 1/(ln(a)*g(x))*g'(x)
+                                       {    m(x)            }
+            2. g=const,  log{a(x)}(g)' = -ln(g)/(ln(a(x))^2*a(x))*a'(x)
+                                         {    n(x)                     }
+            3. a(x), g(x), log{a(x)}(g(x))' = m(x)-n(x)
+            </summary>
+            <param name="context"></param>
+            <param name="function"></param>
+            <param name="vName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Analytics.Derivatives.NaturalLogarithmDerivative">
+            <summary>
+            Natural Logarithm derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.DecimalLogarithmDerivative">
+            <summary>
+            Decimal Logarithm derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.BinaryLogarithmDerivative">
+            <summary>
+            Binary Logarithm derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.ExponentDerivative">
+            <summary>
+            Exponent derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.SquareRootDerivative">
+            <summary>
+            Square root derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.NthRootDerivative">
+            <summary>
+            N-th root derivative
+            </summary>
+        </member>
+        <member name="T:Analytics.Derivatives.PowerDerivative">
+            <summary>
+            Power derivative
+            </summary>
+        </member>
+    </members>
+</doc>

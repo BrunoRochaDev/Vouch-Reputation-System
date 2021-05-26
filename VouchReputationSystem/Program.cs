@@ -1,11 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Windows.Forms;
+using VouchReputationSystem.Classes;
+
+using Mathematics.NL;
+using System.Reflection;
+using Analytics.Nonlinear;
 
 namespace VouchReputationSystem
 {
-    class Program
+    static class Program
     {
-        static void Main(string[] args)
+        //Setups up the linear algebra library
+        private static void LinearAlgebraSetup()
+        {
+            string[] req = new string[] { "Analytics.Real", "Analytics.Derivatives" };
+
+            int n = req.Length;
+            for (int i = 0; i < n; i++)
+            {
+                string sname = req[i];
+                try
+                {
+                    Assembly.Load(sname);
+                }
+                catch (Exception)
+                {
+                }
+            }
+        }
+
+        // The main entry point for the application.
+        [STAThread]
+        static void Main()
+        {
+            LinearAlgebraSetup();
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            DiagramForm Diagram = new DiagramForm(CreateNetwork());
+            Application.Run(Diagram);
+        }
+      
+        static Network CreateNetwork()
         {
             AccountChain adam = new AccountChain("Adam");
 
@@ -39,8 +78,7 @@ namespace VouchReputationSystem
             adam.VouchFor(eli);
             eli.VouchFor(adam);
 
-            peter.VouchFor(eli);
-            eli.VouchFor(peter);
+            eli.VouchAgainst(peter);
 
             joseph.VouchFor(eli);
             eli.VouchFor(joseph);
@@ -49,19 +87,30 @@ namespace VouchReputationSystem
             john.VouchFor(joseph);
 
             //------------------------------------
+            AccountChain abel = new AccountChain("Abel");
+            AccountChain eve = new AccountChain("Eve");
+            AccountChain cain = new AccountChain("Cain");
+
+            abel.VouchFor(adam);
+            //eve.VouchFor(adam);
+            cain.VouchFor(adam);
+
+            adam.VouchFor(abel);
+            adam.VouchAgainst(eve);
+            adam.VouchFor(cain);
+
+            abel.VouchFor(cain);
+            cain.VouchFor(abel);
+
+            eve.VouchAgainst(cain);
+            abel.VouchAgainst(eve);
+            
+            //------------------------------------
 
             //Creates the networks through Adam's perspective
             Network _network = new Network(adam);
             _network.PrintAllNodes();
-            _network.GetNodeWithAccount(adam).PrintImmediateVouches();
-            _network.GetNodeWithAccount(noah).PrintImmediateVouches();
-            _network.GetNodeWithAccount(jacob).PrintImmediateVouches();
-            _network.GetNodeWithAccount(simon).PrintImmediateVouches();
-            _network.GetNodeWithAccount(eli).PrintImmediateVouches();
-            _network.GetNodeWithAccount(peter).PrintImmediateVouches();
-            _network.GetNodeWithAccount(joseph).PrintImmediateVouches();
-            _network.GetNodeWithAccount(john).PrintImmediateVouches();
-
+            return _network;
         }
     }
 }

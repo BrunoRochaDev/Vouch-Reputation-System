@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NRTE</name>
+    </assembly>
+    <members>
+        <member name="T:NRTE.ClassAssembly">
+            <summary>
+            Class assembly
+            (a set of class factories organized in a hierarchy)
+            </summary>
+        </member>
+        <member name="M:NRTE.ClassAssembly.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="T:NRTE.ClassAssemblies">
+            <summary>
+            Static class for assemblies
+            </summary>
+        </member>
+        <member name="T:NRTE.ClassFactory">
+            <summary>
+            Class factory
+            </summary>
+        </member>
+        <member name="M:NRTE.ClassFactory.#ctor(System.Type)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="__base">Base class</param>
+        </member>
+        <member name="M:NRTE.ClassFactory.Finalize">
+            <summary>
+            Destructor
+            </summary>
+        </member>
+        <member name="M:NRTE.ClassFactory.FindClass(System.Type)">
+            <summary>
+            Finds a class
+            </summary>
+            <param name="aClass">Class type</param>
+            <returns>Index of the class in factory</returns>
+        </member>
+        <member name="M:NRTE.ClassFactory.FindClass(System.String)">
+            <summary>
+            Finds a class
+            </summary>
+            <param name="aName">Class name</param>
+            <returns>Class type</returns>
+        </member>
+        <member name="M:NRTE.ClassFactory.GetDescendants(System.Type)">
+            <summary>
+            Finds all descendants of a class
+            </summary>
+            <param name="__base">Base class type</param>
+            <returns>Descendants found</returns>
+        </member>
+        <member name="M:NRTE.ClassFactory.UnregisterAllClasses">
+            <summary>
+            Unregister all classes
+            </summary>
+        </member>
+        <member name="M:NRTE.ClassFactory.RegisterClass(System.Type)">
+            <summary>
+            Register a class
+            </summary>
+            <param name="aClass">Class type</param>
+            <returns>If successful</returns>
+        </member>
+        <member name="M:NRTE.ClassFactory.UnRegisterClass(System.Type)">
+            <summary>
+            Unregister a class
+            </summary>
+            <param name="aClass">Class type</param>
+            <returns>Is successful</returns>
+        </member>
+        <member name="P:NRTE.ClassFactory.BaseClass">
+            <summary>
+            Base class
+            </summary>
+        </member>
+        <member name="P:NRTE.ClassFactory.ClassCount">
+            <summary>
+            Registered class count
+            </summary>
+        </member>
+        <member name="P:NRTE.ClassFactory.Item(System.Int32)">
+            <summary>
+            Registered classes
+            </summary>
+            <param name="index">Index of the class</param>
+            <returns>The class</returns>
+        </member>
+        <member name="P:NRTE.ClassFactory.OnClassRegistered">
+            <summary>
+            Occures when a class was registered
+            </summary>
+        </member>
+        <member name="P:NRTE.ClassFactory.OnClassUnregistered">
+            <summary>
+            Occures when a class was unregistered
+            </summary>
+        </member>
+        <member name="T:NRTE.ClassUtilities">
+            <summary>
+            Static utility class
+            </summary>
+        </member>
+        <member name="T:NRTE.ClassFinder">
+            <summary>
+            Static class to find Classes in assemblies
+            </summary>
+        </member>
+        <member name="M:NRTE.ClassFinder.FindDescendantClasses(System.Reflection.Assembly,System.Type,System.Collections.Generic.List{System.Type}@)">
+            <summary>
+            Finds all descendant classes in assembly
+            </summary>
+            <param name="assembly">Assembly</param>
+            <param name="BaseClass">Base class type</param>
+            <param name="descendants">Descendant classes</param>
+            <returns>Number of descendants found</returns>
+        </member>
+        <member name="M:NRTE.ClassFinder.FindAllDescendants(System.Type,System.Collections.Generic.List{System.Type}@)">
+            <summary>
+            Finds all descendant classes in current domain
+            </summary>
+            <param name="BaseClass">Base class type</param>
+            <param name="descendants">Descendant classes</param>
+            <returns>Number of descendants found</returns>
+        </member>
+        <member name="M:NRTE.ClassFinder.InstantiateClass(System.Type)">
+            <summary>
+            This method instantiates object with default constructor
+            </summary>
+            <param name="aClass">Class to instantiate (must have default public constructor)</param>
+            <returns>Instance</returns>
+        </member>
+        <member name="T:NRTE.ClassContainer">
+            <summary>
+            Just to create object to store a type (class).
+            </summary>
+        </member>
+        <member name="F:NRTE.ClassContainer.Value">
+            <summary>
+            Stored type
+            </summary>
+        </member>
+        <member name="M:NRTE.ClassContainer.#ctor(System.Type)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="aClass">Stored type</param>
+        </member>
+        <member name="T:NRTE.Container`1">
+            <summary>
+            Just to create object to store a value.
+            </summary>
+            <typeparam name="T">Type of value</typeparam>
+        </member>
+        <member name="F:NRTE.Container`1.Value">
+            <summary>
+            Stored value
+            </summary>
+        </member>
+        <member name="M:NRTE.Container`1.#ctor(`0)">
+            <summary>
+            Condtructor
+            </summary>
+            <param name="aValue">Value to store</param>
+        </member>
+        <member name="T:NRTE.ClassRegisteredEvent">
+            <summary>
+            Notification about registration of a class
+            </summary>
+            <param name="aClass">The class</param>
+        </member>
+        <member name="T:NRTE.Constants">
+            <summary>
+            Constants
+            </summary>
+        </member>
+        <member name="T:NRTE.TypeRecource">
+            <summary>
+            Resources utilities
+            </summary>
+        </member>
+        <member name="M:NRTE.TypeRecource.GetTypeResource(System.Resources.ResourceManager,System.Globalization.CultureInfo,System.Type,System.String@)">
+            <summary>
+            Extracts resource from ResourceManager for a Type and Culture
+            </summary>
+            <param name="manager">Resource Manager</param>
+            <param name="culture">Culture</param>
+            <param name="t">Type</param>
+            <param name="resource">Extracted Resource</param>
+            <returns>True, if resource found</returns>
+        </member>
+        <member name="M:NRTE.TypeRecource.GetTypeValueResource(System.Resources.ResourceManager,System.Globalization.CultureInfo,System.Type,System.String,System.String@)">
+            <summary>
+            Extracts resource from ResourceManager for a Type, Value and Culture
+            </summary>
+            <param name="manager">Manager</param>
+            <param name="culture">Culture</param>
+            <param name="t">Type</param>
+            <param name="value">Value</param>
+            <param name="resource">Extracted resource</param>
+            <returns>True, if resource found</returns>
+        </member>
+        <member name="M:NRTE.TypeRecource.GetResource(System.Resources.ResourceManager,System.Globalization.CultureInfo,System.String,System.String@)">
+            <summary>
+            Extracts resource with specified name from Resource Manager
+            </summary>
+            <param name="manager">Manager</param>
+            <param name="culture">Culture</param>
+            <param name="name">Name of Resource</param>
+            <param name="resource">Extracted Resource</param>
+            <returns>True, if resource found</returns>
+        </member>
+    </members>
+</doc>
