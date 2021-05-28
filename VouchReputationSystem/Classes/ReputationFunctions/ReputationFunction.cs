@@ -42,7 +42,6 @@ namespace VouchReputationSystem.Classes.ReputationFunctions
 
             double[] reputationArray = LinearSystemSolver(variables.ToArray(), functions.ToArray());
 
-
             for (int i = 0; i < reputationArray.Length;i++)
             {
                 nodesWithoutObserver[i].reputation = reputationArray[i];

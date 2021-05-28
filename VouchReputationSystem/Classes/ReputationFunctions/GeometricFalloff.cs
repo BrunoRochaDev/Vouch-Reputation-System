@@ -16,14 +16,14 @@ namespace VouchReputationSystem.Classes.ReputationFunctions
         public override string GetFunction(AccountNode _node)
         {
             //Sets the self reputation value to the network's default.
-            float selfRep = network.defaultNodeRep;
+            float selfRep = network.defaultNodeReputation;
             //If the observer node vouches for this node, then set it to 0 or 1 accordingly.
             if (observerNode.vouches.ContainsKey(_node))
                 selfRep = observerNode.vouches[_node] ? 1 : 0;
 
             string numerator = selfRep + "+";
             //The first term of the denominator should be it's w
-            string denominator =  "1+";
+            string denominator = "1+";
 
             foreach (AccountNode _neighbour in _node.neighbours.Keys)
             {

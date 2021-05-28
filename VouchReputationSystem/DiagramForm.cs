@@ -32,7 +32,6 @@ namespace VouchReputationSystem
             NetworkReachSlider.Value = network.networkReach;
             NetworkReachSliderChange(NetworkReachSlider, null);
 
-            ReputationReachSlider.Value = network.reputationReach;
             ReputationReachSliderChange(ReputationReachSlider, null);
         }
 
@@ -64,7 +63,6 @@ namespace VouchReputationSystem
         {
             TrackBar _TrackBar = sender as TrackBar;
             ReputationReachLabel.Text = "Reputation Reach: " + _TrackBar.Value;
-            network.reputationReach = _TrackBar.Value;
         }
     }
 }

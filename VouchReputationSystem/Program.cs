@@ -46,13 +46,13 @@ namespace VouchReputationSystem
       
         static Network CreateNetwork()
         {
-            AccountChain adam = new AccountChain("Adam");
+            Account adam = new Account("Adam");
 
             //The bottom part---------------------
 
-            AccountChain noah = new AccountChain("Noah");
-            AccountChain jacob = new AccountChain("Jacob");
-            AccountChain simon = new AccountChain("Simon");
+            Account noah = new Account("Noah");
+            Account jacob = new Account("Jacob");
+            Account simon = new Account("Simon");
 
             adam.VouchFor(noah);
             noah.VouchFor(adam);
@@ -70,10 +70,10 @@ namespace VouchReputationSystem
 
             //The right part----------------------
 
-            AccountChain eli = new AccountChain("Eli");
-            AccountChain peter = new AccountChain("Peter");
-            AccountChain joseph = new AccountChain("Joseph");
-            AccountChain john = new AccountChain("John");
+            Account eli = new Account("Eli");
+            Account peter = new Account("Peter");
+            Account joseph = new Account("Joseph");
+            Account john = new Account("John");
 
             adam.VouchFor(eli);
             eli.VouchFor(adam);
@@ -87,16 +87,16 @@ namespace VouchReputationSystem
             john.VouchFor(joseph);
 
             //------------------------------------
-            AccountChain abel = new AccountChain("Abel");
-            AccountChain eve = new AccountChain("Eve");
-            AccountChain cain = new AccountChain("Cain");
+            Account abel = new Account("Abel");
+            Account eve = new Account("Eve");
+            Account cain = new Account("Cain");
 
             abel.VouchFor(adam);
-            //eve.VouchFor(adam);
+            eve.VouchFor(adam);
             cain.VouchFor(adam);
 
             adam.VouchFor(abel);
-            adam.VouchAgainst(eve);
+            adam.VouchFor(eve);
             adam.VouchFor(cain);
 
             abel.VouchFor(cain);

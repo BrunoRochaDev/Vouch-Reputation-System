@@ -1,34 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+//Vouch Reputation System by Bruno Rocha Moura
+//https://github.com/BrunoRochaDev/
 
 namespace VouchReputationSystem.Classes
 {
-    public class AccountChain
+    //The account in and of itself, before being representend in a personal network.
+    //It holds the accounts information like name and vouches as well as handles vouch commands and checks logic.
+
+    public class Account
     {
+        //The account name, which has to be unique since the names are compared to determine if accounts are equal.
         public string name;
 
         //Dictionary with every node it has a connection with. True is vouch for, False is vouch against.
-        public Dictionary<AccountChain, bool> vouches = new Dictionary<AccountChain, bool>();
+        public Dictionary<Account, bool> vouches = new Dictionary<Account, bool>();
 
         //Constructors
-        public AccountChain()
+        public Account()
         {
             //Just here because of inheritance
         }
-        public AccountChain(string _name)
+        public Account(string _name)
         {
             this.name = _name;
         }
 
         #region vouch
 
-        //Function that adds a node to the edge dictionary.
-        public void Vouch(AccountChain _node, bool _polarity)
+        //Creates a vouch for or against relation that is stored in this account's vouch dictionary.
+        private void Vouch(Account _node, bool _polarity)
         {
-            //Cannot add itself as a vouch
+            //Nodes cannot vouch for itself.
             if (_node.Equals(this))
             {
                 Console.WriteLine("Error: Cannot vouch for itself.");
@@ -38,7 +42,7 @@ namespace VouchReputationSystem.Classes
             //If given node is already vouched for
             if (this.vouches.ContainsKey(_node))
             {
-                //If the current vouch polarity is already whats being vouched, then remove it
+                //If the current vouch polarity is already what's being vouched, then remove it.
                 if (vouches[_node].Equals(_polarity))
                     vouches.Remove(_node);
                 //If not, then update it
@@ -50,19 +54,21 @@ namespace VouchReputationSystem.Classes
                 this.vouches.Add(_node, _polarity);
         }
         //Simplified function only for vouching for
-        public void VouchFor(AccountChain _node)
+        public void VouchFor(Account _node)
         {
             this.Vouch(_node, true);
         }
         //Simplified function only for vouching against
-        public void VouchAgainst(AccountChain _node)
+        public void VouchAgainst(Account _node)
         {
             this.Vouch(_node, false);
         }
 
-        public bool DoesVouchFor(AccountChain _otherNode)
+        public bool HasVouchForConnection(Account _otherNode)
         {
-            //For now, people can only vouch for someone if they are being vouched for in return.
+            /*
+             A vouch for relations is only valid if it's reciprocal.
+             */
 
             //Gets the vouch state from this node
             bool thisPolarity;
@@ -78,10 +84,11 @@ namespace VouchReputationSystem.Classes
             else
                 otherPolarity = false;
 
+            //If both parties vouch for each other, then return true.
             return (thisPolarity && otherPolarity);
         }
 
-        public bool DoesVouchAgainst(AccountChain _otherNode)
+        public bool HasVouchAgainstConnection(Account _otherNode)
         {
             //Gets the vouch state from this node
             bool thisPolarity = true;
@@ -93,23 +100,22 @@ namespace VouchReputationSystem.Classes
             if (_otherNode.vouches.ContainsKey(this))
                 otherPolarity = _otherNode.vouches[this];
 
+            //If at least one of the parties vouch against the other, return true.
             return !(thisPolarity && otherPolarity);
         }
 
         #endregion
 
-        #region string-functions
-        //Print object
+        //Overrides the ToString method so that it returns the account's name.
         public override string ToString()
         {
             return "name: " + this.name;
         }
-        #endregion
 
-        //Equivalence
+        //Overrides the Equals method so that two accounts are seen as equal if they share the same name.
         public override bool Equals(object obj)
         {
-            var item = obj as AccountChain;
+            var item = obj as Account;
 
             if (item == null)
             {
@@ -118,6 +124,7 @@ namespace VouchReputationSystem.Classes
 
             return this.name.Equals(item.name);
         }
+        //Generate hash based only on the account's name.
         public override int GetHashCode()
         {
             return this.name.GetHashCode();

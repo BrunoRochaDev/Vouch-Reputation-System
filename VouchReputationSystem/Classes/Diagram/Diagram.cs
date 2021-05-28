@@ -210,7 +210,7 @@ namespace VouchReputationSystem.Classes.Diagram
                 foreach (AccountNode other in node.neighbours.Keys)
                 {
                     Point destination = ScalePoint(other.Location, scale);
-                    node.DrawConnector(graphics, center + (Size)source, center + (Size)destination, other, node.neighbours[other]);
+                    node.DrawConnector(graphics, center + (Size)source, center + (Size)destination, node.HasVouchForConnection(other));
                 }
             }
 

@@ -113,7 +113,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\AccountChain.cs" />
+    <Compile Include="Classes\Account.cs" />
     <Compile Include="Classes\AccountNode.cs" />
     <Compile Include="Classes\Diagram\Diagram.cs" />
     <Compile Include="Classes\LinearAlgebra\Analytics.NL.System.cs" />

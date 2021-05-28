@@ -9,31 +9,37 @@ namespace VouchReputationSystem.Classes
 {
     public class Network
     {
-        //---------------
+        //Paremeters for the network.
+        #region NetworkParameters
+        //How many nodes the network scope extends beyond the observer node's immediate neighbours.
         public int networkReach = 2;
 
-        float _defaultNodeRep = 0.5f;
-        public float defaultNodeRep { get { return _defaultNodeRep; } set { _defaultNodeRep = Util.LimitRange(_defaultNodeRep, 1f, 0f); } }
+        //The default reputation a node is given if it's not a neighbour to the observer node.
+        float _defaultNodeReputation = 0.5f;
+        public float defaultNodeReputation { get { return _defaultNodeReputation; } set { _defaultNodeReputation = Util.LimitRange(_defaultNodeReputation, 1f, 0f); } }
+        #endregion
 
-        public int reputationReach = 4;
-        //---------------
-
+        //Reference to the observer node
         public AccountNode observerNode;
+        //List of all the nodes in the network.
         public List<AccountNode> allNodes = new List<AccountNode>();
 
-        //Method to get the node from account info
-        public AccountNode GetNodeWithAccount(AccountChain _acc)
+        //Returns the account in the network from a node it contains.
+        public AccountNode GetNodeWithAccount(Account _acc)
         {
             return allNodes.Find(o => o.name == _acc.name);
         }
 
         //Constructor
-        public Network(AccountChain _observerAcc)
+        public Network(Account _observerAcc)
         {
+            //Creates the observer node from the given account.
             this.observerNode = new AccountNode(_observerAcc);
 
+            //Get the rest of the nodes in the oberserver node's personal network.
             GetAllNodes();
 
+            //
             SetUpReputation();
         }
 
@@ -45,7 +51,7 @@ namespace VouchReputationSystem.Classes
 
             //Get neighbour nodes
             List<AccountNode> neighbourNodes = new List<AccountNode>();
-            foreach (AccountChain _acc in observerNode.vouches.Keys)
+            foreach (Account _acc in observerNode.vouches.Keys)
             {
                 if (!observerNode.isVouchValid(_acc))
                     continue;
@@ -87,7 +93,7 @@ namespace VouchReputationSystem.Classes
                         openSet.Remove(currentNode);
 
                         //Now look through the current node's neighbours
-                        foreach (AccountChain _acc in currentNode.vouches.Keys)
+                        foreach (Account _acc in currentNode.vouches.Keys)
                         {
                             //If the vouch relation is not valid, then skip it.
                             if (!currentNode.isVouchValid(_acc))
