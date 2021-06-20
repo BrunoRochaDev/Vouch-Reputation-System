@@ -1,4 +1,4 @@
-[# Vouch Reputation System #
+# Vouch Reputation System #
 Vouch Reputation System, or VRS for short, is a proof of concept for a decentralized reputation system for P2P networks written in C#.
 
 It's goal is to be a community-focused solution to the uncertainty of trust between unfamiliar peers in environments without authority, building upon the already existing social bonds between it's participants.
@@ -27,15 +27,15 @@ The reputation score of a given node is determined through the following equatio
 ">
 </p>
 
- The node reputation formula is, essentially, a weighted average between a given node in the network, its neighbours, and the observer node.
+ The node reputation formula is, essentially, a weighted average between a given node in the network, its immediate neighbours, and the observer node.
   
 _Nⁿ_ is the vouch relation between the node and a the nth neighbour. If it's a vouch for relation, then _N_ it's 1. If it's a vouch against relation, then it's 0. 
 
 _Nα_ is the relationship between the node and the observer node. If the node has a direct vouch relation with the observer node, the previous rule applies. If not, then _Nα_ will be the default node reputation of the network (by default, 0.5).
 
-_Rⁿ_ is the nth neighbour node's own reputation, which must be between 0 and 1.
+_Rⁿ_ is the nth neighbour node's reputation score, which must be between 0 and 1.
 
-_Dⁿ_ is the distance weight of the nth neighbour node, which approaches zero geometrically as the distance from the observer node increases. _d_ is the shortest distance between the neighbour node and the observer node.
+_Dⁿ_ is the distance weight of the nth neighbour node, which approaches zero geometrically as the distance from the observer node increases. _d_ is the shortest distance between the neighbour node and the observer node. The further away a node is from the observer node, the lesser it impacts the calculation.
 
 As the nodes' reputation equations are dependent on each other, a system of linear equations must be solved in order to assign each node a reputation score that satisfies the equations.
 </details>
@@ -60,5 +60,4 @@ This means that non-malicious users looking to maximize their own experience in 
 
 In theory, VRS ensures that a perfectly healthy social network comprised of self interested actors with flawless judgement would eventually divide itself between a network of reputable users and a loose assortment of non-reputable users, but such conditions are not likely to occur in reality. In practice, as long as benign users are more numerous and well connected than hostile users, it will not be feasible for malicious actors to infiltrate a cautious node's personal network and cause harm.
 
-In conclusion, the system proposed presents it's users with a personalized numeric representation for trust for every member of their personal network, extrapolated from their own preexisting social bonds. Through the mechanism of 'the discipline of continuous dealings' promoted by the system rules, users are incentivized to be consistent in their good behaviour and to ostracize actors that might compromise network safety, all for their own immediate self interest. VRS is modular and highly customizable and as such can be integrated into a variety of environments.
-](url)
+In conclusion, the system proposed presents it's users with a personalized numeric representation for trust for every member of their personal network, extrapolated from their own preexisting social bonds and tailored to their individual preferences. Through the mechanism of 'the discipline of continuous dealings' promoted by the system rules, users are incentivized to be consistent in their good behaviour and to ostracize actors that might compromise network safety, all for their own immediate self interest. VRS is modular and highly customizable and as such can be integrated into a variety of environments.
