@@ -40,7 +40,17 @@ _Dⁿ_ is the distance weight of the nth neighbour node, which approaches zero g
 As the nodes' reputation equations are dependent on each other, a system of linear equations must be solved in order to assign each node a reputation score that satisfies the equations.
 </details>
 
-It's important to note that reputation scores are a subjective measure dependent on an observer and it's preferences and not an objective property of a node.
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/44985385/122689622-003f5580-d21c-11eb-8743-a1743ef8fbde.png")
+")
+">
+</p>
+
+<p align="center">
+  <i>It's important to note that reputation scores are a subjective measure dependent on an observer and it's preferences and not an objective property of a node.</i>
+</p>
+
+The way reputation scores are calculated is highly customizable and can be tweaked to accomotade for every individual's preferences, risk tolerance, trust in the network, etc.
 
 Through VRS, a user can assess anyone's (even complete strangers) trustworthiness through their reputation score as long as someone is their personal network is connected to them.
 
