@@ -39,12 +39,27 @@ namespace VouchReputationSystem.Classes
             //Get the rest of the nodes in the oberserver node's personal network.
             GetAllNodes();
 
-            //
+            //Gives each node it's reputation score.
+            SetUpReputation();
+        }
+
+        //This method rebuilds the network. Used for when the network parameters are tweaked.
+        public void RefreshNetwork()
+        {
+            //Clears previous data.
+            foreach (AccountNode _acc in allNodes)
+                _acc.neighbours.Clear();
+            allNodes.Clear();
+
+            //Get the rest of the nodes in the oberserver node's personal network.
+            GetAllNodes();
+
+            //Gives each node it's reputation score.
             SetUpReputation();
         }
 
         //This method creates the network AND sets up the neighbour relations.
-        void GetAllNodes()
+        private void GetAllNodes()
         {
             //Adds the observer node to the list
             allNodes.Add(observerNode);
@@ -126,7 +141,7 @@ namespace VouchReputationSystem.Classes
             }
         }
 
-        void SetUpReputation()
+        private void SetUpReputation()
         {
             //First of all, setup all the nodes distances
             foreach (AccountNode _node in allNodes)

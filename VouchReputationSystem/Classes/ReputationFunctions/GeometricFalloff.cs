@@ -13,7 +13,9 @@ namespace VouchReputationSystem.Classes.ReputationFunctions
             //Constructor
         }
 
-        public override string GetFunction(AccountNode _node)
+        //This methods returns the equation to be solved to determine each node reputation score in string format.
+        //This equation will be solved by linear algebra library.
+        public override string GetEquation(AccountNode _node)
         {
             //Sets the self reputation value to the network's default.
             float selfRep = network.defaultNodeReputation;

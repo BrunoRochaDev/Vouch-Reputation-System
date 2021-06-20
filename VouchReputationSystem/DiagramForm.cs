@@ -20,19 +20,29 @@ namespace VouchReputationSystem
 
         public DiagramForm(Network _network)
         {
-            network = _network;
             InitializeComponent();
-            _diagram = new Diagram(network.allNodes, _network.observerNode);
+
+            network = _network;
             _random = new Random();
+
+            DrawDiagram();
             SetupUI();
+        }
+
+        private void DrawDiagram()
+        {
+            _diagram = new Diagram(network.allNodes, network.observerNode);
+            Invalidate();
         }
 
         private void SetupUI()
         {
+            //NetworkReachSlider
             NetworkReachSlider.Value = network.networkReach;
             NetworkReachSliderChange(NetworkReachSlider, null);
 
-            ReputationReachSliderChange(ReputationReachSlider, null);
+            //Default Node Rep
+            DefaultRep.Value = (decimal)network.defaultNodeReputation;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -59,10 +69,16 @@ namespace VouchReputationSystem
             network.networkReach = _TrackBar.Value;
         }
 
-        private void ReputationReachSliderChange(object sender, EventArgs e)
+        private void RefreshNetwork(object sender, EventArgs e)
         {
-            TrackBar _TrackBar = sender as TrackBar;
-            ReputationReachLabel.Text = "Reputation Reach: " + _TrackBar.Value;
+            network.RefreshNetwork();
+            DrawDiagram();
+        }
+
+        private void DefaultRepChanged(object sender, EventArgs e)
+        {
+            NumericUpDown _NumericUpDown = sender as NumericUpDown;
+            network.defaultNodeReputation = (float)_NumericUpDown.Value;
         }
     }
 }

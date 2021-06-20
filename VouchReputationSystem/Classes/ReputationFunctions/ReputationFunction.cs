@@ -31,7 +31,7 @@ namespace VouchReputationSystem.Classes.ReputationFunctions
             foreach (AccountNode _node in nodesWithoutObserver)
             {
                 variables.Add(_node.name);
-                functions.Add(GetFunction(_node));
+                functions.Add(GetEquation(_node));
 
                 Console.WriteLine(_node.name);
             }
@@ -52,7 +52,7 @@ namespace VouchReputationSystem.Classes.ReputationFunctions
             return nodesWithoutObserver;
         }
 
-        public abstract string GetFunction(AccountNode _node);
+        public abstract string GetEquation(AccountNode _node);
 
         public double[] LinearSystemSolver(string[] variables, string[] functions)
         {

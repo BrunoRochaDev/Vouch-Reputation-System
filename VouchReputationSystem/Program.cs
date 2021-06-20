@@ -44,11 +44,13 @@ namespace VouchReputationSystem
             Application.Run(Diagram);
         }
       
+        //This is the method that creates all the accounts in the global network.
+        //Tweak this method if you want to try out different networks
         static Network CreateNetwork()
         {
             Account adam = new Account("Adam");
 
-            //The bottom part---------------------
+            //------------------------------------
 
             Account noah = new Account("Noah");
             Account jacob = new Account("Jacob");
@@ -67,8 +69,6 @@ namespace VouchReputationSystem
             jacob.VouchAgainst(simon);
 
             //------------------------------------
-
-            //The right part----------------------
 
             Account eli = new Account("Eli");
             Account peter = new Account("Peter");
