@@ -19,8 +19,12 @@ class Network:
         self.nodes[new_id] = Node(new_id)
         self.node_nonce += 1
 
+    def delete_node(self, id : str):
+        """Deletes a node with a given identifier."""
+        self.nodes.pop(id)
+
     def has_positive_connection(self, a_id, b_id) -> bool:
-        """Returns whether a positive vouch connection exists between this node and another_id. A positive vouch connection is made if positive vouches are reciprocal."""
+        """Returns whether a positive vouch connection exists between node A and B. A positive vouch connection is made if positive vouches are reciprocal."""
 
         # Gets the nodes associated with the id. Returns false if at least one of them does not exist
         if a_id in self.nodes:
@@ -46,7 +50,7 @@ class Network:
         return a_vouches_for and b_vouches_for
 
     def has_negative_connection(self, other_id) -> bool:
-        """Returns whether a negative vouch connection exists between this node and another_id. A negative vouch connection is made if at least one of them vouches against the other_id."""
+        """Returns whether a negative vouch connection exists between node A and B. A negative vouch connection is made if at least one of them vouches against the other."""
 
         # Gets the nodes associated with the id. Returns false if at least one of them does not exist
         if a_id in self.nodes:
@@ -70,4 +74,3 @@ class Network:
 
         # Negative vouch connections are made if at least one of them vouches against the other_id
         return not (a_vouches_for and b_vouches_for)
-
