@@ -16,7 +16,7 @@ Vouch connections are created between nodes depending on their vouches. If two n
 
 As such, the entities and their vouch connections can be displayed as a diagram of a network of nodes. When we are looking at the network from the perspective of a particular node, we call it the observer node.
 
-The reputation of nodes in the network (incluiding the ones the observer is not directly connected to) can be assessed through the vouch connections there present.  
+The reputation of nodes in the network (including ones the observer does not vouch for or against) can be assessed through the vouch connections there present.  
 
 It's important to note that a node's reputation is not an intrinsic property it posesses but rather is contingent to an observer. The same node can have wildly different reputation scores when seen through the perspective of nodes with different vouch connections.
 
