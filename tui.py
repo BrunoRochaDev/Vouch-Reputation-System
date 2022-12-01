@@ -19,6 +19,7 @@ def draw_title(window):
 def draw_menu(mid_x : int, mid_y : int, key : int):
     """Draws the menu, in which a user can select the operation to do"""
     global selected_row
+    global selected_window
 
     window = curses.newwin(10, 40, mid_y - 10//2, mid_x - 40//2)
     window.border()
@@ -46,6 +47,12 @@ def draw_menu(mid_x : int, mid_y : int, key : int):
         selected_row += 1
     elif (key == curses.KEY_UP or chr(key) == 'k') and selected_row > 0: # Navigate up
         selected_row -= 1
+    elif (key == 10): # Select with enter
+        if selected_row == 0:
+            selected_window = 'NODE'
+        # Resets col and row
+        selected_col = 0
+        selected_row = 0
 
     # Clamp selected row
     selected_row = max(0, min(selected_row, len(menu)-1))
@@ -61,6 +68,7 @@ def draw_node_window(mid_x : int, mid_y : int, key : int):
     nodes_ids = list(network.nodes.keys())
 
     window = curses.newwin(10, 40, mid_y - 10//2, mid_x - 40//2)
+    window.refresh()
     window.border()
      
     # Gets the middle x and y to be at the center of the window
@@ -101,8 +109,7 @@ def draw_node_window(mid_x : int, mid_y : int, key : int):
 def main(stdscr):
     """The main loop for drawing the TUI"""
 
-    selected_window = 'MENU'
-
+    stdscr.refresh()
     curses.curs_set(0) # Make the cursor stop blinking 
 
     key = 0 # Starts with no input
@@ -120,7 +127,7 @@ def main(stdscr):
             draw_menu(mid_x, mid_y, key)
 
             end_y = mid_y + 6
-            instructions = ['Up and down to nagivate through the list','Space for selecting']
+            instructions = ['Up and down to nagivate through the list','Enter for selecting']
 
         # Node window
         if selected_window == 'NODE':
@@ -144,6 +151,7 @@ with open("ascii.txt", "r") as file:
 # Creates the network object
 network = Network()
 
+selected_window = 'MENU'
 selected_row = 0
 selected_col = 0
 
