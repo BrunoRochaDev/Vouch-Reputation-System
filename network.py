@@ -2,8 +2,11 @@ from node import Node
 
 class Network:
 
+    MAX_DEPTH = 6
+
     def __init__(self):
-        self.nodes = {}
+        self.nodes = {} # id -> node
+        self.reputation = {} # id -> reputation score
 
     def add_node(self, id : str) -> Node:
         """Creates a new node with a unique identifier."""
@@ -35,17 +38,82 @@ class Network:
        
         # Creates the adjanceny matrix
         matrix = self.create_adjacency_matrix(id_order)
-        print(matrix[0][:])
+
+        # Calculate the distance from every node to the observer
+        distance_to_observer = self.dijkstra_shortest_path(matrix, observer_idx)
+
+        depth = 0 # The current depth of the propagation
+        open_list = [observer_idx] # The nodes to be evaulated
+        influence = {}
+        blacklist = {} # So that the same node isn't visited more than twice from the same source
+
+        def weight(depth) -> float:
+            return 2**(-depth)
+
+        # Loops while depth has not been reached and there are nodes in the open list
+        while depth < self.MAX_DEPTH and open_list:
+
+            new_open_list = [] # List for the new node to be added
+
+            for node_idx in open_list:
+                connections = matrix[node_idx]
+
+                for other_idx, value in enumerate(connections):
+                    # Cannot backtrack or stay in place
+                    if other_idx == node_idx or (node_idx in blacklist.keys() and other_idx in blacklist[node_idx]):
+                        continue
+
+                    # Ignore if it's not a connection
+                    if value == 0:
+                        continue
+
+                    # Influence it with your vouch
+                    if other_idx in influence.keys():
+                        influence[other_idx].append( (depth, value) )
+                    else:
+                        influence[other_idx] = [ (depth, value) ]
+
+                    # Add node connected to the open list
+                    new_open_list.append( other_idx )
+
+                    # Blacklist visited node
+                    if node_idx in blacklist:
+                        blacklist[node_idx].add(other_idx)
+                    else:
+                        blacklist[node_idx] = set([other_idx])
+
+            open_list = new_open_list # Updates the open list with the new ones (minus the old ones)
+
+            depth += 1
+
+        # Calculate reputation score from influence
+        for idx, id in enumerate(id_order):
+
+            if idx == observer_idx:
+                print(id+': 1 (Observer)')
+                continue
+
+            if idx in influence.keys(): # If the node has been influenced
+
+                nominator = 0
+                denominator = 0
+
+                for depth, value in influence[idx]:
+
+                    nominator += (value if value == 1 else 0) * weight(depth)
+                    denominator += weight(depth)
+
+                distance_falloff = weight(distance_to_observer[idx]-1) 
+
+                score = float(nominator * distance_falloff) / float(denominator)
+            else:
+                score = 0
+
+            print(id+':', score)
+
 
     def create_adjacency_matrix(self, id_order : list) -> list:
         """Creates and adjancency matrix to be used in dijkstra algorithm"""
-
-        # Creates an ordered tuple so that connections are not checked twice
-        def create_tuple(a_idx, b_idx) -> tuple:
-            if a_idx > b_idx:
-                return (a_idx, b_idx)
-            else:
-                return (b_idx, a_idx)
 
         # Creates an N*N matrix
         size = len(self.nodes)
@@ -58,19 +126,18 @@ class Network:
             for other_id in self.nodes[node_id].vouches.keys():
                 other_idx =  id_order.index(other_id) # Gets the idx from the ordered list
 
-                # Creates an ordered tuple to check for repetition
-                ordered_tuple = create_tuple(node_idx, other_idx)
-
                 # Don't check for connections if already exists
-                if matrix[ordered_tuple[1]][ordered_tuple[0]] != 0:
+                if matrix[node_idx][other_idx] != 0:
                     continue
 
                 # If they vouch for each other...
                 if self.has_positive_connection(node_id, other_id):
-                    matrix[ordered_tuple[1]][ordered_tuple[0]] = 1
+                    matrix[node_idx][other_idx] = 1
+                    matrix[other_idx][node_idx] = 1
                 # If they vouch against each other...
                 elif self.has_negative_connection(node_id, other_id):
-                    matrix[ordered_tuple[1]][ordered_tuple[0]] = -1
+                    matrix[node_idx][other_idx] = -1
+                    matrix[other_idx][node_idx] = -1
 
         # Print
         print(id_order)
@@ -80,6 +147,36 @@ class Network:
             print()
 
         return matrix
+
+    def dijkstra_shortest_path(self, matrix, observer_idx : int) -> list:
+
+        # Helper function
+        def min_distance(size : int, dist : list, spt : list):
+            min = 1e7 # a really big number
+
+            for vertex in range(size):
+                if dist[vertex] < min and spt[vertex] == False:
+                    min = dist[vertex]
+                    min_index = vertex
+
+            return min_index
+
+        size = len(matrix[0])
+
+        distance =  [1e7] * size # 1e7 is an arbitrary big number
+        distance[observer_idx] = 0 # Distance from the observer to the observer is always 0
+        spt = [False] * size # spt = shortest path tree
+
+        for i in range(size):
+            u = min_distance(size, distance, spt)
+
+            spt[u] = True
+
+            for vertex in range(size):
+                if (matrix[u][vertex] > 0 and spt[vertex] == False and distance[vertex] > distance[u] + matrix[vertex][u]):
+                    distance[vertex] = distance[u] + matrix[vertex][u]
+
+        return distance
 
     def has_positive_connection(self, a_id, b_id) -> bool:
         """Returns whether a positive vouch connection exists between node A and B. A positive vouch connection is made if positive vouches are reciprocal."""
