@@ -2,8 +2,6 @@ from node import Node
 
 class Network:
 
-    MAX_DEPTH = 32
-
     def __init__(self):
         self.nodes = {} # id -> node
         self.reputation = {} # id -> reputation score
@@ -39,21 +37,22 @@ class Network:
         # Creates the adjanceny matrix
         matrix = self.create_adjacency_matrix(id_order)
 
-        # Calculate the distance from every node to the observer
-        distance_to_observer = self.dijkstra_shortest_path(matrix, observer_idx)
-
         open_list = set([observer_idx]) # The nodes to be evaulated
-        influence = {}
+        influence = [ [] for i in range(len(self.nodes))] # The forces influencing the score of each node
+        nodes_depth = [ 1e7 for i in range (len(self.nodes)) ] # The minimum distance from the observer to each node
 
+        # Function that transforms the depth of the node to it's weight
         def weight(depth) -> float:
             return 2**(-depth)
 
-        # TODO: Redo this so that trust propagate outwards.
+        def recursive_propagate(idx : int, polarity : int = 0, prev_idxs : list = [], depth : int = 0, had_against : bool = False):
 
-        def recursive_propagate(idx : int, prev_idxs : list = [], depth : int = 0):
-            
             # Get the connections of this node
             connections = matrix[idx]
+
+            # Update the depth if necessary
+            if depth < nodes_depth[idx]:
+                nodes_depth[idx] = depth
 
             # For each connection...
             for other_idx, value in enumerate(connections):
@@ -62,48 +61,59 @@ class Network:
                 if value == 0:
                     continue
 
+                # There can only be one against connection in a chain. Stop if there's a second
+                if value == -1 and had_against:
+                    continue
+
                 # Prevents backtrack / stay in place
                 if other_idx == idx or other_idx in prev_idxs:
                     continue
+                
+                polarity_send = polarity # Polarity gets inverted after vouch againts
+                against_send = had_against # If there has been a vouch against
+
+                # If the polarity has not been set (that is, we're evaluating the observer node still)
+                if polarity == 0:
+                    polarity_send = value # We set the polarity as the connection
+                elif value == -1:
+                    polarity_send = -1
+                    against_send = True
 
                 # Influence it with your vouch
-                if other_idx in influence.keys():
-                    influence[other_idx].append( (depth, value) )
-                else:
-                    influence[other_idx] = [ (depth, value) ]
+                influence[other_idx].append( (depth, polarity_send) )
 
-                # Propagate further if depth allows
-                if depth < self.MAX_DEPTH:
-                    recursive_propagate(other_idx, prev_idxs + [idx], depth + 1)
-        
-            pass
+                # Propagate further
+                recursive_propagate(other_idx, polarity_send, prev_idxs + [idx], depth + 1, against_send)
 
+        # Propagate trust from the observer
         recursive_propagate(observer_idx)
 
-        # Calculate reputation score from influence
-        for idx, id in enumerate(id_order):
+        # Calculate the reputation score of nodes from their influences
+        for idx, influences in enumerate(influence):
 
             if idx == observer_idx:
-                print(id+': 100% (Observer)')
+                print(id_order[idx], ' : Observer')
                 continue
 
-            if idx in influence.keys(): # If the node has been influenced
+            # If there are influences
+            if influences:
 
-                nominator = 0
+                # Calculates a weighted average of the influences
+                numerator = 0
                 denominator = 0
 
-                for depth, value in influence[idx]:
-
-                    nominator += (value if value == 1 else 0) * weight(depth)
+                for depth, polarity in influences:
+                    numerator += (1 if polarity > 0 else 0) * weight(depth)
+                    #numerator += polarity * weight(depth)
                     denominator += weight(depth)
-
-                distance_falloff = weight(distance_to_observer[idx]-1) 
-
-                score = float(nominator * distance_falloff) / float(denominator)
+                
+                score = float(numerator)/float(denominator)
+                score *= weight(nodes_depth[idx] - 1) # Apllies distance falloff
             else:
-                score = 0
+                print(id_order[idx], ' : Undefined')
+                continue
 
-            print(id+':', '{:.1%}'.format(score))
+            print(id_order[idx], ':', '{:.1%}'.format(score))
 
 
     def create_adjacency_matrix(self, id_order : list) -> list:
@@ -141,36 +151,6 @@ class Network:
             print()
 
         return matrix
-
-    def dijkstra_shortest_path(self, matrix, observer_idx : int) -> list:
-
-        # Helper function
-        def min_distance(size : int, dist : list, spt : list):
-            min = 1e7 # a really big number
-
-            for vertex in range(size):
-                if dist[vertex] < min and spt[vertex] == False:
-                    min = dist[vertex]
-                    min_index = vertex
-
-            return min_index
-
-        size = len(matrix[0])
-
-        distance =  [1e7] * size # 1e7 is an arbitrary big number
-        distance[observer_idx] = 0 # Distance from the observer to the observer is always 0
-        spt = [False] * size # spt = shortest path tree
-
-        for i in range(size):
-            u = min_distance(size, distance, spt)
-
-            spt[u] = True
-
-            for vertex in range(size):
-                if (matrix[u][vertex] > 0 and spt[vertex] == False and distance[vertex] > distance[u] + matrix[vertex][u]):
-                    distance[vertex] = distance[u] + matrix[vertex][u]
-
-        return distance
 
     def has_positive_connection(self, a_id, b_id) -> bool:
         """Returns whether a positive vouch connection exists between node A and B. A positive vouch connection is made if positive vouches are reciprocal."""
@@ -212,12 +192,12 @@ class Network:
             return False
 
         # Does A vouches for B...
-        a_vouches_for = False
+        a_vouches_for = True
         if b_id in a.vouches.keys():
             a_vouches_for = a.vouches[b_id]
 
         # Does B vouches for A
-        b_vouches_for = False
+        b_vouches_for = True
         if a_id in b.vouches.keys():
             b_vouches_for = b.vouches[a_id]
 
