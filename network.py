@@ -4,7 +4,6 @@ class Network:
 
     def __init__(self):
         self.nodes = {} # id -> node
-        self.reputation = {} # id -> reputation score
 
     def add_node(self, id : str) -> Node:
         """Creates a new node with a unique identifier."""
@@ -23,6 +22,7 @@ class Network:
         self.nodes.pop(id)
 
     def calculate_reputation(self, observer_id : str):
+        """Calculates and prints the reputation of each node to standart output"""
 
         # Enforces that ids are uniques
         if observer_id not in self.nodes.keys():
@@ -45,6 +45,7 @@ class Network:
         def weight(depth) -> float:
             return 2**(-depth)
 
+        # Helper recursive tree search function
         def recursive_propagate(idx : int, polarity : int = 0, prev_idxs : list = [], depth : int = 0, had_against : bool = False):
 
             # Get the connections of this node
@@ -117,7 +118,7 @@ class Network:
 
 
     def create_adjacency_matrix(self, id_order : list) -> list:
-        """Creates and adjancency matrix to be used in dijkstra algorithm"""
+        """Creates and adjancency matrix to be used by the tree search"""
 
         # Creates an N*N matrix
         size = len(self.nodes)
