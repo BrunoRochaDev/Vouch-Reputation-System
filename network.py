@@ -2,7 +2,7 @@ from node import Node
 
 class Network:
 
-    MAX_DEPTH = 6
+    MAX_DEPTH = 32
 
     def __init__(self):
         self.nodes = {} # id -> node
@@ -43,9 +43,8 @@ class Network:
         distance_to_observer = self.dijkstra_shortest_path(matrix, observer_idx)
 
         depth = 0 # The current depth of the propagation
-        open_list = [observer_idx] # The nodes to be evaulated
+        open_list = set([(observer_idx, -1)]) # The nodes to be evaulated
         influence = {}
-        blacklist = {} # So that the same node isn't visited more than twice from the same source
 
         def weight(depth) -> float:
             return 2**(-depth)
@@ -53,14 +52,14 @@ class Network:
         # Loops while depth has not been reached and there are nodes in the open list
         while depth < self.MAX_DEPTH and open_list:
 
-            new_open_list = [] # List for the new node to be added
+            new_open_list = set() # List for the new node to be added
 
-            for node_idx in open_list:
+            for node_idx, last_idx in open_list:
                 connections = matrix[node_idx]
 
                 for other_idx, value in enumerate(connections):
                     # Cannot backtrack or stay in place
-                    if other_idx == node_idx or (node_idx in blacklist.keys() and other_idx in blacklist[node_idx]):
+                    if other_idx == node_idx or other_idx == last_idx:
                         continue
 
                     # Ignore if it's not a connection
@@ -74,14 +73,8 @@ class Network:
                         influence[other_idx] = [ (depth, value) ]
 
                     # Add node connected to the open list
-                    new_open_list.append( other_idx )
-
-                    # Blacklist visited node
-                    if node_idx in blacklist:
-                        blacklist[node_idx].add(other_idx)
-                    else:
-                        blacklist[node_idx] = set([other_idx])
-
+                    new_open_list.add( (other_idx, node_idx) )
+                    
             open_list = new_open_list # Updates the open list with the new ones (minus the old ones)
 
             depth += 1
@@ -90,7 +83,7 @@ class Network:
         for idx, id in enumerate(id_order):
 
             if idx == observer_idx:
-                print(id+': 1 (Observer)')
+                print(id+': 100% (Observer)')
                 continue
 
             if idx in influence.keys(): # If the node has been influenced
@@ -109,7 +102,7 @@ class Network:
             else:
                 score = 0
 
-            print(id+':', score)
+            print(id+':', '{:.1%}'.format(score))
 
 
     def create_adjacency_matrix(self, id_order : list) -> list:
