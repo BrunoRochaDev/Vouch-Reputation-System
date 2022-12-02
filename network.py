@@ -42,42 +42,43 @@ class Network:
         # Calculate the distance from every node to the observer
         distance_to_observer = self.dijkstra_shortest_path(matrix, observer_idx)
 
-        depth = 0 # The current depth of the propagation
-        open_list = set([(observer_idx, -1)]) # The nodes to be evaulated
+        open_list = set([observer_idx]) # The nodes to be evaulated
         influence = {}
 
         def weight(depth) -> float:
             return 2**(-depth)
 
-        # Loops while depth has not been reached and there are nodes in the open list
-        while depth < self.MAX_DEPTH and open_list:
+        # TODO: Redo this so that trust propagate outwards.
 
-            new_open_list = set() # List for the new node to be added
+        def recursive_propagate(idx : int, prev_idxs : list = [], depth : int = 0):
+            
+            # Get the connections of this node
+            connections = matrix[idx]
 
-            for node_idx, last_idx in open_list:
-                connections = matrix[node_idx]
+            # For each connection...
+            for other_idx, value in enumerate(connections):
 
-                for other_idx, value in enumerate(connections):
-                    # Cannot backtrack or stay in place
-                    if other_idx == node_idx or other_idx == last_idx:
-                        continue
+                # Ignore if it's not a connection
+                if value == 0:
+                    continue
 
-                    # Ignore if it's not a connection
-                    if value == 0:
-                        continue
+                # Prevents backtrack / stay in place
+                if other_idx == idx or other_idx in prev_idxs:
+                    continue
 
-                    # Influence it with your vouch
-                    if other_idx in influence.keys():
-                        influence[other_idx].append( (depth, value) )
-                    else:
-                        influence[other_idx] = [ (depth, value) ]
+                # Influence it with your vouch
+                if other_idx in influence.keys():
+                    influence[other_idx].append( (depth, value) )
+                else:
+                    influence[other_idx] = [ (depth, value) ]
 
-                    # Add node connected to the open list
-                    new_open_list.add( (other_idx, node_idx) )
-                    
-            open_list = new_open_list # Updates the open list with the new ones (minus the old ones)
+                # Propagate further if depth allows
+                if depth < self.MAX_DEPTH:
+                    recursive_propagate(other_idx, prev_idxs + [idx], depth + 1)
+        
+            pass
 
-            depth += 1
+        recursive_propagate(observer_idx)
 
         # Calculate reputation score from influence
         for idx, id in enumerate(id_order):
