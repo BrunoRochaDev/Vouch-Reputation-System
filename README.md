@@ -16,7 +16,7 @@ Vouch connections are created between nodes depending on their vouches. If two n
 
 As such, the entities and their vouch connections can be displayed as a diagram of a network of nodes. When we are looking at the network from the perspective of a particular node, we call it the observer node.
 
-The reputation of nodes in the network (including ones the observer does not vouch for or against) can be assessed through the vouch connections there present.  
+The reputation of nodes in the network (including those the observer does not vouch for or against) can be assessed through the vouch connections there present.  
 
 It's important to note that a node's reputation is not an intrinsic property it posesses but rather is contingent to an observer. The same node can have wildly different reputation scores when seen through the perspective of nodes with different vouch connections.
 
@@ -28,9 +28,9 @@ For instance, let's say you and Alice vouch for each other. If Bob were to distr
 
 Nodes may be connected to the observer by a varying degree of proximity. Naturally, the opinions of nodes closely connected to the observer carry more weight than those of distant ones. It's more impactful to be vouched by someone closer to the observer than by a distant connection.
 
-Not only that, but the relevance of a node's opinion is also proportional to it's own reputation score. Let's say that Alice vouches for Bob and Charlie vouches against Bob, but Alice has a higher reputation score than Charlie. As Alice's has a better standing on your network, Bob's reputation should be biased towards a good reputation score, rather than to be perfectly even between good and bad.
+Not only that, but the relevance of a node's opinion is also proportional to it's own reputation score. Let's say that Alice vouches for Bob and Charlie vouches against Bob, but Alice has a higher reputation score than Charlie. As Alice has a better standing on your network, Bob's reputation should be biased towards a good reputation score, rather than to be perfectly even between good and bad.
 
-An observer can also apply a weight for every other node. Weights serve as a multiplier for the node's opinion's relevance on the observer's network. For instance, even though you vouch for both Alice and Bob, you can make it so Bob's opinions are twice as relevant as Alice's by giving him a 2x weight while leaving Alice with the default 1x weight. Weights are not public information and can be kept private.
+An observer can also apply a weight to every node. Weights serve as a multiplier for the node's opinion's relevance on the observer's network. For instance, even though you vouch for both Alice and Bob, you can make it so Bob's opinions are twice as relevant as Alice's by giving him a 2x weight while leaving Alice with the default 1x weight. Weights are not public information and can be kept private.
 
 Finally, nodes that are deemed too loosely connected (or not connected at all) to the observer have no reputation score, as there is not enough meaningful data to estimate it. As such, they can be ommited from the network as far as the observer is concerned.
 
