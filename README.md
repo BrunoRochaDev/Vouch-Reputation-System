@@ -4,7 +4,7 @@
 
 Vouch Reputation System, or VRS for short, is a proof of concept for a decentralized reputation system for peer-to-peer networks. This particular implementation is written in Python.
 
-It's goal is to be a community-focused solution to the uncertainty of trust between unfamiliar peers in environments without authorities. Building upon already existing social bonds between it's participants, VRS extrapolates a numerical reputation score for each node in the network in a way that reflects it's standing on it.
+The system's goal is to be a community-focused solution to the uncertainty of trust between unfamiliar peers in environments without authorities. Building upon already existing social bonds between it's participants, VRS extrapolates a numerical reputation score for each node in the network in a way that reflects it's standing on it.
 
 In particular, VRS is suited for contexts where [complete]
 
