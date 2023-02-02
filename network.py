@@ -145,11 +145,11 @@ class Network:
                     matrix[other_idx][node_idx] = -1
 
         # Print
-        print(id_order)
-        for i in range(size):
-            for j in range(size):
-                print('{:4}'.format(matrix[i][j]), end='')
-            print()
+        #print(id_order)
+        #for i in range(size):
+        #    for j in range(size):
+        #        print('{:4}'.format(matrix[i][j]), end='')
+        #    print()
 
         return matrix
 

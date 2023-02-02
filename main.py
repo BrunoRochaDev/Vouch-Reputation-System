@@ -40,6 +40,6 @@ abel.vouch("Adam", True)
 abel.vouch("Eve", True)
 
 peter.vouch("Cain", True)
-peter.vouch("Abel", False)
+#peter.vouch("Abel", False)
 
 network.calculate_reputation("Adam")

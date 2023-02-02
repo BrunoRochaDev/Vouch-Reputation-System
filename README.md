@@ -19,7 +19,7 @@ The system's goal is to be a community-focused solution to the uncertainty of tr
 
 In particular, VRS is suited for contexts where [complete]
 
-This repository contains a Python app for simulating a VRS network and calculating accurate reputation scores. Note that it is not a full implementation of a peer-to-peer network.
+This repository contains a small Python project for simulating a VRS network and calculating accurate reputation scores. Note that it is not a full implementation of a peer-to-peer network.
 
 ## Vouching <a name="vouching"></a>
 
@@ -67,6 +67,102 @@ An observer can also apply a weight to every node. Weights serve as a multiplier
 Finally, nodes that are deemed too loosely connected (or not connected at all) to the observer have no reputation score, as there is not enough meaningful data to estimate it. As such, they can be ommited from the network as far as the observer is concerned.
 
 ## Reputation Score <a name="reputation"></a>
+
+The first step to understand how the reputation score is calculated is to convert the trust topolgy from a mesh to a tree.
+
+Let's take this simple trust topolgy as an example.
+
+Imagem da network
+
+Converted into a tree, it would look as follows:
+
+Imagem da árvore aqui
+
+The next step is to traverse every path in the tree starting from the observer node to attribute influence to nodes. At every visit during the traversal we keep track of two things - the distance from the observer node and the current polarity of the branch, which combined are called what's callend an influence.
+
+The notation used to express an influence on node is a plus or minus sign (representing polarity) followed by a integer (representing the distance). e.g. +0, -1, -5.
+
+To illustrate, let's analyze the influences on each node of this particular branch of the tree.
+
+| Node  | Influence |
+|-------|-----------|
+| Abel  | +0        |
+| Cain  | -1        |
+| Eve   | -2        |
+| Peter | -2        |
+
+Abel has an influence of +0 because it is directly vouched for by the Adam, the observer node. As they are directly connected, the distance is zero. Cain has an influence of -1 because it is vouched against Abel and is one node away from being directly connected to Adam. Eve and Peter both have a -2 influence. It's easy to see that the distance is two because they are both two nodes away from being directly connected to Adam, but why is the polarity negative if Cain vouches for them both?
+
+During the process of attributing influence, if a previously unbroken chain of positive connections is followed by a negative connection, every following positive connection is turned into a negative one. Thus, the positive connections between Cain and Eve/Peter have negative polarity because Cain was vouched against by Abel earlier in the chain.
+
+This is the "Friends of my enemies are my enemies" policy. This is in place to make it so users are negatively impacted by associating with known bad actors, for reasons discussed later.
+
+A similar policy not applicable is this example is the "Enemies of my enemies might not be my friend". It states that when attributing influence to nodes, a given branch can only have one negative connection in it. From the second negative onwards, the influences are ignored. This is in place because it does not logically follow that vouching against someone considered to be unreputable is somehow evidence of good behaviour, as infighting between malectors is possible. 
+
+<p align="center">
+    <i>Example of "Enemies of my enemies might not be my friend". Node X has no influence applied on them.</i>
+</p>
+
+Back to the matter of influence. After going through all the paths in the tree, each node will have a list of influences:
+
+| Node  | Influence          |
+|-------|--------------------|
+| Abel  | +0, +1, -2, -1, +2 |
+| Cain  | +2, -1, -2, +1, +0 |
+| Eve   | +1, -2, +0, +1, -2 |
+| Peter | +3, -2, -3, +2, +1 |
+
+The reputation scores are calculated from the influence lists according the following procedure:
+
+```python
+def calculateReputationScore(influences : list[tuple(int, bool)]) -> float
+    """Calculates the score of a node given their influence list"""
+
+    # weight is determined by the reverse square of the depth
+    def weight(depth) -> float:
+        return 2**(-depth)
+
+    numerator = 0
+    denominator = 0
+
+    # calculate the effect of each influence in the overall score...
+    for dist, polarity in influences:
+        # adds to the numerator either zero or one (depending on polarity) times the weight as dictated by the distance to the observer
+        numerator += (1 if polarity else 0) * weight(depth)
+
+        # adds the weight to the denominator
+        denominator += weight(depth)
+
+    # calculate the weighted average
+    score = numerator/float(denominator)
+    # applies distance falloff
+    score *= weight(dist_to_observer)
+    return score
+```
+The snippet above is a simplified version of the function used in the Python project for the same effect.
+
+And here's is the reputation score of every node in the example's network as according to the Python simulator.
+
+```
+[user@Computer Vouch-Reputation-System]$ python main.py 
+
+`7MMF'   `7MF'`7MM"""Mq.   .M"""bgd 
+  `MA     ,V    MM   `MM. ,MI    "Y 
+   VM:   ,V     MM   ,M9  `MMb.     
+    MM.  M'     MMmmdM9     `YMMNq. 
+    `MM A'      MM  YM.   .     `MM 
+     :MM;       MM   `Mb. Mb     dM 
+      VF      .JMML. .JMM.P"Ybmmd"  
+      
+        Vouch Reputation System
+           Bruno Rocha Moura
+
+Adam  : Observer
+Eve : 80.0%
+Cain : 70.0%
+Abel : 70.0%
+Peter : 35.0%
+```
 
 ## Security Concerns <a name="security"></a>
 
