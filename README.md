@@ -43,7 +43,7 @@ Vouch connections are created between nodes depending on their vouches. If two n
 
 As such, the entities and their vouch connections can be displayed as a trust topology. When we are looking at the topology from the perspective of a particular node, we call it the observer node.
 
-<img src="report/network.png">
+<img src="report/network.png" align="center">
 <p align="center">
     <i>Adam's trust topology. Vouch for relations are in green, vouch against relations in red. The observer node is circled in white.</i>
 </p>
