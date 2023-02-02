@@ -9,14 +9,17 @@ Table of contents
     1. [Impersonation Attacks](#impersonation)
     2. [Vouch Forgery](#vouch_forgery)
     3. [Vouch Omission](#vouch_omission)
+5. [Conclusion](#conclusion)
 
 ## Introduction <a name="introduction"></a>
 
-Vouch Reputation System, or VRS for short, is a proof of concept for a decentralized reputation system for peer-to-peer networks. This particular implementation is written in Python.
+Vouch Reputation System, or VRS for short, is a proof of concept for a decentralized reputation system for peer-to-peer networks.
 
 The system's goal is to be a community-focused solution to the uncertainty of trust between unfamiliar peers in environments without authorities. Building upon already existing social bonds between its participants, VRS extrapolates a numerical reputation score for each node in the network in a way that reflects its standing on it.
 
 In particular, VRS is suited for contexts where [complete]
+
+This repository contains a Python app for simulating a VRS network and calculating accurate reputation scores. Note that it is not a full implementation of a peer-to-peer network.
 
 ## Vouching <a name="vouching"></a>
 
@@ -32,11 +35,18 @@ Take for example this vouch history:
 | 2             | Charlie | For     |
 | 3             | Alice   | Against |
 
-This would mean that it's owner currently vouches for Charlie and against Alice, but previously vouched for Alice.
+<p align="center">
+    <i>This would mean that it's owner currently vouches for Charlie and against Alice, but previously vouched for Alice.</i>
+</p>
 
 Vouch connections are created between nodes depending on their vouches. If two nodes reciprocally vouch for the other, a vouch for connection is formed. If at least one of them vouches against the other, a vouch against connection is formed.
 
-As such, the entities and their vouch connections can be displayed as a diagram of a network of nodes. When we are looking at the network from the perspective of a particular node, we call it the observer node.
+As such, the entities and their vouch connections can be displayed as a trust topology. When we are looking at the topology from the perspective of a particular node, we call it the observer node.
+
+<img src="report/network.png">
+<p align="center">
+    <i>Adam's trust topology. Vouch for relations are in green, vouch against relations in red. The observer node is circled in white.</i>
+</p>
 
 The reputation of nodes in the network (including those the observer does not vouch for or against) can be assessed through the vouch connections there present.  
 
@@ -85,3 +95,11 @@ Now let's say that a new user, Charlie, enters the network for the first time af
 To prevent this scenario from happening, the first step is to make it so nodes don't just store the current vouch connections of the nodes they care about, but also have their previous vouches backed up. This can't be enforced, as users can always clean their cache to save disk space, but as long as at least one node within the victim's reach has the ommited message backed up the system can recover from vouch omission attacks.
 
 Secondly, one should never ask a particular node about their vouch history. Instead, they should ask publicly about it so that anyone can chime in. This way, Charlie would ask anyone to provide for vouch messages made by Alice. Even if Alice omits her message vouching for Bob, another user that has it cached can interject and supply Charlie with the missing message. Alice can't repudiate the authenticity of the message as it contains a digital signature signed by her.
+
+# Conclusion <a name="conclusion"></a>
+
+Through VRS, users can assess anyone's (even complete strangers) trustworthiness through their reputation score as long as someone is their personal network is connected to them without, all without resorting to authority figures.
+
+From it's set of rules emerges an entropic force that promotes network safety. Vouching in favor of a node which is generally considered to be untrustworthy will bring your own reputation score down to those that vouch against it. Reversely, vouching against a reputable account will also cause the same effect to those that vouch for it. Users that don't vouch for or against others when it becomes warranted will lose out on reputation gains, potentially new connections and a more accurate reputation estimate in their own personal network. In other words, users are incentivized to be consistent in their good behaviour and to ostracize actors that might compromise network safety, all for their own immediate self interest.
+
+Just as well meaning users looking to maximize their own experience in the network are incentivized to be careful in regards to whom they associate with and be vigilant about troublemakers in their own personal network, malicious users are incentivized to act independently and not form connections between each other, as being associated with known bad actors will bring down their own reputation score, hampering coordination between malefactors.
