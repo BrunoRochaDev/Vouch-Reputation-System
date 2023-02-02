@@ -1,6 +1,16 @@
 # Vouch Reputation System
 
-## Introduction
+Table of contents
+
+1. [Introduction](#introduction)
+2. [Vouching](#vouching)
+3. [Reputation Score](#reputation)
+4. [Security Concerns](#security)
+    1. [Impersonation Attacks](#impersonation)
+    2. [Vouch Forgery](#vouch_forgery)
+    3. [Vouch Omission](#vouch_omission)
+
+## Introduction <a name="introduction"></a>
 
 Vouch Reputation System, or VRS for short, is a proof of concept for a decentralized reputation system for peer-to-peer networks. This particular implementation is written in Python.
 
@@ -8,7 +18,7 @@ The system's goal is to be a community-focused solution to the uncertainty of tr
 
 In particular, VRS is suited for contexts where [complete]
 
-## Vouching
+## Vouching <a name="vouching"></a>
 
 In VRS, every entity (person, organization, etc.) is represented by a node. Nodes can vouch for or against any other, signalizing trust and mistrust respectively. Vouches can be retracted and altered at will. A node's vouches (both for and against) are public to all.
 
@@ -46,11 +56,11 @@ An observer can also apply a weight to every node. Weights serve as a multiplier
 
 Finally, nodes that are deemed too loosely connected (or not connected at all) to the observer have no reputation score, as there is not enough meaningful data to estimate it. As such, they can be ommited from the network as far as the observer is concerned.
 
-## Reputation Score
+## Reputation Score <a name="reputation"></a>
 
-## Security Concerns
+## Security Concerns <a name="security"></a>
 
-### Impersonation Attacks
+### Impersonation Attacks <a name="impersonation"></a>
 
 One way an adversary might attack the system is by impersonating another user. Let's explore ways this attack vector can be mitigated.
 
@@ -60,11 +70,11 @@ Asymmetric cryptography solves the issue of impersonating an entity's in-system 
 
 One way this can be solved it through certificates, perhaps in a decentralized fashion like in [PGP](https://en.wikipedia.org/wiki/Pretty_Good_Privacy#Certificates), where nodes can certify others of their real identity and those that trust them can choose to listen. There might also be scenarios in which tying real life identities to a in-system identity is undesirable and anonymity is preferred.
 
-### Vouch Forgery
+### Vouch Forgery <a name="vouch_forgery"></a>
 
 As discussed previously, vouch messages ought to be signed by their issuer. As such, it's not possible to forge a vouch message without knowing the would be victim's private key, which of course should be kept secret.
 
-### Vouch Omission
+### Vouch Omission <a name="vouch_omission"></a>
 
 Say that Alice vouches for Bob. That is to say that she created a message vouching for Bob which is forwarded along the network to others. After some time, Bob behaves in some way that warrents disapproval by others in the network. Many users vouch against Bob, which significantly decreases his overall reputation. This, in turn, means that Alice is also negatively affected with their association with Bob so she chooses to retract her vouch.
 
