@@ -70,9 +70,9 @@ Finally, nodes that are deemed too loosely connected (or not connected at all) t
 
 ## Reputation Score <a name="reputation"></a>
 
-The first step to understand how the reputation score is calculated is to convert the trust topolgy from a mesh to a tree.
+The first step to understand how the reputation score is calculated is to convert the trust topology from a mesh to a tree.
 
-Let's take this simple trust topolgy as an example.
+Let's take this simple trust topolgy as an example:
 
 Imagem da network
 
@@ -80,9 +80,9 @@ Converted into a tree, it would look as follows:
 
 Imagem da árvore aqui
 
-The next step is to traverse every path in the tree starting from the observer node to attribute influence to nodes. At every visit during the traversal we keep track of two things - the distance from the observer node and the current polarity of the branch, which combined are called what's callend an influence.
+The next step is to traverse every path in the tree starting from the observer node to attribute influence to nodes. At every visit during the traversal, we keep track of two things - the distance from the observer node and the current polarity of the branch, which combined are called what's called an influence.
 
-The notation used to express an influence on node is a plus or minus sign (representing polarity) followed by a integer (representing the distance). e.g. +0, -1, -5.
+The notation used to express an influence on node is a plus or minus sign (representing polarity) followed by an integer (representing the distance). e.g. +0, -1, -5.
 
 To illustrate, let's analyze the influences on each node of this particular branch of the tree.
 
@@ -99,7 +99,7 @@ During the process of attributing influence, if a previously unbroken chain of p
 
 This is the "Friends of my enemies are my enemies" policy. This is in place to make it so users are negatively impacted by associating with known bad actors, for reasons discussed later.
 
-A similar policy not applicable is this example is the "Enemies of my enemies might not be my friend". It states that when attributing influence to nodes, a given branch can only have one negative connection in it. From the second negative onwards, the influences are ignored. This is in place because it does not logically follow that vouching against someone considered to be unreputable is somehow evidence of good behaviour, as infighting between malectors is possible. 
+A similar policy not applicable is this example is the "Enemies of my enemies might not be my friend". It states that when attributing influence to nodes, a given branch can only have one negative connection in it. From the second negative onwards, the influences are ignored. This is in place because it does not logically follow that vouching against someone considered to be disreputable is somehow evidence of good behavior, as infighting between malefactors is possible.
 
 <p align="center">
     <i>Example of "Enemies of my enemies might not be my friend". Node X has no influence applied on them.</i>
@@ -143,7 +143,7 @@ def calculateReputationScore(influences : list[tuple(int, bool)]) -> float
 ```
 The snippet above is a simplified version of the function used in the Python project for the same effect.
 
-And here's is the reputation score of every node in the example's network as according to the Python simulator.
+And here's the reputation score of every node in the example's network as according to the Python simulator.
 
 ```
 [user@Computer Vouch-Reputation-System]$ python main.py 
