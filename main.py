@@ -1,6 +1,20 @@
 from node import Node
 from network import Network
 
+ascii_art = '''
+`7MMF'   `7MF'`7MM"""Mq.   .M"""bgd 
+  `MA     ,V    MM   `MM. ,MI    "Y 
+   VM:   ,V     MM   ,M9  `MMb.     
+    MM.  M'     MMmmdM9     `YMMNq. 
+    `MM A'      MM  YM.   .     `MM 
+     :MM;       MM   `Mb. Mb     dM 
+      VF      .JMML. .JMM.P"Ybmmd"  
+      
+        Vouch Reputation System
+           Bruno Rocha Moura
+'''
+print(ascii_art)
+
 network = Network()
 
 adam = network.add_node("Adam")
