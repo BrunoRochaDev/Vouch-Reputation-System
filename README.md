@@ -14,15 +14,15 @@ In VRS, every entity (person, organization, etc.) is represented by a node. Node
 
 Vouches are stored in what's called a vouch history. It's an ordered sequence of vouches and their logical timestamp in a way that preserves their past and current vouches.
 
-Take for example Alice's vouch history:
+Take for example this vouch history:
 
 | Logical Clock | Node    | Vouch   |
 |---------------|---------|---------|
-| 1             | Bob     | For     |
+| 1             | Alice   | For     |
 | 2             | Charlie | For     |
-| 3             | Bob     | Against |
+| 3             | Alice   | Against |
 
-She currently vouches for Charlie and against Bob, but previously vouched for Bob.
+This would mean that it's owner currently vouches for Charlie and against Alice, but previously vouched for Alice.
 
 Vouch connections are created between nodes depending on their vouches. If two nodes reciprocally vouch for the other, a vouch for connection is formed. If at least one of them vouches against the other, a vouch against connection is formed.
 
@@ -66,12 +66,12 @@ As discussed previously, vouch messages ought to be signed by their issuer. As s
 
 ### Vouch Omission
 
-Say that Alice vouches for Bob. She creates a message vouching for Bob which is forwarded along the network. After some time, Bob behaves in some way that warrents disapproval by others in the network. Many users vouch against Bob, which significantly decreases his overall reputation. This, in turn, means that Alice is also negatively affected with their association with Bob so she chooses to retract her vouch.
+Say that Alice vouches for Bob. That is to say that she created a message vouching for Bob which is forwarded along the network to others. After some time, Bob behaves in some way that warrents disapproval by others in the network. Many users vouch against Bob, which significantly decreases his overall reputation. This, in turn, means that Alice is also negatively affected with their association with Bob so she chooses to retract her vouch.
 
 For overall network health, it's important that users are held accountable not only for their current vouch relations, but their past ones as well. Otherwise, bad actors could band together without repercussion, as if one of them gets caught the rest can simply retract their vouches and be unaffected. Instead, a user's past vouches should play some role in it's reputation calculation.
 
-Now let's say that a new user, Charlie, enters the network for the first time after the Bob fiasco. As he doesn't know anything yet, he needs to ask around for the vouches each node has in order to construct the trust topology. When asked to present her vouch history, Alice might be inclined to not let Charlie know about her past association with Bob as a way of increasing her reputation. If she sends a tampered version of her vouch history, her reputation from Charlie's point of view may be artificially higher, misleading Charlie to trust Alice more than he might have had he known the full picture.
+Now let's say that a new user, Charlie, enters the network for the first time after the Bob fiasco. As he doesn't know anything yet, he needs to ask around for the vouches each node has in order to construct the trust topology. When asked to present her vouch history, Alice might be inclined to not let Charlie know about her past association with Bob as a way of preserving her reputation. If she sends a tampered version of her vouch history with that message missing, her reputation from Charlie's point of view may be artificially higher, misleading Charlie to trust Alice more than he might have had he known the full picture.
 
-To prevent this scenario from happening, the first step is to make it so nodes don't just store the current vouch connections of the nodes they care about, but also have their previous vouches backed up. This can't be enforced, as users can always clean their cache to save disk space, but as long as at least one node in the victim's reach has the ommited message backed up the system can prevent vouch omission attacks.
+To prevent this scenario from happening, the first step is to make it so nodes don't just store the current vouch connections of the nodes they care about, but also have their previous vouches backed up. This can't be enforced, as users can always clean their cache to save disk space, but as long as at least one node within the victim's reach has the ommited message backed up the system can recover from vouch omission attacks.
 
 Secondly, one should never ask a particular node about their vouch history. Instead, they should ask publicly about it so that anyone can chime in. This way, Charlie would ask anyone to provide for vouch messages made by Alice. Even if Alice omits her message vouching for Bob, another user that has it cached can interject and supply Charlie with the missing message. Alice can't repudiate the authenticity of the message as it contains a digital signature signed by her.
