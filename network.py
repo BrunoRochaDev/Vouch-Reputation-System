@@ -17,11 +17,11 @@ class Network:
             self.nodes[id] = node
             return node
 
-    def delete_node(self, id : str):
+    def delete_node(self, id : str) -> None:
         """Deletes a node with a given identifier."""
         self.nodes.pop(id)
 
-    def calculate_reputation(self, observer_id : str):
+    def calculate_reputation(self, observer_id : str) -> None:
         """Calculates and prints the reputation of each node to standart output"""
 
         # Enforces that ids are uniques
@@ -117,7 +117,7 @@ class Network:
             print(id_order[idx], ':', '{:.1%}'.format(score))
 
 
-    def create_adjacency_matrix(self, id_order : list) -> list:
+    def create_adjacency_matrix(self, id_order : list[int]) -> list[list[bool], bool]:
         """Creates and adjancency matrix to be used by the tree search"""
 
         # Creates an N*N matrix
@@ -179,7 +179,7 @@ class Network:
         # Positive connections are made if A and B vouch for each other
         return a_vouches_for and b_vouches_for
 
-    def has_negative_connection(self, a_id, b_id) -> bool:
+    def has_negative_connection(self, a_id : int, b_id : int) -> bool:
         """Returns whether a negative vouch connection exists between node A and B. A negative vouch connection is made if at least one of them vouches against the other."""
 
         # Gets the nodes associated with the id. Returns false if at least one of them does not exist
