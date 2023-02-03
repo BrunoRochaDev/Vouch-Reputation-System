@@ -99,7 +99,7 @@ Abel has an influence of +0 because it is directly vouched for by the Adam, the 
 
 During the process of attributing influence, if a previously unbroken chain of positive connections is followed by a negative connection, every following positive connection is turned into a negative one. Thus, the positive connections between Cain and Eve/Peter have negative polarity because Cain was vouched against by Abel earlier in the chain.
 
-This is the "Friends of my enemies are my enemies" policy. This is in place to make it so users are negatively impacted by associating with known bad actors, for reasons discussed later.
+This is the "Friends of my enemies are my enemies" policy. This is in place to make it so users are negatively impacted for associating with known bad actors, for reasons discussed later.
 
 A similar policy not applicable is this example is the "Enemies of my enemies might not be my friend". It states that when attributing influence to nodes, a given branch can only have one negative connection in it. From the second negative onwards, the influences are ignored. This is in place because it does not logically follow that vouching against someone considered to be disreputable is somehow evidence of good behavior, as infighting between malefactors is possible.
 
