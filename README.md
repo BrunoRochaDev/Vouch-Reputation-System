@@ -80,13 +80,19 @@ Let's take this simple trust topolgy as an example:
 
 Converted into a tree, it would look as follows:
 
-Imagem da árvore aqui
+<p align="center">
+    <img src="report/tree.png">
+</p>
 
 The next step is to traverse every path in the tree starting from the observer node to attribute influence to nodes. At every visit during the traversal, we keep track of two things - the distance from the observer node and the current polarity of the branch, which combined are called what's called an influence.
 
 The notation used to express an influence on node is a plus or minus sign (representing polarity) followed by an integer (representing the distance). e.g. +0, -1, -5.
 
-To illustrate, let's analyze the influences on each node of this particular branch of the tree.
+To illustrate, let's analyze the influences on each node of this particular branch of the tree:
+
+<p align="center">
+    <img src="report/branch.png">
+</p>
 
 | Node  | Influence |
 |-------|-----------|
@@ -99,12 +105,15 @@ Abel has an influence of +0 because it is directly vouched for by the Adam, the 
 
 During the process of attributing influence, if a previously unbroken chain of positive connections is followed by a negative connection, every following positive connection is turned into a negative one. Thus, the positive connections between Cain and Eve/Peter have negative polarity because Cain was vouched against by Abel earlier in the chain.
 
-This is the "Friends of my enemies are my enemies" policy. This is in place to make it so users are negatively impacted by associating with known bad actors, for reasons discussed later.
+This is the "Friend of my enemiy is my enemy" policy. This is in place to make it so users are negatively impacted by associating with known bad actors, for reasons discussed later.
 
-A similar policy not applicable is this example is the "Enemies of my enemies might not be my friend". It states that when attributing influence to nodes, a given branch can only have one negative connection in it. From the second negative onwards, the influences are ignored. This is in place because it does not logically follow that vouching against someone considered to be disreputable is somehow evidence of good behavior, as infighting between malefactors is possible.
+A similar policy not applicable is this example is the "Enemy of my enemy might not be my friend". It states that when attributing influence to nodes, a given branch can only have one negative connection in it. From the second negative onwards, the influences are ignored. This is in place because it does not logically follow that vouching against someone considered to be disreputable is somehow evidence of good behavior, as infighting between malefactors is possible.
 
 <p align="center">
-    <i>Example of "Enemies of my enemies might not be my friend". Node X has no influence applied on them.</i>
+<p align="center">
+    <img src="report/enemy_of_enemy.png">
+</p>
+    <i>Example of "Enemy of my enemy might not be my friend". Altough Peter is negatively affected by his positive connection with Cain, Eve is not affected at all by her negative connection.</i>
 </p>
 
 Back to the matter of influence. After going through all the paths in the tree, each node will have a list of influences:
