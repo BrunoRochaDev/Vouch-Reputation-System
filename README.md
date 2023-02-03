@@ -74,7 +74,9 @@ The first step to understand how the reputation score is calculated is to conver
 
 Let's take this simple trust topolgy as an example:
 
-Imagem da network
+<p align="center">
+    <img src="report/mesh.png">
+</p>
 
 Converted into a tree, it would look as follows:
 
