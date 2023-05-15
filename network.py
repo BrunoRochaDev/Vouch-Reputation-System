@@ -117,7 +117,7 @@ class Network:
             print(id_order[idx], ':', '{:.1%}'.format(score))
 
 
-    def create_adjacency_matrix(self, id_order : list[int]) -> list[list[bool], bool]:
+    def create_adjacency_matrix(self, id_order :list) -> list:
         """Creates and adjancency matrix to be used by the tree search"""
 
         # Creates an N*N matrix
